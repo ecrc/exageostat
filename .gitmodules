@@ -1,0 +1,3 @@
+[submodule "cmake_modules/ecrc"]
+	path = cmake_modules/ecrc
+	url = https://github.com/ecrc/ecrc_cmake
