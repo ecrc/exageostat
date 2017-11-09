@@ -112,5 +112,4 @@ Handout
 =======
 
 More information can be found in this handout:
-
-<img src="https://github.com/ecrc/exageostat-dev/blob/master/handout.jpg"  width="800">
+![Handout](handout.jpg)
