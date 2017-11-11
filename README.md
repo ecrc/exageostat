@@ -108,8 +108,12 @@ Now you can use pkg-config executable to collect compiler and linker flags for
 ExaGeoStat.
 
 
+Publication
+===========
+Abdulah, Sameh, Hatem Ltaief, Ying Sun, Marc G. Genton, and David E. Keyes. "ExaGeoStat: A High Performance Unified Framework for Geostatistics on Manycore Systems." arXiv preprint arXiv:1708.02835 (2017). (Under Review TPDS Journal)
+
 Handout
 =======
 
 More information can be found in this handout:
-![Handout](handout.jpg)
+![Handout](docs/handout.jpg)
