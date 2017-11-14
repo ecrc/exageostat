@@ -1,4 +1,4 @@
-set( tests_files zgen_mle_test.c )
+set( tests_files zgen_mle_test.c zgen_mle_testr.c )
 
 
 foreach(test_src ${tests_files})

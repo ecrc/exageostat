@@ -620,6 +620,7 @@ include_directories( ${CMAKE_SOURCE_DIR} )
 include_directories( ${CMAKE_SOURCE_DIR}/include )
 include_directories( ${CMAKE_SOURCE_DIR}/misc/include )
 include_directories( ${CMAKE_SOURCE_DIR}/exageostat_exact/src/include )
+include_directories( ${CMAKE_SOURCE_DIR}/exageostat_exact/core/include )
 include_directories( ${CMAKE_SOURCE_DIR}/exageostat_exact/runtime/starpu/include )
 
 
@@ -642,6 +643,7 @@ set( EXAGEOSTAT_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/compute/MLE.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_dgemv.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/misc/compute/MLE_misc.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/src/compute/MLE_exact.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/r-wrappers/compute/rwrappers.c
   )
 set( INSTALL_HEADERS ${CMAKE_SOURCE_DIR}/src/include/MLE.h
                      ${CMAKE_SOURCE_DIR}/include/context.h
@@ -650,6 +652,7 @@ set( INSTALL_HEADERS ${CMAKE_SOURCE_DIR}/src/include/MLE.h
                      ${CMAKE_SOURCE_DIR}/exageostat_exact/runtime/starpu/include/starpu_exageostat.h
                      ${CMAKE_SOURCE_DIR}/exageostat_exact/core/include/exageostatcore.h
                      ${CMAKE_SOURCE_DIR}/misc/include/MLE_misc.h
+                     ${CMAKE_CURRENT_SOURCE_DIR}/r-wrappers/include/rwrappers.h		     			
                      ${CMAKE_SOURCE_DIR}/include/flops.h
                      )
 

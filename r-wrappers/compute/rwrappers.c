@@ -67,8 +67,8 @@ void  rexageostat_gen_z(int *n, int *ncores,  int *gpus,  int *ts,  int *p_grid,
 	GenerateXYLoc(*n, "", &data.l1);
 	
         //Set data struct values based on inputs
-	data.computation	= comp_mode == 0? "exact" : "appro";  
-        data.dm 		= comp_mode == 0? "ed" : "gcd";
+	data.computation	= comp_mode == 0 ? "exact" : "appro";  
+        data.dm 		= comp_mode == 0 ? "ed" : "gcd";
         data.verbose		= verbose;
         data.l2			= data.l1;
 	data.async		= async;
@@ -211,13 +211,11 @@ void rexageostat_init(int *ncores, int *gpus, int *ts)
  * @param[in] ts:               Pointer to the tile size (MB) is used only in the case of HiCMA not MORSE.
  * */
 {
-	//MORSE_user_tag_size(31,26);
-        MORSE_Init(*ncores, *gpus);
-        MORSE_Set(MORSE_TILE_SIZE, *ts);
+	exageostat_init(ncores, gpus, ts);
 }
 void rexageostat_finalize()
 //! R-wrapper to finalize exageostat.
 {
-        MORSE_Finalize();
+        exageostat_finalize();
 }
 
