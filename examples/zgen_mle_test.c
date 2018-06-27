@@ -54,8 +54,8 @@ int main(int argc, char **argv) {
 	exageostat_init(&ncores, &gpus, &ts); 
 	
 	//kernel parsing
-        init_optimizer(&opt, lb, up, 1e-5);
-
+        init_optimizer(&opt, lb, up, pow(10, -1.0 * data.opt_tol));
+        nlopt_set_maxeval(opt, data.opt_max_iters);
 
         //nomral random generation of e -- ei~N(0, 1) to generate Z
         Nrand	= (double *) malloc (N * zvecs * sizeof(double));

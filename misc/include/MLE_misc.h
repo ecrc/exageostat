@@ -142,6 +142,8 @@ typedef struct
         void *hicma_descC22UV;		///< HiCMA descCUV descriptor.
 	void *hicma_descC22rk;		///< HiCMA descCrk descriptor.
         double hicma_acc;		///< Accuracy in the case of LR-HiCMA approx
+        int opt_tol;                    ///< The parameter tol is a tolerance that is used for the purpose of stopping criteria only.
+        int opt_max_iters;       	///< Maximum number of mle iterations.
 
 } MLE_data;
 

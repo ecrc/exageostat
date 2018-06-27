@@ -37,6 +37,9 @@ int main(int argc, char **argv) {
         arguments arguments;
 	double *vecs_out = NULL, *theta_out = NULL;
 	double *initial_theta = NULL, *lb = NULL, *ub = NULL;
+        double opt_tol = 1e-5;
+        int opt_max_iters = 0;
+
         //Arguments default values
         set_args_default(&arguments);
         argp_parse (&argp, argc, argv, 0, 0, &arguments);
@@ -53,7 +56,8 @@ int main(int argc, char **argv) {
 	theta		= arguments.ikernel;
 	clb		= arguments.olb;
 	cub		= arguments.oub;
-
+        opt_tol         = pow(10, -1.0 * atoi(arguments.opt_tol));
+        opt_max_iters   = atoi(arguments.opt_max_iters);
 
         dm_int		= strcmp(dm, "ed") == 0 ? 0 : 1;
         computation_int = strcmp(computation, "exact") == 0 ? 0 : 1;
@@ -72,10 +76,10 @@ int main(int argc, char **argv) {
 
     rexageostat_init(&ncores,&gpus, &ts);
     rexageostat_gen_z(&n,   &ncores,   &gpus,  &ts,   &p_grid,  &q_grid,  &initial_theta[0],  &initial_theta[1],  &initial_theta[2],  &computation_int,  &dm_int, &globalveclen, vecs_out);
-    rexageostat_likelihood(&n, &ncores, &gpus, &ts, &p_grid, &q_grid,  vecs_out, NULL,  &vecs_out[n], NULL,  &vecs_out[2*n], NULL,   lb, &thetalen, ub, thetalen, &computation_int, &dm_int,  theta_out);
+    rexageostat_likelihood(&n, &ncores, &gpus, &ts, &p_grid, &q_grid,  vecs_out, NULL,  &vecs_out[n], NULL,  &vecs_out[2*n], NULL,   lb, &thetalen, ub, thetalen, &computation_int, &dm_int, &opt_tol, &opt_max_iters, theta_out);
     rexageostat_finalize();
-     
-    printf("%f - %f - %f\n", theta_out[0], theta_out[1], theta_out[2]);
+    
+    fprintf(stderr,"Found Maximum at f(%g, %g, %g) \n", theta_out[0], theta_out[1], theta_out[2]);
 
     //free memory
     free(theta_out);

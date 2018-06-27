@@ -107,6 +107,12 @@ please follow these instructions:
 Now you can use pkg-config executable to collect compiler and linker flags for
 ExaGeoStat.
 
+Example
+=======
+
+Test Synthetic dataset where N=1600
+
+  ./examples/zgen\_mle\_test  --kernel=?:?:? --test --ikernel=1:0.1:0.5 --computation=exact  --N=1600  --ncores=20 --ts=560  --olb=0.1:0.1:0.1 --oub=5:5:5
 
 Publication
 ===========

@@ -57,6 +57,8 @@ typedef struct
 	char    *maxrank;   	       ///< Max Rank in the case of LR-HiCMA approx
 	char    *acc;		       ///< Accuracy in the case of LR-HiCMA approx	
 	int 	profile;	       ///< profiling the performance of exageostat using FxT
+        char    *opt_tol;              ///< The parameter tol is a tolerance that is used for the purpose of stopping criteria only.
+        char    *opt_max_iters;        ///< Maximum number of mle iterations.
 } arguments;
 
 
@@ -98,7 +100,9 @@ static struct argp_option options[] =
             	{"maxrank",   'x', "MAXRANK", 0, "HiCMA Max RANK"},
                 {"acc",   'u', "ACC", 0, "HiCMA Accuracy"},
 		{"profile", 'w', 0, 0, "Performance profiling"},
-            {0}
+                {"opt_tol",   'O', "OPTIMIZATION_TOLERANCE", 0, "Optimization tolerance"},
+                {"opt_iters", 'I', "OPTIMIZATION_MAX_ITERS", 0, "Optimization maximum iterations"},
+	        {0}
 };
 
 
@@ -191,6 +195,12 @@ parse_opt (int key, char *arg, struct argp_state *state)
                 break;
 	case 'w':
                 arguments->profile= 1;
+                break;
+        case 'O':
+                arguments->opt_tol = arg;
+                break;
+        case 'I':
+                arguments->opt_max_iters = arg;
                 break;
         default:
                 return ARGP_ERR_UNKNOWN;
