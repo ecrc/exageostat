@@ -108,7 +108,7 @@ void  rexageostat_gen_z(int *n, int *ncores,  int *gpus,  int *ts,  int *p_grid,
 	free(localvec);
 }
 
-void  rexageostat_likelihood(int *n,  int *ncores, int *gpus, int *ts, int *p_grid, int *q_grid,  double *x, int *xlen, double *y, int *ylen, double *z, int *zlen, double *clb, int *clblen, double *cub, int *cublen,  int *computation, int *dmetric, double *globalthetaout)
+void  rexageostat_likelihood(int *n,  int *ncores, int *gpus, int *ts, int *p_grid, int *q_grid,  double *x, int *xlen, double *y, int *ylen, double *z, int *zlen, double *clb, int *clblen, double *cub, int *cublen,  int *computation, int *dmetric, double *opt_tol, int *opt_max_iters, double *globalthetaout)
 //! R-wrapper to estimate the makimum likelihood function.
 /*!  -- using dense or approximate computation
  * Returns the optimized theta vector 
@@ -130,7 +130,9 @@ void  rexageostat_likelihood(int *n,  int *ncores, int *gpus, int *ts, int *p_gr
  * @param[in] cublen:           Pointer to the length of z vector (upper bound optimization vector).
  * @param[in] computation:      Pointer to the computation mode (0--> exact, 1-->approx)
  * @param[in] dmetric:          Pointer to the used metric (0-->ed, 1-->gcd)
- * @param[in] globalthetaout:        Pointer to R memory space (theta1:theta2:theta3)
+ * @param[in] opt_tol:          Pointer to the tol parameter ( tolerance that is used for the purpose of stopping criteria only).
+ * @param[in] opt_max_iters:    Pointer to the maximum number of mle iterations.
+ * @param[in] globalthetaout:   Pointer to R memory space (theta1:theta2:theta3)
  * */
 {
 	//initialization
@@ -169,7 +171,10 @@ void  rexageostat_likelihood(int *n,  int *ncores, int *gpus, int *ts, int *p_gr
 		starting_theta[i]=clb[i];
 
 	//Optimizer initialization
-        init_optimizer(&opt, clb, cub, 1e-5);
+        //Optimizer initialization
+        init_optimizer(&opt, clb, cub, *opt_tol);
+        nlopt_set_maxeval(opt, *opt_max_iters);
+        //init_optimizer(&opt, clb, cub, 1e-5);
 
 	//Create descriptors
         MORSE_Call(&data, *ncores,*gpus, *ts, *p_grid, *q_grid, *n,  0, 0);

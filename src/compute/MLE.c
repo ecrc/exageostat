@@ -77,30 +77,32 @@ void set_args_default(arguments *arg_values)
  * */
 {
 
-	arg_values->test	= 0;                 
-	arg_values->check	= 0;               
-        arg_values->verbose	= 0;             
-        arg_values->zvecs	= "1";             
-        arg_values->computation = "exact";
-        arg_values->async	= 0;               
-        arg_values->kernel	= "";             
-        arg_values->ikernel	= "";   
-        arg_values->ncores	= "1";              
-        arg_values->gpus	= "0";              
-        arg_values->p		= "1";             
-        arg_values->q		= "1";              
-        arg_values->N		= "0";                   
-        arg_values->ts		= "0";                  
-        arg_values->locs_file	= "";        
-        arg_values->obs_dir	= "";         
-        arg_values->actualZ_file ="";
-        arg_values->actualZloc_file = "";
-        arg_values->predict	= "0";       
-        arg_values->dm		= "ed";
-        arg_values->log		= 0;
-	arg_values->maxrank	= "0";
-	arg_values->acc		= "0";
-	arg_values->profile	= 0;	
+	arg_values->test		= 0;                 
+	arg_values->check		= 0;               
+        arg_values->verbose		= 0;             
+        arg_values->zvecs		= "1";             
+        arg_values->computation 	= "exact";
+        arg_values->async		= 0;               
+        arg_values->kernel		= "";             
+        arg_values->ikernel		= "";   
+        arg_values->ncores		= "1";              
+        arg_values->gpus		= "0";              
+        arg_values->p			= "1";             
+        arg_values->q			= "1";              
+        arg_values->N			= "0";                   
+        arg_values->ts			= "0";                  
+        arg_values->locs_file		= "";        
+        arg_values->obs_dir		= "";         
+        arg_values->actualZ_file	= "";
+        arg_values->actualZloc_file 	= "";
+        arg_values->predict		= "0";       
+        arg_values->dm			= "ed";
+        arg_values->log			= 0;
+	arg_values->maxrank		= "0";
+	arg_values->acc			= "0";
+	arg_values->profile		= 0;	
+        arg_values->opt_tol             = "5";
+        arg_values->opt_max_iters       = "-1";
 }
 
 
@@ -194,6 +196,8 @@ void init(int *test, int *N,  int *ncores, int *gpus, int *p_grid, int *q_grid, 
         data->total_exec_time	= 0;
         data->avg_flops_per_iter= 0;
         data->final_loglik	= 0;
+        data->opt_tol           = atoi(arguments->opt_tol);
+        data->opt_max_iters     = atoi(arguments->opt_max_iters);
 
         //if N is not provided
         if(*N == 0)
