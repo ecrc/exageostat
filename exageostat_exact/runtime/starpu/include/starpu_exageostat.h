@@ -36,7 +36,7 @@
 #define starpu_mpi_codelet(_codelet_) _codelet_
 #endif
 
-#define RTBLKADDR( desc, type, m, n ) ( (starpu_data_handle_t)RUNTIME_desc_getaddr( desc, m, n ) )
+#define RTBLKADDR( desc, type, m, n ) ( (starpu_data_handle_t)RUNTIME_data_getaddr( desc, m, n ) )
 
 #define mBLKLDD(A, k) A->get_blkldd( A,k )
 
