@@ -103,8 +103,11 @@ int MORSE_MLE_zcpy_Tile_Async(MORSE_desc_t *descA, double * r,MORSE_sequence_t *
         }
 
         RUNTIME_options_ws_free(&options);
-        MORSE_TASK_dataflush_all();
-        return MORSE_SUCCESS;
+	//MORSE_TASK_dataflush_all();
+        //MORSE_TASK_dataflush_all(); is replaced in the new chameleon by  MORSE_Desc_Flush( DESC, sequence );
+        MORSE_Desc_Flush( descA, sequence );        
+
+	return MORSE_SUCCESS;
 }
 
 
