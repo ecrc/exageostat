@@ -135,8 +135,11 @@ int MORSE_MLE_cmg_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence, MO
 
         RUNTIME_options_ws_free(&options);
         RUNTIME_options_finalize(&options, morse);
-        MORSE_TASK_dataflush_all();
-        return MORSE_SUCCESS;
+	//MORSE_TASK_dataflush_all();
+        //MORSE_TASK_dataflush_all(); is replaced in the new chameleon by  MORSE_Desc_Flush( DESC, sequence );
+        MORSE_Desc_Flush( descA, sequence );
+ 
+	return MORSE_SUCCESS;
 }
 
 

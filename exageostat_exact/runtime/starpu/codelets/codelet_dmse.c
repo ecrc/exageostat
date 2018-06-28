@@ -120,7 +120,12 @@ int MORSE_MLE_dmse_Tile_Async(MORSE_desc_t *descZpre, MORSE_desc_t *descZmiss, M
         }
         RUNTIME_options_ws_free(&options);
         RUNTIME_options_finalize(&options, morse);
-        MORSE_TASK_dataflush_all();
+        //MORSE_TASK_dataflush_all();
+        //MORSE_TASK_dataflush_all(); is replaced in the new chameleon by  MORSE_Desc_Flush( DESC, sequence );
+        MORSE_Desc_Flush( descZpre, sequence );
+        MORSE_Desc_Flush( descZmiss, sequence );
+        MORSE_Desc_Flush( descserror, sequence );
+
         MORSE_Sequence_Wait(sequence);
         return MORSE_SUCCESS;
 }
