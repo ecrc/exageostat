@@ -35,22 +35,32 @@ must resemble the interactive one with which working statisticians are familiar.
 
 To summarize, the combination of emerging computing capabilities and emerging datasets
 promises significant advances in statistical analyses of environmental and many other
-phenomena.  Such cross-disciplinary advances are natural at KAUST, which is why this relatively low-hanging fruit was ours to harvest earliest. Our roadmap is taking ExaGeoStat 
-a step further on the algorithmic side by introducing a new type of approximation
-(hierarchical tile low-rank approximation) that is systematic and whose errors can
-be understood and controlled, in order to further expand practical problem sizes for
-even modest computational resources, since most working statisticians lack access to
-systems like Shaheen.
+phenomena.  Such cross-disciplinary advances are natural at KAUST, which is why this
+relatively low-hanging fruit was ours to harvest earliest. Our roadmap takes now ExaGeoStat 
+a step further on the algorithmic side by integrating tile low-rank matrix approximation.
+This low-rank matrix approximation permits to exploit the data sparisty of the operator
+with a user-controlled numerical accuracy. This further expands practical problem sizes for
+statisticians with modest computational resources.
+
+
+Current Version: 1.0.0
+======================
 
 Current Features of ExaGeoStat
 ======================
 Operations:
 1.  Large-scale synthetic matrix generation.
-2.  Maximum likelihood estimation from dense covariance matrices.
+2.  Maximum likelihood estimation from dense and Tile Low-Rank (TLR) covariance matrices.
 3.  Predicting large-scale unknown measures in predefined geo-spatial locations.
 
-Programming model:
-1.  Task-based programming model and dynamic runtime systems using CHAMELEON and StarPU
+Programming models:
+1.  MPI
+2.  Task-based programming models
+
+External libraries:
+1.  StarPU dynamic runtime system 
+2.  HiCMA
+3.  Chameleon
 
 Installation
 ============
@@ -58,7 +68,7 @@ Installation
 Installation requires at least **CMake** of version 3.2.3. To build ExaGeoStat,
 please follow these instructions:
 
-1.  Get ExaGeoStat from git repository
+1.  Get  from git repository
 
         git clone git@github.com:ecrc/exageostat
 
@@ -72,7 +82,7 @@ please follow these instructions:
 
 3.  Get submodules
 
-        git submodule update --init
+        git submodule update --init --recursive
 
 4.  Create build directory and go there
 
@@ -80,43 +90,37 @@ please follow these instructions:
 
 5.  Use CMake to get all the dependencies
 
-        cmake .. -DCMAKE_INSTALL_PREFIX=/path/to/install/
+        cmake .. -DCMAKE_INSTALL_PREFIX=/path/to/install/  -DEXAGEOSTAT_SCHED_STARPU=ON   -DEXAGEOSTAT_USE_NETCDF=ON -DEXAGEOSTAT_USE_HICMA=ON
 
-6.  Build ExaGeoStat
+
+6.  Build EXAGEOSTAT
 
         make -j
-
-7.  Run tests (optional)
-
-        make test
 
 8.  Build local documentation (optional)
 
         make docs
 
-9.  Install ExaGeoStat
+9.  Install EXAGEOSTAT
 
         make install
 
 10. Add line
 
-        export PKG_CONFIG_PATH=/path/to/install:$PKG_CONFIG_PATH
+        export PKG_CONFIG_PATH=/path/to/install/lib/pkgconfig:$PKG_CONFIG_PATH
 
     to your .bashrc file.
 
 Now you can use pkg-config executable to collect compiler and linker flags for
-ExaGeoStat.
+EXAGEOSTAT.
 
-Example
-=======
 
-Test Synthetic dataset where N=1600
+References
+==========
+1. Sameh Abdulah, Hatem Ltaief, Ying Sun, Marc G. Genton, and David Keyes. "ExaGeoStat: A High Performance Unified Software for Geostatistics on Manycore Systems," IEEE Transactions on Parallel and Distributed Systems (2018).
 
-  ./examples/zgen\_mle\_test  --kernel=?:?:? --test --ikernel=1:0.1:0.5 --computation=exact  --N=1600  --ncores=20 --ts=560  --olb=0.1:0.1:0.1 --oub=5:5:5
+2. Sameh Abdulah, Hatem Ltaief, Ying Sun, Marc G. Genton, and David Keyes. "Parallel Approximation of the Maximum Likelihood Estimation for the Prediction of Large-Scale Geostatistics Simulations," IEEE Cluster Conference, Belfast, UK, Septemeber, 2018.
 
-Publication
-===========
-Abdulah, Sameh, Hatem Ltaief, Ying Sun, Marc G. Genton, and David E. Keyes. "ExaGeoStat: A High Performance Unified Framework for Geostatistics on Manycore Systems." arXiv preprint arXiv:1708.02835 (2017). (Under Review TPDS Journal)
 
 Handout
 =======

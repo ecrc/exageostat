@@ -1,6 +1,6 @@
 /**
  *
- * Copyright (c) 2017, King Abdullah University of Science and Technology
+ * Copyright (c) 2017-2018  King Abdullah University of Science and Technology
  * All rights reserved.
  *
  * ExaGeoStat is a software package provided by KAUST
@@ -11,10 +11,10 @@
  *
  * Calculate determinant of a given triangular matrix (A).
  *
- * @version 0.1.0
+ * @version 1.0.0
  *
  * @author Sameh Abdulah
- * @date 2017-11-07
+ * @date 2018-11-11
  *
  **/
 
@@ -48,7 +48,7 @@
  *
  *
  ******************************************************************************/
-double core_dmdet (double * A, int m, int n, int m0, int n0) {
+double core_dmdet (double *A, int m, int n, int m0, int n0) {
 
         int i;
         double res = 0.0;

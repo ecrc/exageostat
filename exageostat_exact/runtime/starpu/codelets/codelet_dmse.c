@@ -1,6 +1,6 @@
 /**
  *
- * Copyright (c) 2017, King Abdullah University of Science and Technology
+ * Copyright (c) 2017-2018  King Abdullah University of Science and Technology
  * All rights reserved.
  *
  * ExaGeoStat is a software package provided by KAUST
@@ -11,10 +11,10 @@
  *
  * StarPU codelet to Calculate Mean Square Error (MSE) between two vectors.
  *
- * @version 0.1.0
+ * @version 1.0.0
  *
  * @author Sameh Abdulah
- * @date 2017-11-07
+ * @date 2018-11-11
  *
  **/
 #include "../include/starpu_exageostat.h"
@@ -33,7 +33,7 @@ static void CORE_dmse_starpu(void *buffers[], void *cl_arg){
 
         for(i = 0; i < m; i++)
         {
- 		// printf("%f, %f, \n",zpre[i], zmiss[i]);
+// 		printf("%f, %f, \n",zpre[i], zmiss[i]);
                 local_serror += pow((zpre[i]-zmiss[i]), 2);
         }
 
@@ -118,15 +118,14 @@ int MORSE_MLE_dmse_Tile_Async(MORSE_desc_t *descZpre, MORSE_desc_t *descZmiss, M
                                 #endif
 			         0);
         }
+
+        //MORSE_TASK_flush_desc( &options, MorseUpperLower, descZpre);
+        //MORSE_TASK_flush_desc( &options, MorseUpperLower, descZmiss);
+        //MORSE_TASK_flush_desc( &options, MorseUpperLower, descserror);
         RUNTIME_options_ws_free(&options);
         RUNTIME_options_finalize(&options, morse);
         //MORSE_TASK_dataflush_all();
-        //MORSE_TASK_dataflush_all(); is replaced in the new chameleon by  MORSE_Desc_Flush( DESC, sequence );
-        MORSE_Desc_Flush( descZpre, sequence );
-        MORSE_Desc_Flush( descZmiss, sequence );
-        MORSE_Desc_Flush( descserror, sequence );
-
-        MORSE_Sequence_Wait(sequence);
+	MORSE_Sequence_Wait(sequence);
         return MORSE_SUCCESS;
 }
 

@@ -1,6 +1,6 @@
 /**
  *
- * Copyright (c) 2017, King Abdullah University of Science and Technology
+ * Copyright (c) 2017-2018  King Abdullah University of Science and Technology
  * All rights reserved.
  *
  * ExaGeoStat is a software package provided by KAUST
@@ -11,10 +11,10 @@
  *
  * Calculate dot product scalar value of Z*Z. 
  *
- * @version 0.1.0
+ * @version 1.0.0
  *
  * @author Sameh Abdulah
- * @date 2017-11-07
+ * @date 2018-11-11
  *
  **/
 #include "../include/exageostatcore.h"
@@ -27,10 +27,11 @@
  *******************************************************************************
  *
  * @param[in] Z
- *           The m-by-1 matrix on which to calculate the determinant.
+ *           The n-by-1 vector.
  *
  * @param[out] dotproduct
  *          dot product value.
+ *
  * @param[in] n
  *          The number of rows in the tile A.
  *
@@ -39,7 +40,7 @@
  *
  *
  ******************************************************************************/
-double core_ddotp(double * Z, double *dotproduct, int n)
+double core_ddotp(double *Z, double *dotproduct, int n)
 {
         return cblas_ddot(n, Z, 1, Z, 1);
 }

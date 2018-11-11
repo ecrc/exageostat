@@ -1,29 +1,29 @@
-###
+# @copyright (c) 2017 King Abdullah University of Science and
+#                      Technology (KAUST). All rights reserved.
 #
-# @copyright (c) 2009-2014 The University of Tennessee and The University
-#                          of Tennessee Research Foundation.
-#                          All rights reserved.
-# @copyright (c) 2012-2016 Inria. All rights reserved.
-# @copyright (c) 2012-2016 Bordemisc INP, CNRS (LaBRI UMR 5800), Inria, Univ. Bordemisc. All rights reserved.
-# @copyright (c) 2017      King Abdullah University of Science and Technology (KAUST)
+# ExaGeoStat is a software package, provided by King Abdullah
+#             University of Science and Technology (KAUST)
 #
-###
-#
-#  @file CMakeLists.txt
-#
-#  @project ExaGeoStat
-#  ExaGeoStat is a software package provided by:
-#     King Abdullah University of Science and Technology
-#
-#  @version 0.1.0
-#  @author Cedric Castagnede
-#  @author Emmanuel Agullo
-#  @author Mathieu Faverge
-#  @author Florent Pruvost
-#  @author Eduardo Gonzalez
-#  @date 13-07-2017
-#
-###
+# @file CMakeLists.txt
+# @version 1.0.0
+# @author Eduardo Gonzalez Fisher
+# @author Sameh Abdulah
+# @date 2018-11-11
+
+
+###############################################################################
+#                       THIS IS A TOP-LEVEL CMAKELISTS.txt                    #
+#                                                                             #
+#        It is intended to find all dependencies (required or optional)       #
+#                    and set up corresponding variables                       #
+###############################################################################
+
+
+###############################################################################
+##                            PRELIMINARIES                                  ##
+###############################################################################
+
+#Minimum CMAKE version.
 cmake_minimum_required(VERSION 3.2.3)
 
 # directly make an error if in-source build
@@ -36,8 +36,8 @@ endif()
 project(EXAGEOSTAT C )
 
 # set project version number
-set(EXAGEOSTAT_VERSION_MAJOR 0)
-set(EXAGEOSTAT_VERSION_MINOR 1)
+set(EXAGEOSTAT_VERSION_MAJOR 1)
+set(EXAGEOSTAT_VERSION_MINOR 0)
 set(EXAGEOSTAT_VERSION_PATCH 0)
 
 set(MORSE_CMAKE_DIR "" CACHE PATH "Directory of MORSE CMake modules, can be external to the project")
@@ -183,6 +183,17 @@ cmake_dependent_option(EXAGEOSTAT_USE_MPI
 if (NOT EXAGEOSTAT_USE_MPI)
     message("-- ${BoldGreen}EXAGEOSTAT_USE_MPI is set to OFF, turn it ON to use MPI (only with StarPU)${ColourReset}")
 endif()
+
+# Enable NETCDF support
+if (NOT EXAGEOSTAT_USE_NETCDF)
+    message("-- ${BoldGreen}EXAGEOSTAT_USE_NETCDF is set to OFF, turn it ON to enable NetCDF support${ColourReset}")
+endif()
+
+# Enable HDF5 support
+#if (NOT EXAGEOSTAT_USE_HDF5)
+#    message("-- ${BoldGreen}EXAGEOSTAT_USE_HDF5 is set to OFF, turn it ON to enable HDF5 support${ColourReset}")
+#endif()
+
 
 # Use intermediate variable since cmake_dependent_option doesn't have OR conditions
 set(EXAGEOSTAT_ENABLE_MPI OFF CACHE INTERNAL "Tells if MPI might be supported by the runtime")
@@ -403,7 +414,6 @@ if( STARSH_FOUND )
 endif()
 endif()
 
-
 # EXAGEOSTAT depends on a runtime
 # -------------------------------
 
@@ -566,6 +576,61 @@ if( CHAMELEON_FOUND )
 endif()
 
 
+# EXAGEOSTAT depends on HICMA
+# -------------------------------
+if( EXAGEOSTAT_USE_HICMA )
+find_package( HICMA REQUIRED)
+if( HICMA_FOUND )
+    include_directories(${HICMA_INCLUDE_DIRS_DEP})
+    add_definitions(-DEXAGEOSTAT_USE_HICMA)
+    if(HICMA_LINKER_FLAGS)
+        list(APPEND CMAKE_EXE_LINKER_FLAGS "${HICMA_LINKER_FLAGS}")
+    endif()
+    if(HICMA_LIBRARY_DIRS)
+        # The RPATH to be used when installing
+        list(APPEND CMAKE_INSTALL_RPATH "${HICMA_LIBRARY_DIRS}")
+        link_directories(${HICMA_LIBRARY_DIRS})
+    endif()
+    # Insert to dependencies
+        if (HICMA_LIBRARIES_DEP)
+            list(INSERT EXAGEOSTAT_DEP 0 ${HICMA_LIBRARIES_DEP})
+        else()
+            list(INSERT EXAGEOSTAT_DEP 0 ${HICMA_LIBRARIES})
+        endif()
+endif()
+endif()
+# EXAGEOSTAT depends on netcdf
+# -------------------------------
+if( EXAGEOSTAT_USE_NETCDF )
+pkg_search_module(NETCDF netcdf REQUIRED)
+if( NETCDF_FOUND )
+    add_definitions(-DEXAGEOSTAT_USE_NETCDF)
+    include_directories(${NETCDF_INCLUDE_DIRS})
+    link_directories(${NETCDF_LIBRARY_DIRS})
+    list(INSERT EXAGEOSTAT_DEP 0 ${NETCDF_LIBRARIES})
+#     add_definitions("-DNLOPT")
+    message(STATUS "NETCDF ${NETCDF_VERSION} found")
+else()
+    message("NETCDF is NOT found, skipping it")
+    set(NETCDF OFF)
+endif()
+endif()
+
+# EXAGEOSTAT depends on HDF5
+# -------------------------------
+#if( EXAGEOSTAT_USE_HDF5 )
+#pkg_search_module(HDF5 hdf5 REQUIRED)
+#if( HDF5_FOUND )
+#    include_directories(${HDF5_INCLUDE_DIRS})
+#    link_directories(${HDF5_LIBRARY_DIRS})
+#    list(INSERT EXAGEOSTAT_DEP 0 ${HDF5_LIBRARIES})
+#     add_definitions("-DNLOPT")
+#    message(STATUS "HDF5 ${HDF5_VERSION} found")
+#else()
+#    message("HDF5 is NOT found, skipping it")
+#    set(HDF5 OFF)
+#endif()
+#endif()
 # Check if NLOPT is available to build wrappers
 pkg_search_module(NLOPT nlopt REQUIRED)
 if(NLOPT_FOUND)
@@ -620,15 +685,17 @@ include_directories( ${CMAKE_SOURCE_DIR} )
 include_directories( ${CMAKE_SOURCE_DIR}/include )
 include_directories( ${CMAKE_SOURCE_DIR}/misc/include )
 include_directories( ${CMAKE_SOURCE_DIR}/exageostat_exact/src/include )
+include_directories( ${CMAKE_SOURCE_DIR}/exageostat_approx/src/include )
 include_directories( ${CMAKE_SOURCE_DIR}/exageostat_exact/core/include )
 include_directories( ${CMAKE_SOURCE_DIR}/exageostat_exact/runtime/starpu/include )
-
+include_directories( ${CMAKE_SOURCE_DIR}/exageostat_approx/runtime/starpu/include )
 
 set( EXAGEOSTAT_CHAMELEON_SRC "" )
 
 set( EXAGEOSTAT_SRC "" )
 
-add_definitions( "-DEXAGEOSTAT_COPY_DIAG -DSTARPU_USE_DEPRECATED_API -DSTARPU_USE_DEPRECATED_ONE_ZERO_API" )
+#add_definitions( "-DEXAGEOSTAT_COPY_DIAG -DSTARPU_USE_DEPRECATED_API -DSTARPU_USE_DEPRECATED_ONE_ZERO_API" )
+
 
 set( EXAGEOSTAT_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/compute/MLE.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_dmdet.c
@@ -641,25 +708,66 @@ set( EXAGEOSTAT_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/compute/MLE.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_dcmg.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_dzcpy.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_dgemv.c
-                    ${CMAKE_CURRENT_SOURCE_DIR}/misc/compute/MLE_misc.c
+	            ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/runtime/starpu/codelets/codelet_dcmg_diag.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/runtime/starpu/codelets/codelet_dpotrf_diag.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/runtime/starpu/codelets/codelet_hicma_dmdet.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/src/compute/pdpotrf_diag.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/src/compute/dpotrf_diag.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/src/compute/MLE_approx.c 
+		    ${CMAKE_CURRENT_SOURCE_DIR}/misc/compute/MLE_misc.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/misc/compute/flat_file.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/src/compute/MLE_exact.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/r-wrappers/compute/rwrappers.c
   )
+
+if(EXAGEOSTAT_USE_HICMA)
+	list(APPEND EXAGEOSTAT_SRC ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/src/compute/MLE_lr.c)
+
+endif()
+
+if(EXAGEOSTAT_USE_NETCDF)
+	list(APPEND EXAGEOSTAT_SRC ${CMAKE_CURRENT_SOURCE_DIR}/misc/compute/nc_file.c) 
+endif()
+
+
 set( INSTALL_HEADERS ${CMAKE_SOURCE_DIR}/src/include/MLE.h
                      ${CMAKE_SOURCE_DIR}/include/context.h
                      ${CMAKE_SOURCE_DIR}/include/morse_starpu.h
-                     ${CMAKE_SOURCE_DIR}/exageostat_exact/src/include/MLE_exact.h
+                     ${CMAKE_SOURCE_DIR}/include/descriptor.h	
+                     ${CMAKE_SOURCE_DIR}/include/auxiliary.h
+                     ${CMAKE_SOURCE_DIR}/include/chameleon_starpu.h 
+                     ${CMAKE_SOURCE_DIR}/include/runtime_codelet_d.h
+		     ${CMAKE_SOURCE_DIR}/include/common.h 
+                     ${CMAKE_SOURCE_DIR}/include/global.h
+                     ${CMAKE_SOURCE_DIR}/include/compute_z.h
+                     ${CMAKE_SOURCE_DIR}/include/compute_s.h 
+                     ${CMAKE_SOURCE_DIR}/include/compute_d.h
+                     ${CMAKE_SOURCE_DIR}/include/compute_c.h 
+		     ${CMAKE_SOURCE_DIR}/include/tile.h
+                     ${CMAKE_SOURCE_DIR}/include/async.h                   
+		     ${CMAKE_SOURCE_DIR}/exageostat_exact/src/include/MLE_exact.h
                      ${CMAKE_SOURCE_DIR}/exageostat_exact/runtime/starpu/include/starpu_exageostat.h
                      ${CMAKE_SOURCE_DIR}/exageostat_exact/core/include/exageostatcore.h
+                     ${CMAKE_SOURCE_DIR}/exageostat_approx/src/include/MLE_approx.h
+                     ${CMAKE_SOURCE_DIR}/exageostat_approx/runtime/starpu/include/starpu_exageostat_approx.h
                      ${CMAKE_SOURCE_DIR}/misc/include/MLE_misc.h
+                     ${CMAKE_SOURCE_DIR}/misc/include/flat_file.h
                      ${CMAKE_CURRENT_SOURCE_DIR}/r-wrappers/include/rwrappers.h		     			
                      ${CMAKE_SOURCE_DIR}/include/flops.h
+                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/src/include/diag.h
                      )
 
+if(EXAGEOSTAT_USE_HICMA)
+	list(APPEND INSTALL_HEADERS ${CMAKE_SOURCE_DIR}/exageostat_approx/src/include/MLE_lr.h)
+endif()
+if(EXAGEOSTAT_USE_NETCDF)
+	list(APPEND INSTALL_HEADERS ${CMAKE_SOURCE_DIR}/misc/include/nc_file.h)
+endif()
 
 link_directories(${STARSH_LIBRARY_DIRS})
 link_directories(${STARPU_LIBRARY_DIRS})
 link_directories(${CHAMELEON_LIBRARY_DIRS})
+link_directories(${HICMA_LIBRARY_DIRS})
 
 add_library( exageostat ${EXAGEOSTAT_SRC} ${EXAGEOSTAT_CHAMELEON_SRC} )
 set_target_properties( exageostat PROPERTIES PUBLIC_HEADER "${INSTALL_HEADERS}")
@@ -670,6 +778,8 @@ install( TARGETS exageostat
          DESTINATION lib/
          PUBLIC_HEADER DESTINATION include/ )
 
+enable_testing()
+include(CTest)
 add_subdirectory(examples)
 
 
@@ -679,13 +789,13 @@ add_subdirectory(examples)
 option(EXAGEOSTAT_ENABLE_DOCS "Build documentation in docs directory" ON)
 if(EXAGEOSTAT_ENABLE_DOCS)
     find_package(Doxygen)
-    find_package(LATEX COMPONENTS PDFLATEX)
+    #find_package(LATEX COMPONENTS PDFLATEX)
     if(DOXYGEN_FOUND)
-        if( LATEX_FOUND )
+       # if( LATEX_FOUND )
             add_subdirectory("docs")
-        else()
-            message(STATUS "Latex NOT found, skipping documentation")
-        endif()
+        #else()
+        #    message(STATUS "Latex NOT found, skipping documentation")
+        #endif()
     else()
         message(STATUS "Doxygen NOT found, skipping documentation")
     endif()

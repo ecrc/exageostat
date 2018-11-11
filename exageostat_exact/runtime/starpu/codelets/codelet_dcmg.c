@@ -1,6 +1,6 @@
 /**
  *
- * Copyright (c) 2017, King Abdullah University of Science and Technology
+ * Copyright (c) 2017-2018  King Abdullah University of Science and Technology
  * All rights reserved.
  *
  * ExaGeoStat is a software package provided by KAUST
@@ -11,10 +11,10 @@
  *
  * StarPU codelet to Generate covariance matrix of a set of locations in 2D using Matern kernel.
  *
- * @version 0.1.0
+ * @version 1.0.0
  *
  * @author Sameh Abdulah
- * @date 2017-11-07
+ * @date 2018-11-11
  *
  **/
 #include "../include/starpu_exageostat.h"
@@ -49,34 +49,37 @@ static struct starpu_codelet cl_dcmg =
  *
  * @ingroup MORSE_Complex64_t_Tile
  *
- *  MORSE_MLE_cmg_Tile_Async - Calculate covariance matrix descA.
+ *  MORSE_MLE_dcmg_Tile_Async - Codelet to generate covariance matrix in descriptor descA in  dense format between two sets of locations (l1, l2) (Matern Kernel).
  *  Operates on matrices stored by tiles.
  *  All matrices are passed through descriptors.
  *  All dimensions are taken from the descriptors.
  *
  *******************************************************************************
  *
+ * @param[in] uplo
+ *		Upper or lower fill of the matrix.	    
+ * 
  * @param[out] descA 
- *           descA:  Morse descriptor that handles the generated covariance matrix
- *
- * @param[in] l1
- *           location struct of the first input
- *
- * @param[in] l2
-  *          location struct of the second input
- *
- * @param[in] theta
- *           parameter vector that should be used to generate the output covariance matrix
- *
- * @param[in] dm
- *           distance metric "euclidean Distance (ED"" or "Great Circle Distance (GCD)"
+ *		descA:  Morse descriptor that handles the generated covariance matrix.
  *
  * @param[in] sequence
- *          Identifies the sequence of function calls that this call belongs to
- *          (for completion checks and exception handling purposes).
+ *		Identifies the sequence of function calls that this call belongs to
+ *		(for completion checks and exception handling purposes).
  *
  * @param[out] request
- *          Identifies this function call (for exception handling purposes).
+ *		Identifies this function call (for exception handling purposes).
+ *
+ * @param[in] l1
+ *		Location struct of the first input.
+ *
+ * @param[in] l2
+ *		Location struct of the second input.
+ *
+ * @param[in] theta
+ *		Parameter vector that should be used to generate the output covariance matrix.
+ *
+ * @param[in] dm
+ *		Distance metric "euclidean Distance ("ED" -->0) or "Great Circle Distance (GCD) -->1".
  *
  *******************************************************************************
  *
@@ -87,20 +90,20 @@ static struct starpu_codelet cl_dcmg =
  *
  *
  ******************************************************************************/
-int MORSE_MLE_cmg_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence, MORSE_request_t  *request, location *l1, location *l2, double * theta , char * dm) {
+int MORSE_MLE_dcmg_Tile_Async(MORSE_enum uplo, MORSE_desc_t *descA, MORSE_sequence_t *sequence, MORSE_request_t  *request, location *l1, location *l2, double *theta , char *dm) {
 
-        MORSE_context_t *morse;
+	MORSE_context_t *morse;
         MORSE_option_t options;
         morse = morse_context_self();
 
       
-  if (sequence->status != MORSE_SUCCESS)
+	if (sequence->status != MORSE_SUCCESS)
                 return -2;
         RUNTIME_options_init(&options, morse, sequence, request);
 
 
         int m, n, m0, n0;
-	int distance_metric = strcmp(dm,"gc")==0? 1 : 0 ; 
+        int distance_metric = strcmp(dm,"gc")==0? 1 : 0 ; 
         int tempmm, tempnn;
         MORSE_desc_t A = *descA;
         struct starpu_codelet *cl=&cl_dcmg;
@@ -110,7 +113,7 @@ int MORSE_MLE_cmg_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence, MO
         {
                 tempmm = m == A.mt -1 ? A.m- m* A.mb : A.mb;
                 
-		for (n = 0; n < A.nt; n++) {
+        for (n = 0; n < A.nt; n++) {
                         tempnn = n == A.nt -1 ? A.n - n * A.nb : A.nb;
 
                         m0= m * A.mb;
@@ -127,19 +130,17 @@ int MORSE_MLE_cmg_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence, MO
                                         STARPU_VALUE, &theta[1], sizeof(double),
                                         STARPU_VALUE, &theta[2], sizeof(double),
                                         STARPU_VALUE, &distance_metric, sizeof(int),
-				         0);
+                         0);
 
                 }
 
         }
 
+        //MORSE_TASK_flush_desc( &options, MorseUpperLower, descA );
         RUNTIME_options_ws_free(&options);
         RUNTIME_options_finalize(&options, morse);
-	//MORSE_TASK_dataflush_all();
-        //MORSE_TASK_dataflush_all(); is replaced in the new chameleon by  MORSE_Desc_Flush( DESC, sequence );
-        MORSE_Desc_Flush( descA, sequence );
- 
-	return MORSE_SUCCESS;
+        //MORSE_TASK_dataflush_all();
+        return MORSE_SUCCESS;
 }
 
 

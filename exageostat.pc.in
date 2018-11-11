@@ -1,7 +1,7 @@
 Name: EXAGEOSTAT
 Description: ExaGeoStat is a parallel high performance unified framework for geostatistics on manycore systems.
 Version: @EXAGEOSTAT_VERSION@
-URL: http://github.com/ecrc/exageostat-dev
+URL: http://github.com/ecrc/exageostat
 Cflags: -I@INCDIR@
 Libs: -L@LIBDIR@ @EXAGEOSTAT_PKGCONFIG_LIBS@
 Libs.private: @EXAGEOSTAT_PKGCONFIG_LIBS_PRIVATE@

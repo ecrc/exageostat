@@ -805,6 +805,12 @@ INPUT                  = "@CMAKE_CURRENT_SOURCE_DIR@/index.md" \
                          "@CMAKE_CURRENT_SOURCE_DIR@/../exageostat_exact/src/include"\
                          "@CMAKE_CURRENT_SOURCE_DIR@/../exageostat_exact/core/compute"\
                          "@CMAKE_CURRENT_SOURCE_DIR@/../exageostat_exact/core/include"\
+                         "@CMAKE_CURRENT_SOURCE_DIR@/../exageostat_approx/runtime/starpu/codelets"\
+                         "@CMAKE_CURRENT_SOURCE_DIR@/../exageostat_approx/runtime/starpu/include"\
+                         "@CMAKE_CURRENT_SOURCE_DIR@/../exageostat_approx/src/compute"\
+                         "@CMAKE_CURRENT_SOURCE_DIR@/../exageostat_approx/src/include"\
+                         "@CMAKE_CURRENT_SOURCE_DIR@/../exageostat_approx/core/compute"\
+                         "@CMAKE_CURRENT_SOURCE_DIR@/../exageostat_approx/core/include"\
                          "@CMAKE_CURRENT_SOURCE_DIR@/../misc/compute"\
                          "@CMAKE_CURRENT_SOURCE_DIR@/../misc/include"
 

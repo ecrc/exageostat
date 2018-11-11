@@ -1,3 +1,9 @@
 [submodule "cmake_modules/ecrc"]
 	path = cmake_modules/ecrc
 	url = https://github.com/ecrc/ecrc_cmake
+[submodule "hicma"]
+	path = hicma
+	url = https://github.com/ecrc/hicma
+[submodule "stars-h"]
+	path = stars-h
+	url = https://github.com/ecrc/stars-h

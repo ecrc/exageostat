@@ -16,12 +16,12 @@
  *  MORSE is a software package provided by Univ. of Tennessee,
  *  Univ. of California Berkeley and Univ. of Colorado Denver
  *
- * @version 0.9.0
+ * @version 1.0.0
  * @author Jakub Kurzak
  * @author Cedric Augonnet
  * @author Mathieu Faverge
  * @author Cedric Castagnede
- * @date 2012-09-15
+ * @date 2018-11-11
  *
  **/
 #ifndef _MORSE_CONTEXT_H_

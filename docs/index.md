@@ -48,7 +48,8 @@ systems like Shaheen.
 ### Current Features of ExaGeoStat ###
 
 Operations:
-1.  Generating synthetic datasets that mimics climate/weather model (i.e., generate longitudes, latitudes and observations),
-2.  Evaluating Maximum Likelihood function for both real and synthetic datasets (only exact evaluation is currently supported), and,
-3.  Predicting unknown observations using the estimated theta parameters of Maximum likelihood function (i.e., variance, smoothness, range).
+1.  Generating synthetic datasets that mimic climate/weather model (i.e., generate longitudes, latitudes and observations),
+2.  Evaluating Maximum Likelihood function for both real and synthetic datasets using exact, Diagonal Super Tile (DST), and
+ Tile Low-Rank (TLR) computation, and,
+3.  Predicting unknown observations using the estimated theta parameters of the Maximum likelihood function (i.e., variance, smoothness, range).
 

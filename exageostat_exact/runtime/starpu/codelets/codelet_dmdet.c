@@ -1,6 +1,6 @@
 /**
  *
- * Copyright (c) 2017, King Abdullah University of Science and Technology
+ * Copyright (c) 2017-2018  King Abdullah University of Science and Technology
  * All rights reserved.
  *
  * ExaGeoStat is a software package provided by KAUST
@@ -11,10 +11,10 @@
  *
  * StarPU codelet to Calculate determinant of a given triangular matrix (A)
  *
- * @version 0.1.0
+ * @version 1.0.0
  *
  * @author Sameh Abdulah
- * @date 2017-11-07
+ * @date 2018-11-11
  *
  **/
 #include "../include/starpu_exageostat.h"
@@ -109,14 +109,13 @@ int MORSE_MLE_dmdet_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence, 
 			         0);
         }
 
+	//MORSE_TASK_flush_desc( &options, MorseUpperLower, descA);
+        //MORSE_TASK_flush_desc( &options, MorseUpperLower, descdet);
         RUNTIME_options_ws_free(&options);
         RUNTIME_options_finalize(&options, morse);
-        //MORSE_TASK_dataflush_all();
-	//MORSE_TASK_dataflush_all(); is replaced in the new chameleon by  MORSE_Desc_Flush( DESC, sequence );
-	MORSE_Desc_Flush( descA, sequence );
-        MORSE_Desc_Flush( descdet, sequence );
-	
-        return MORSE_SUCCESS;
+        //MORSE_TASK_flush_all();
+	//MORSE_TASK_dataflush_all();
+	return MORSE_SUCCESS;
 }
 
 

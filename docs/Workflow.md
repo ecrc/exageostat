@@ -15,7 +15,8 @@ climate/weather forecasting applications. The framework has three main component
 2. An iterative procedure is performed over the given data (i.e., synthetic or real dataset)
    to estimate the parameter vector the maximize the likelihood function for the given
    data. The average number of iterations depends on the lower and upper bounds of the
-   optimization algorithm given by the user.
+   optimization algorithm given by the user. Three computation options are available here,
+   Exact, Diagonal Super Tile (DST), and Tile Low-Rank (TLR)
 
 3. The estimated parameter vector (i.e., variance, smoothness, and range) of the Matern matrix kernel can be used
    to predict measurements on missing spatial locations. The ExaGeoStat's prediction stage

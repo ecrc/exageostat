@@ -1,6 +1,6 @@
 /**
  *
- * Copyright (c) 2017, King Abdullah University of Science and Technology
+ * Copyright (c) 2017-2018  King Abdullah University of Science and Technology
  * All rights reserved.
  *
  * ExaGeoStat is a software package provided by KAUST
@@ -11,10 +11,10 @@
  *
  * StarPU codelet to compute dense matrix-vector multiplication.
  *
- * @version 0.1.0
+ * @version 1.0.0
  *
  * @author Sameh Abdulah
- * @date 2017-11-07
+ * @date 2018-11-11
  *
  **/
 #include "../include/starpu_exageostat.h"
@@ -80,7 +80,7 @@ static struct starpu_codelet cl_dgemv =
  *
  *
  ******************************************************************************/
-int MORSE_MLE_dgemv_Tile_Async(MORSE_desc_t *descA, MORSE_desc_t * descZ, MORSE_desc_t * descZout, MORSE_sequence_t *sequence, MORSE_request_t  *request) {
+int MORSE_MLE_dgemv_Tile_Async(MORSE_desc_t *descA, MORSE_desc_t *descZ, MORSE_desc_t *descZout, MORSE_sequence_t *sequence, MORSE_request_t  *request) {
 
         MORSE_context_t *morse;
         MORSE_option_t options;
@@ -120,14 +120,13 @@ int MORSE_MLE_dgemv_Tile_Async(MORSE_desc_t *descA, MORSE_desc_t * descZ, MORSE_
 
         }
 
+	//MORSE_TASK_flush_desc( &options, MorseUpperLower, descA);
+        //MORSE_TASK_flush_desc( &options, MorseUpperLower, descZ);
+        //MORSE_TASK_flush_desc( &options, MorseUpperLower, descZout);
         RUNTIME_options_ws_free(&options);
 	RUNTIME_options_finalize(&options, morse);
-	//MORSE_TASK_dataflush_all();
-        //MORSE_TASK_dataflush_all(); is replaced in the new chameleon by  MORSE_Desc_Flush( DESC, sequence );
-        MORSE_Desc_Flush( descA, sequence );
-        MORSE_Desc_Flush( descZ, sequence );
-        MORSE_Desc_Flush( descZout, sequence );
-        MORSE_Sequence_Wait(sequence);
+        //MORSE_TASK_dataflush_all();
+	MORSE_Sequence_Wait(sequence);
         return MORSE_SUCCESS;
 }
 

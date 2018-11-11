@@ -1,6 +1,6 @@
 /**
  *
- * Copyright (c) 2017, King Abdullah University of Science and Technology
+ * Copyright (c) 2017-2018  King Abdullah University of Science and Technology
  * All rights reserved.
  *
  * ExaGeoStat is a software package provided by KAUST
@@ -11,10 +11,10 @@
  *
  * StarPU codelets functions header file.
  *
- * @version 0.1.0
+ * @version 1.0.0
  *
  * @author Sameh Abdulah
- * @date 2017-11-07
+ * @date 2018-11-11
  *
  **/
 #ifndef _EXAGEOSTATCODELETS_H_
@@ -44,10 +44,11 @@
 
 
 
-int MORSE_MLE_cmg_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence, MORSE_request_t  *request, location *l1, location *l2, double * theta, char * dm);
-int MORSE_MLE_zcpy_Tile_Async(MORSE_desc_t *descA, double * r, MORSE_sequence_t *sequence, MORSE_request_t  *request);
+//int MORSE_MLE_cmg_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence, MORSE_request_t  *request, location *l1, location *l2, double * theta, char * dm);
+int MORSE_MLE_dcmg_Tile_Async(MORSE_enum uplo, MORSE_desc_t *descA, MORSE_sequence_t *sequence, MORSE_request_t  *request, location *l1, location *l2, double *theta , char *dm);
+int MORSE_MLE_zcpy_Tile_Async(MORSE_desc_t *descA, double *r, MORSE_sequence_t *sequence, MORSE_request_t  *request);
 int MORSE_MLE_dmdet_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence, MORSE_request_t  *request, MORSE_desc_t *descdet);
 int MORSE_MLE_ddotp_Async(MORSE_desc_t *descA, MORSE_desc_t *descproduct, MORSE_sequence_t *sequence, MORSE_request_t *request);
 int MORSE_MLE_dmse_Tile_Async(MORSE_desc_t *descZpre, MORSE_desc_t *descZmiss, MORSE_desc_t *descserror, MORSE_sequence_t *sequence, MORSE_request_t  *request);
-int MORSE_MLE_dgemv_Tile_Async(MORSE_desc_t *descA, MORSE_desc_t * descZ, MORSE_desc_t * descZout, MORSE_sequence_t *sequence, MORSE_request_t  *request);
+int MORSE_MLE_dgemv_Tile_Async(MORSE_desc_t *descA, MORSE_desc_t *descZ, MORSE_desc_t *descZout, MORSE_sequence_t *sequence, MORSE_request_t  *request);
 #endif /* _EXAGEOSTATCODELETS_H_ */

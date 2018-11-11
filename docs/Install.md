@@ -15,7 +15,7 @@ follow these instructions:
 
 3.  Get submodules
 
-        git submodule update --init
+        git submodule update --init --recursive
 
 4.  Create build directory and go there
 
@@ -23,7 +23,8 @@ follow these instructions:
 
 5.  Use CMake to get all the dependencies
 
-        cmake .. -DCMAKE_INSTALL_PREFIX=/path/to/install/
+        cmake .. -DCMAKE_INSTALL_PREFIX=/path/to/install/  -DEXAGEOSTAT_SCHED_STARPU=ON   -DEXAGEOSTAT_USE_NETCDF=ON -DEXAGEOSTAT_USE_HICMA=ON
+
 
 6.  Build EXAGEOSTAT
 

@@ -1,6 +1,6 @@
 /**
  *
- * Copyright (c) 2017, King Abdullah University of Science and Technology
+ * Copyright (c) 2017-2018  King Abdullah University of Science and Technology
  * All rights reserved.
  *
  * ExaGeoStat is a software package provided by KAUST
@@ -11,10 +11,10 @@
  *
  * Generate covariance matrix of a set of locations in 2D using Matern kernel.
  *
- * @version 0.1.0
+ * @version 1.0.0
  *
  * @author Sameh Abdulah
- * @date 2017-11-07
+ * @date 2018-11-11
  *
  **/
 #include "../include/exageostatcore.h"
@@ -56,7 +56,7 @@ static double calculateDistance(double x1, double y1, double x2, double y2, int 
 
 /***************************************************************************//**
  *
- *  core_dcmg - Calculate covariance matrix A.
+ *  core_dcmg - Generate covariance matrix A in dense format between two sets of locations (l1, l2) (Matern Kernel).
  *  The routine makes only one pass through the tile A.
  *  One tile operation.	
  *******************************************************************************
@@ -71,57 +71,53 @@ static double calculateDistance(double x1, double y1, double x2, double y2, int 
  *          The number of cols in the tile A. 
  *
  * @param[in] m0
- *          global row index of the tile A.
+ *          Global row index of the tile A.
  *
  * @param[in] n0
- *           global col index of the tile A.
+ *          Global col index of the tile A.
  *
  * @param[in] l1
- *          location struct of the first input.
+ *          Location struct of the first input.
  *
  * @param[in] l2
- *          location struct of the second input.
+ *          Location struct of the second input.
  *
  * @param[in] localtheta
- *           parameter vector that should be used to generate the output covariance matrix
+ *          Parameter vector that is used to generate the output covariance matrix.
  *
  * @param[in] distance_metric
- *           distance metric "euclidean Distance (ED"" or "Great Circle Distance (GCD)"
+ *          Distance metric "euclidean Distance (ED) ->0" or "Great Circle Distance (GCD) ->1"
  *
  *******************************************************************************
  *
  *
  ******************************************************************************/
-void core_dcmg (double * A, int m, int n, int m0, int n0, location  *l1, location *l2, double * localtheta, int distance_metric) {
+void core_dcmg (double *A, int m, int n, int m0, int n0, location  *l1, location *l2, double *localtheta, int distance_metric) {
     
 	int i, j;
-        int i0 = m0;
-        int j0 = n0;
-        double x0, y0;
-        double expr = 0.0;
-        double con = 0.0;
+	double l1x, l1y, l2x, l2y;
+	double expr = 0.0;
+	double con;
+	double sigma_square = localtheta[0];// * localtheta[0]; 
 
-        con = pow(2,(localtheta[2]-1)) * tgamma(localtheta[2]);
-        con = 1.0/con;
-        con = localtheta[0]*con;
-        for (i = 0; i < m; i++) {
-                j0 = n0;
-                x0 = l1->x[i0];
-                y0 = l1->y[i0];
-                for (j = 0; j < n; j++) {
-                        expr = calculateDistance(x0, y0, l2->x[j0], l2->y[j0], distance_metric)/localtheta[1];
-                        if(expr == 0)
-                                A[i + j * m] = localtheta[0];
+	con = pow(2,(localtheta[2]-1)) * tgamma(localtheta[2]);
+	con = 1.0/con;
+	con = sigma_square * con;
 
+	for (j = 0; j < n; j++) {
+		l1x = l1->x[j+n0];		
+		l1y = l1->y[j+n0];	
+		for (i = 0; i < m; i++) {
+			l2x = l2->x[i+m0];
+			l2y = l2->y[i+m0];
+                        expr = calculateDistance(l1x, l1y, l2x, l2y, distance_metric)/localtheta[1];
+			if(expr == 0)
+                                A[i + j * m] = sigma_square; /* + 1e-4*/
                         else
-                        {
-                                A[i + j * m] = con*pow(expr,localtheta[2])*gsl_sf_bessel_Knu(localtheta[2],expr); // Matern Function
-                        }
+                                A[i + j * m] = con*pow(expr, localtheta[2])*gsl_sf_bessel_Knu(localtheta[2],expr); // Matern Function
 
-                        j0++;
-                }
-                i0++;
-        }
+		}
+	}
 
 }
 
