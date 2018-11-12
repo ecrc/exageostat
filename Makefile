@@ -9,9 +9,9 @@ flagsl := $(shell pkg-config nlopt gsl libstarpu chameleon hicma  starsh --libs)
 flagss := $(shell pkg-config  gsl libstarpu chameleon netcdf  --libs)
 #user flags
 CCFLAGS   := -O3  -w -Ofast -Wall $(flagsc) -DVERSION=\"$(GIT_VERSION)\"
-LDFLAGS   := -O3  -w -Ofast -lstarpu-1.2   -lchameleon  -lchameleon_starpu -lhicma -lcoreblas -lstdc++  -Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl $(flagsl)
+LDFLAGS   := -O3  -w -Ofast -lstarpu-1.2   -lchameleon  -lchameleon_starpu -lhicma -lcoreblas -lstdc++ -L${MKLROOT}/lib/intel64/ -Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl $(flagsl)
 # Extra user flags
-EXTRA_CCFLAGS = -I./include/ -I./src/include/ -I./exageostat_exact/core/include/ -I./exageostat_exact/runtime/starpu/include/ -I./misc/include/ -I ./exageostat_exact/src/include/ -I ./r-wrappers/include  -I./exageostat_approx/runtime/starpu/include/ -I./exageostat_approx/src/include/
+EXTRA_CCFLAGS = -I./include/ -I./src/include/ -I./exageostat_exact/core/include/ -I./exageostat_exact/runtime/starpu/include/ -I./misc/include/ -I ./exageostat_exact/src/include/ -I ./r-wrappers/include  -I./exageostat_approx/runtime/starpu/include/ -I./exageostat_approx/src/include/ -I./hicma/chameleon/coreblas/include/coreblas
 # Optimisation flags
 #CXXFLAGS := $(CCFLAGS)
 
@@ -28,7 +28,7 @@ OBJ_FILES = $(patsubst %.c,%.o,$(SOURCE_FILES))
 
 OBJECTS = $(patsubst %.o)
 exageostat.so:    $(OBJ_FILES)
-	R CMD SHLIB -o exageostat.so $(OBJ_FILES)  -Ofast -lchameleon_starpu -lcoreblas -lstdc++  -Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl $(flagsl)
+	R CMD SHLIB -o exageostat.so $(OBJ_FILES) $(LDFLAGS) $(EXTRA_LDFLAGS) 
 
 #.c.o; $(CC) $(OPTS) -c $<
 
