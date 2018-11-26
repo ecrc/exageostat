@@ -3,19 +3,19 @@ CC             := gcc
 LD             := $(CC)
 OPTS           := -c -fPIC -DEXAGEOSTAT_USE_HICMA
 
+flagsc += $(shell pkg-config hicma --cflags)
+flagsc += $(shell pkg-config chameleon --cflags)
+flagsc += $(shell pkg-config libstarpu --cflags)
+flagsc += $(shell pkg-config starsh --cflags)
 flagsc += $(shell pkg-config nlopt --cflags)
 flagsc += $(shell pkg-config gsl --cflags)
-flagsc += $(shell pkg-config libstarpu --cflags)
-flagsc += $(shell pkg-config chameleon --cflags)
-flagsc += $(shell pkg-config hicma --cflags)
-flagsc += $(shell pkg-config starsh --cflags)
 
+flagsl += $(shell pkg-config hicma --libs)
+flagsl += $(shell pkg-config chameleon --libs)
+flagsl += $(shell pkg-config libstarpu --libs)
+flagsl += $(shell pkg-config starsh --libs)
 flagsl += $(shell pkg-config nlopt --libs)
 flagsl += $(shell pkg-config gsl --libs)
-flagsl += $(shell pkg-config libstarpu --libs)
-flagsl += $(shell pkg-config chameleon --libs)
-flagsl += $(shell pkg-config hicma --libs)
-flagsl += $(shell pkg-config starsh --libs)
 
 LDFLAGS += "-Wl,-rpath=$(R_PACKAGE_DIR)/lib -L$(R_PACKAGE_DIR)/lib "
 
