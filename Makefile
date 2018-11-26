@@ -19,6 +19,13 @@ flagsl += $(shell pkg-config gsl --libs)
 
 LDFLAGS += "-Wl,-rpath=$(R_PACKAGE_DIR)/lib -L$(R_PACKAGE_DIR)/lib "
 
+ifdef MKLROOT
+flagsl += -L${MKLROOT}/lib/intel64/ -Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl
+else
+flagsl += $(shell pkg-config openblas --libs --static)
+endif
+
+
 #user flags
 EXTRA_LDFLAGS   = -O3  -w -Ofast -lstarpu-1.2   -lchameleon  -lchameleon_starpu -lhicma -lcoreblas -lstdc++ -L${MKLROOT}/lib/intel64/ -Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl $(flagsl)
 EXTRA_CFLAGS    = -O3  -w -Ofast -Wall -I./include/ -I./src/include/ -I./exageostat_exact/core/include/ -I./exageostat_exact/runtime/starpu/include/ -I./misc/include/ -I./exageostat_exact/src/include/ -I./r-wrappers/include  -I./exageostat_approx/runtime/starpu/include/ -I./exageostat_approx/src/include/ $(flagsc) -I./hicma/chameleon/include -I./hicma/chameleon/coreblas/include/coreblas -I./hicma/chameleon/build/include
