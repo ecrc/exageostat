@@ -17,7 +17,7 @@ flagsl += $(shell pkg-config starsh --libs)
 flagsl += $(shell pkg-config nlopt --libs)
 flagsl += $(shell pkg-config gsl --libs)
 
-LDFLAGS += "-Wl,-rpath=$(R_PACKAGE_DIR)/lib -L$(R_PACKAGE_DIR)/lib "
+LDFLAGS += "-Wl,-rpath,$(R_PACKAGE_DIR)/lib -L$(R_PACKAGE_DIR)/lib "
 
 ifdef MKLROOT
 flagsl += -L${MKLROOT}/lib/intel64/ -Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl
