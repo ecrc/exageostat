@@ -17,7 +17,7 @@ flagsl += $(shell pkg-config chameleon --libs)
 flagsl += $(shell pkg-config hicma --libs)
 flagsl += $(shell pkg-config starsh --libs)
 
-LDFLAGS += "-Wl,-rpath=$(R_PACKAGE_DIR)/lib -L$(R_PACKAGE_DIR)/lib "
+LDFLAGS += "-Wl,-rpath,$(R_PACKAGE_DIR)/lib -L$(R_PACKAGE_DIR)/lib "
 
 #user flags
 EXTRA_LDFLAGS   = -O3  -w -Ofast -lstarpu-1.2   -lchameleon  -lchameleon_starpu -lhicma -lcoreblas -lstdc++ -L${MKLROOT}/lib/intel64/ -Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl $(flagsl)
