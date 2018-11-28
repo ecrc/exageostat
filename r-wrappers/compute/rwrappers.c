@@ -175,7 +175,7 @@ void  gen_z_exact(int *n, int *ncores,  int *gpus,  int *ts,  int *p_grid, int *
         double  *initial_theta, *localvec;
         MLE_data data;
         location *locations;
-        int iseed[4]={0, 0, 0, 1};
+        int iseed[4]={*seed, *seed, *seed, 1};
         MORSE_sequence_t *msequence;
         MORSE_request_t mrequest[2] = { MORSE_REQUEST_INITIALIZER, MORSE_REQUEST_INITIALIZER };
 
