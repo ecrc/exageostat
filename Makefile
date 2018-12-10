@@ -1,5 +1,5 @@
 # Common binaries
-CC             := gcc
+CC             := $(CC)
 LD             := $(CC)
 OPTS           := -c -fPIC -DEXAGEOSTAT_USE_HICMA
 
