@@ -791,6 +791,11 @@ WARN_LOGFILE           =
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = "@CMAKE_CURRENT_SOURCE_DIR@/index.md" \
+     			 "@CMAKE_CURRENT_SOURCE_DIR@/Dependencies.md"\ 
+                   	 "@CMAKE_CURRENT_SOURCE_DIR@/Install.md" \
+                         "@CMAKE_CURRENT_SOURCE_DIR@/Examples.md" \
+                         "@CMAKE_CURRENT_SOURCE_DIR@/Workflow.md" \
+                         "@CMAKE_CURRENT_SOURCE_DIR@/R-Package.md" \    
 			 "@CMAKE_CURRENT_SOURCE_DIR@/../src/compute" \
                          "@CMAKE_CURRENT_SOURCE_DIR@/../src/include" \
                          "@CMAKE_CURRENT_SOURCE_DIR@/../exageostat_exact/runtime/starpu/codelets"\
