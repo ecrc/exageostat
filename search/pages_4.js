@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['r_2dpackage',['R-Package',['../md_docs__r-_package.html',1,'']]]
+  ['r_2dpackage',['R-Package',['../md__home_abdullsm_trash_exageostat_docs_R-Package.html',1,'']]]
 ];

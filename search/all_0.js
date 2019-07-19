@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['a',['A',['../pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3',1,'pdpotrf_diag.c']]],
   ['acc',['acc',['../structarguments.html#a695c24c49047e68fe111f99cd8d5858f',1,'arguments']]],
   ['actualz_5ffile',['actualZ_file',['../structarguments.html#a43b5de0d06e28b8c8d0e767f8d0c76a2',1,'arguments']]],
   ['actualzfpath',['actualZFPath',['../struct_m_l_e__data.html#a27abe9849451171bf9efd080b963867a',1,'MLE_data']]],

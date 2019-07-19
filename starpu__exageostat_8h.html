@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>ExaGeoStat: exageostat_exact/runtime/starpu/include/starpu_exageostat.h File Reference</title>
+<title>ExaGeoStat: /home/abdullsm/trash/exageostat/exageostat_exact/runtime/starpu/include/starpu_exageostat.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -110,6 +111,9 @@ $(document).ready(function(){initNavTree('starpu__exageostat_8h.html','');});
 <div class="title">starpu_exageostat.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="exageostatcore_8h_source.html">../../../core/include/exageostatcore.h</a>&quot;</code><br />
 <code>#include &quot;morse.h&quot;</code><br />
 <code>#include &quot;../../../../include/morse_starpu.h&quot;</code><br />
@@ -119,30 +123,39 @@ $(document).ready(function(){initNavTree('starpu__exageostat_8h.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a2cea232a3511c05509f9f627feaa929f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="starpu__exageostat_8h.html#a2cea232a3511c05509f9f627feaa929f">starpu_mpi_codelet</a>(_codelet_)&#160;&#160;&#160;_codelet_</td></tr>
+<tr class="memitem:a2cea232a3511c05509f9f627feaa929f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2cea232a3511c05509f9f627feaa929f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>starpu_mpi_codelet</b>(_codelet_)&#160;&#160;&#160;_codelet_</td></tr>
 <tr class="separator:a2cea232a3511c05509f9f627feaa929f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84191fa7b4285e2b3142c8f6a575456a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="starpu__exageostat_8h.html#a84191fa7b4285e2b3142c8f6a575456a">RTBLKADDR</a>(desc,  type,  m,  n)&#160;&#160;&#160;( (starpu_data_handle_t)RUNTIME_data_getaddr( desc, m, n ) )</td></tr>
+<tr class="memitem:a84191fa7b4285e2b3142c8f6a575456a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84191fa7b4285e2b3142c8f6a575456a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RTBLKADDR</b>(desc,  type,  m,  n)&#160;&#160;&#160;( (starpu_data_handle_t)RUNTIME_data_getaddr( desc, m, n ) )</td></tr>
 <tr class="separator:a84191fa7b4285e2b3142c8f6a575456a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b66bb6f10c16b8cccf9f0f705e85df5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="starpu__exageostat_8h.html#a8b66bb6f10c16b8cccf9f0f705e85df5">mBLKLDD</a>(<a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>,  k)&#160;&#160;&#160;<a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>-&gt;get_blkldd( <a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>,k )</td></tr>
+<tr class="memitem:a8b66bb6f10c16b8cccf9f0f705e85df5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b66bb6f10c16b8cccf9f0f705e85df5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>mBLKLDD</b>(A,  k)&#160;&#160;&#160;A-&gt;get_blkldd( A,k )</td></tr>
 <tr class="separator:a8b66bb6f10c16b8cccf9f0f705e85df5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:af89ac5cdb0fa1c3dea20ecc983a62492"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="starpu__exageostat_8h.html#af89ac5cdb0fa1c3dea20ecc983a62492">MORSE_MLE_dcmg_Tile_Async</a> (MORSE_enum uplo, MORSE_desc_t *descA, MORSE_sequence_t *sequence, MORSE_request_t *request, <a class="el" href="structlocation.html">location</a> *l1, <a class="el" href="structlocation.html">location</a> *l2, double *theta, char *dm)</td></tr>
+<tr class="memdesc:af89ac5cdb0fa1c3dea20ecc983a62492"><td class="mdescLeft">&#160;</td><td class="mdescRight">MORSE_MLE_dcmg_Tile_Async - Codelet to generate covariance matrix in descriptor descA in dense format between two sets of locations (l1, l2) (Matern Kernel).  <a href="#af89ac5cdb0fa1c3dea20ecc983a62492">More...</a><br /></td></tr>
 <tr class="separator:af89ac5cdb0fa1c3dea20ecc983a62492"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd3931bb2d2507ec2ecab30d6a141048"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="starpu__exageostat_8h.html#abd3931bb2d2507ec2ecab30d6a141048">MORSE_MLE_zcpy_Tile_Async</a> (MORSE_desc_t *descA, double *r, MORSE_sequence_t *sequence, MORSE_request_t *request)</td></tr>
+<tr class="memdesc:abd3931bb2d2507ec2ecab30d6a141048"><td class="mdescLeft">&#160;</td><td class="mdescRight">MORSE_MLE_zcpy_Tile_Async - copy Morse descriptor to vector dobule *.  <a href="#abd3931bb2d2507ec2ecab30d6a141048">More...</a><br /></td></tr>
 <tr class="separator:abd3931bb2d2507ec2ecab30d6a141048"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadef7403afe41e7a82d45046f84470ae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="starpu__exageostat_8h.html#aadef7403afe41e7a82d45046f84470ae">MORSE_MLE_dmdet_Tile_Async</a> (MORSE_desc_t *descA, MORSE_sequence_t *sequence, MORSE_request_t *request, MORSE_desc_t *descdet)</td></tr>
+<tr class="memdesc:aadef7403afe41e7a82d45046f84470ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">MORSE_MLE_dmdet_Tile_Async - Calculate determinant for triangular matrix.  <a href="#aadef7403afe41e7a82d45046f84470ae">More...</a><br /></td></tr>
 <tr class="separator:aadef7403afe41e7a82d45046f84470ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad84ec759de0a8beb43d8dae54c039cf8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="starpu__exageostat_8h.html#ad84ec759de0a8beb43d8dae54c039cf8">MORSE_MLE_ddotp_Async</a> (MORSE_desc_t *descA, MORSE_desc_t *descproduct, MORSE_sequence_t *sequence, MORSE_request_t *request)</td></tr>
+<tr class="memdesc:ad84ec759de0a8beb43d8dae54c039cf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">MORSE_MLE_ddotp_Async- codelet to compute dot product of A.A.  <a href="#ad84ec759de0a8beb43d8dae54c039cf8">More...</a><br /></td></tr>
 <tr class="separator:ad84ec759de0a8beb43d8dae54c039cf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8150c2a8ee52c6a4a9060ad37dab220"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="starpu__exageostat_8h.html#ad8150c2a8ee52c6a4a9060ad37dab220">MORSE_MLE_dmse_Tile_Async</a> (MORSE_desc_t *descZpre, MORSE_desc_t *descZmiss, MORSE_desc_t *descserror, MORSE_sequence_t *sequence, MORSE_request_t *request)</td></tr>
+<tr class="memdesc:ad8150c2a8ee52c6a4a9060ad37dab220"><td class="mdescLeft">&#160;</td><td class="mdescRight">MORSE_MLE_dmse_Tile_Async - Calculate mean square eror (MSE) scalar value the prediction.  <a href="#ad8150c2a8ee52c6a4a9060ad37dab220">More...</a><br /></td></tr>
 <tr class="separator:ad8150c2a8ee52c6a4a9060ad37dab220"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06032adf42485390b2556e4ab1a8e462"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="starpu__exageostat_8h.html#a06032adf42485390b2556e4ab1a8e462">MORSE_MLE_dgemv_Tile_Async</a> (MORSE_desc_t *descA, MORSE_desc_t *descZ, MORSE_desc_t *descZout, MORSE_sequence_t *sequence, MORSE_request_t *request)</td></tr>
+<tr class="memdesc:a06032adf42485390b2556e4ab1a8e462"><td class="mdescLeft">&#160;</td><td class="mdescRight">MORSE_MLE_dgemv_Tile_Async - Matrix Vector Multiplication.  <a href="#a06032adf42485390b2556e4ab1a8e462">More...</a><br /></td></tr>
 <tr class="separator:a06032adf42485390b2556e4ab1a8e462"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved.</p>
+<div class="textblock"><p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved. </p>
 <p>ExaGeoStat is a software package provided by KAUST</p>
 <p>StarPU codelets functions header file.</p>
 <dl class="section version"><dt>Version</dt><dd>1.0.0</dd></dl>
@@ -150,94 +163,7 @@ Functions</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>2018-11-11 </dd></dl>
 
 <p>Definition in file <a class="el" href="starpu__exageostat_8h_source.html">starpu_exageostat.h</a>.</p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a2cea232a3511c05509f9f627feaa929f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define starpu_mpi_codelet</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">_codelet_</td><td>)</td>
-          <td>&#160;&#160;&#160;_codelet_</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="starpu__exageostat_8h_source.html#l00036">36</a> of file <a class="el" href="starpu__exageostat_8h_source.html">starpu_exageostat.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a84191fa7b4285e2b3142c8f6a575456a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define RTBLKADDR</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">desc, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">type, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">m, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">n&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td>&#160;&#160;&#160;( (starpu_data_handle_t)RUNTIME_data_getaddr( desc, m, n ) )</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="starpu__exageostat_8h_source.html#l00039">39</a> of file <a class="el" href="starpu__exageostat_8h_source.html">starpu_exageostat.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8b66bb6f10c16b8cccf9f0f705e85df5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define mBLKLDD</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">k&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>-&gt;get_blkldd( <a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>,k )</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="starpu__exageostat_8h_source.html#l00041">41</a> of file <a class="el" href="starpu__exageostat_8h_source.html">starpu_exageostat.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="af89ac5cdb0fa1c3dea20ecc983a62492"></a>
 <div class="memitem">
 <div class="memproto">
@@ -297,7 +223,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>MORSE_MLE_dcmg_Tile_Async - Codelet to generate covariance matrix in descriptor descA in dense format between two sets of locations (l1, l2) (Matern Kernel). Operates on matrices stored by tiles. All matrices are passed through descriptors. All dimensions are taken from the descriptors.</p>
+
+<p>MORSE_MLE_dcmg_Tile_Async - Codelet to generate covariance matrix in descriptor descA in dense format between two sets of locations (l1, l2) (Matern Kernel). </p>
+<p>Operates on matrices stored by tiles. All matrices are passed through descriptors. All dimensions are taken from the descriptors.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>Upper or lower fill of the matrix.</td></tr>
@@ -358,7 +286,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>MORSE_MLE_zcpy_Tile_Async - copy Morse descriptor to vector dobule *. Operates on matrices stored by tiles. All matrices are passed through descriptors. All dimensions are taken from the descriptors.</p>
+
+<p>MORSE_MLE_zcpy_Tile_Async - copy Morse descriptor to vector dobule *. </p>
+<p>Operates on matrices stored by tiles. All matrices are passed through descriptors. All dimensions are taken from the descriptors.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">descA</td><td>Morse descriptor</td></tr>
@@ -415,7 +345,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>MORSE_MLE_dmdet_Tile_Async - Calculate determinant for triangular matrix. Operates on matrices stored by tiles. All matrices are passed through descriptors. All dimensions are taken from the descriptors.</p>
+
+<p>MORSE_MLE_dmdet_Tile_Async - Calculate determinant for triangular matrix. </p>
+<p>Operates on matrices stored by tiles. All matrices are passed through descriptors. All dimensions are taken from the descriptors.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">descA</td><td>descA: Morse descriptor</td></tr>
@@ -472,7 +404,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>MORSE_MLE_ddotp_Async- codelet to compute dot product of A.A. Operates on matrices stored by tiles. All matrices are passed through descriptors. All dimensions are taken from the descriptors.</p>
+
+<p>MORSE_MLE_ddotp_Async- codelet to compute dot product of A.A. </p>
+<p>Operates on matrices stored by tiles. All matrices are passed through descriptors. All dimensions are taken from the descriptors.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">descA</td><td>Morse descriptor</td></tr>
@@ -535,7 +469,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>MORSE_MLE_dmse_Tile_Async - Calculate mean square eror (MSE) scalar value the prediction. Operates on matrices stored by tiles. All matrices are passed through descriptors. All dimensions are taken from the descriptors.</p>
+
+<p>MORSE_MLE_dmse_Tile_Async - Calculate mean square eror (MSE) scalar value the prediction. </p>
+<p>Operates on matrices stored by tiles. All matrices are passed through descriptors. All dimensions are taken from the descriptors.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">descZpre</td><td>descZpre: Observed measurements descZpre</td></tr>
@@ -599,7 +535,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>MORSE_MLE_dgemv_Tile_Async - Matrix Vector Multiplication. Operates on matrices stored by tiles. All matrices are passed through descriptors. All dimensions are taken from the descriptors.</p>
+
+<p>MORSE_MLE_dgemv_Tile_Async - Matrix Vector Multiplication. </p>
+<p>Operates on matrices stored by tiles. All matrices are passed through descriptors. All dimensions are taken from the descriptors.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">descA</td><td>Morse descriptor.</td></tr>

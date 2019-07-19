@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>ExaGeoStat: src/compute/MLE.c File Reference</title>
+<title>ExaGeoStat: /home/abdullsm/trash/exageostat/src/compute/MLE.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -110,6 +111,9 @@ $(document).ready(function(){initNavTree('_m_l_e_8c.html','');});
 <div class="title">MLE.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Copyright (c) 2017, King Abdullah University of Science and Technology All rights reserved.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_m_l_e_8h_source.html">../include/MLE.h</a>&quot;</code><br />
 </div>
 <p><a href="_m_l_e_8c_source.html">Go to the source code of this file.</a></p>
@@ -131,14 +135,17 @@ Functions</h2></td></tr>
 <tr class="memitem:a9257727d294048d236c5597ec7ea83a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_l_e_8c.html#a9257727d294048d236c5597ec7ea83a3">init</a> (int *test, int *N, int *ncores, int *gpus, int *p_grid, int *q_grid, int *zvecs, int *dts, int *lts, int *nZmiss, int *log, double *initial_theta, double *starting_theta, double *target_theta, double *lb, double *ub, <a class="el" href="struct_m_l_e__data.html">MLE_data</a> *data, <a class="el" href="structarguments.html">arguments</a> *<a class="el" href="structarguments.html">arguments</a>)</td></tr>
 <tr class="memdesc:a9257727d294048d236c5597ec7ea83a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize exageostat by setting several  <a href="#a9257727d294048d236c5597ec7ea83a3">More...</a><br /></td></tr>
 <tr class="separator:a9257727d294048d236c5597ec7ea83a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41b9f60898d57d95b7e1991bb1df9f4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_l_e_8c.html#a41b9f60898d57d95b7e1991bb1df9f4f">exageostat_init</a> (int *ncores, int *gpus, int *dts, int *lts)</td></tr>
-<tr class="memdesc:a41b9f60898d57d95b7e1991bb1df9f4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize exageostat (initiate underlying library)  <a href="#a41b9f60898d57d95b7e1991bb1df9f4f">More...</a><br /></td></tr>
+<tr class="memitem:a41b9f60898d57d95b7e1991bb1df9f4f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a41b9f60898d57d95b7e1991bb1df9f4f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_l_e_8c.html#a41b9f60898d57d95b7e1991bb1df9f4f">exageostat_init</a> (int *ncores, int *gpus, int *dts, int *lts)</td></tr>
+<tr class="memdesc:a41b9f60898d57d95b7e1991bb1df9f4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize exageostat (initiate underlying library) <br /></td></tr>
 <tr class="separator:a41b9f60898d57d95b7e1991bb1df9f4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac55e64d11d3c08ede7e48202a6aab6ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_l_e_8c.html#ac55e64d11d3c08ede7e48202a6aab6ae">exageostat_finalize</a> ()</td></tr>
-<tr class="memdesc:ac55e64d11d3c08ede7e48202a6aab6ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">finalize exageostat (initiate underlying library)  <a href="#ac55e64d11d3c08ede7e48202a6aab6ae">More...</a><br /></td></tr>
+<tr class="memitem:ac55e64d11d3c08ede7e48202a6aab6ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac55e64d11d3c08ede7e48202a6aab6ae"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_l_e_8c.html#ac55e64d11d3c08ede7e48202a6aab6ae">exageostat_finalize</a> ()</td></tr>
+<tr class="memdesc:ac55e64d11d3c08ede7e48202a6aab6ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">finalize exageostat (initiate underlying library) <br /></td></tr>
 <tr class="separator:ac55e64d11d3c08ede7e48202a6aab6ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cc010ad3edcadd9af3db7ae5ddd0042"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_l_e_8c.html#a4cc010ad3edcadd9af3db7ae5ddd0042">prediction_init</a> (<a class="el" href="struct_m_l_e__data.html">MLE_data</a> *data, int nZmiss, int nZobs, int ts, int p_grid, int q_grid, int mse_flag)</td></tr>
-<tr class="memdesc:a4cc010ad3edcadd9af3db7ae5ddd0042"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize exageostat prediction allocation (allocate memory).  <a href="#a4cc010ad3edcadd9af3db7ae5ddd0042">More...</a><br /></td></tr>
+<tr class="memitem:a4cc010ad3edcadd9af3db7ae5ddd0042"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4cc010ad3edcadd9af3db7ae5ddd0042"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_l_e_8c.html#a4cc010ad3edcadd9af3db7ae5ddd0042">prediction_init</a> (<a class="el" href="struct_m_l_e__data.html">MLE_data</a> *data, int nZmiss, int nZobs, int ts, int p_grid, int q_grid, int mse_flag)</td></tr>
+<tr class="memdesc:a4cc010ad3edcadd9af3db7ae5ddd0042"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize exageostat prediction allocation (allocate memory). <br /></td></tr>
 <tr class="separator:a4cc010ad3edcadd9af3db7ae5ddd0042"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1dd05a6ffc43d72a828a1e70b95a3fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_l_e_8c.html#af1dd05a6ffc43d72a828a1e70b95a3fc">prediction_finalize</a> (<a class="el" href="struct_m_l_e__data.html">MLE_data</a> *data)</td></tr>
 <tr class="memdesc:af1dd05a6ffc43d72a828a1e70b95a3fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destory and free prediction memory.  <a href="#af1dd05a6ffc43d72a828a1e70b95a3fc">More...</a><br /></td></tr>
@@ -152,17 +159,20 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a62f73ea01c816f1996aed4c66f57c4fb"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_l_e_8c.html#a62f73ea01c816f1996aed4c66f57c4fb">argp_program_version</a> = &quot;Version 0.1.0&quot;</td></tr>
+<tr class="memitem:a62f73ea01c816f1996aed4c66f57c4fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62f73ea01c816f1996aed4c66f57c4fb"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_l_e_8c.html#a62f73ea01c816f1996aed4c66f57c4fb">argp_program_version</a> = &quot;Version 0.1.0&quot;</td></tr>
+<tr class="memdesc:a62f73ea01c816f1996aed4c66f57c4fb"><td class="mdescLeft">&#160;</td><td class="mdescRight"><hr/>
+<p> Current software version. <br /></td></tr>
 <tr class="separator:a62f73ea01c816f1996aed4c66f57c4fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Copyright (c) 2017, King Abdullah University of Science and Technology All rights reserved.</p>
+<div class="textblock"><p>Copyright (c) 2017, King Abdullah University of Science and Technology All rights reserved. </p>
+<p>ExaGeoStat is a software package provided by KAUST, King Abdullah University of Science and Technology - ECRC.</p>
 <p>ExaGeoStat is a software package provided by KAUST</p>
 <p>ExaGeoStat main functions.</p>
 <dl class="section version"><dt>Version</dt><dd>1.0.0</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Sameh Abdulah </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2018-11-11</dd></dl>
-<p>ExaGeoStat is a software package provided by KAUST, King Abdullah University of Science and Technology - ECRC</p>
 <dl class="section version"><dt>Version</dt><dd>1.0.0 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Sameh Abdulah </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2018-11-11 </dd></dl>
@@ -232,7 +242,7 @@ Variables</h2></td></tr>
 <p>Generate Z observation vector using generated or given locations. </p>
 <p>&ndash; using dense or approximate computation Returns Z observation vector </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">Nrand</td><td>A uniform random vector with size n that is used to generate Z . </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">initial_theta</td><td>Theta vector with three parameter (Variance, Range, Smoothness) that is used to to generate the Covariance Matrix. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Problem size (number spatial locations). </td></tr>
@@ -287,7 +297,7 @@ Variables</h2></td></tr>
 <p>Read Z observation vector using a give file. </p>
 <p>&ndash; using dense or approximate computation Returns Z observation vector </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Problem size (number spatial locations).Maximum Likelihood Evaluation (MLE)</td></tr>
   </table>
   </dd>
@@ -297,7 +307,7 @@ Variables</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>unsigned variable used by NLOPT package. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">theta</td><td>theta Vector with three parameter (Variance, Range, Smoothness) that is used to to generate the Covariance Matrix. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">grad</td><td>double variable used by NLOPT package. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
   </table>
   </dd>
 </dl>
@@ -479,7 +489,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>initialize exageostat by setting several </p>
-<p>variables from argument Returns <a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>variables from argument Returns <a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">arguments</td><td>command line arguments. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">test</td><td>if test=1 -&gt;test running mode if test=0-&gt;real running mode. </td></tr>
@@ -498,134 +508,13 @@ Variables</h2></td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">target_theta</td><td>target theta Vector with three parameter (Variance, Range, Smoothness) unknown theta parameter should be shown as '?' </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">lb</td><td>optimization lower bounds vector ( lb_1, lb_2, lb_3). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">ub</td><td>optimization upper bounds vector ( ub_1, ub_2, ub_3). </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">arguments</td><td>command line arguments. </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Definition at line <a class="el" href="_m_l_e_8c_source.html#l00176">176</a> of file <a class="el" href="_m_l_e_8c_source.html">MLE.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a41b9f60898d57d95b7e1991bb1df9f4f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void exageostat_init </td>
-          <td>(</td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>ncores</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>gpus</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>dts</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>lts</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>initialize exageostat (initiate underlying library) </p>
-
-<p>Definition at line <a class="el" href="_m_l_e_8c_source.html#l00245">245</a> of file <a class="el" href="_m_l_e_8c_source.html">MLE.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac55e64d11d3c08ede7e48202a6aab6ae"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void exageostat_finalize </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>finalize exageostat (initiate underlying library) </p>
-
-<p>Definition at line <a class="el" href="_m_l_e_8c_source.html#l00259">259</a> of file <a class="el" href="_m_l_e_8c_source.html">MLE.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4cc010ad3edcadd9af3db7ae5ddd0042"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void prediction_init </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_m_l_e__data.html">MLE_data</a> *&#160;</td>
-          <td class="paramname"><em>data</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nZmiss</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nZobs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>ts</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>p_grid</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>q_grid</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>mse_flag</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>initialize exageostat prediction allocation (allocate memory). </p>
-
-<p>Definition at line <a class="el" href="_m_l_e_8c_source.html#l00266">266</a> of file <a class="el" href="_m_l_e_8c_source.html">MLE.c</a>.</p>
 
 </div>
 </div>
@@ -646,7 +535,7 @@ Variables</h2></td></tr>
 <p>Destory and free prediction memory. </p>
 <p>allocations. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
   </table>
   </dd>
 </dl>
@@ -672,7 +561,7 @@ Variables</h2></td></tr>
 <p>Destory and free MLE memory. </p>
 <p>allocations. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
   </table>
   </dd>
 </dl>
@@ -714,7 +603,7 @@ Variables</h2></td></tr>
 <p>Convert measurements vector from Lapack. </p>
 <p>represenation to Chameleon representation. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">z</td><td>Lapack measurements vector. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>number of meaurements. </td></tr>
   </table>
@@ -722,23 +611,6 @@ Variables</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="_m_l_e_8c_source.html#l00347">347</a> of file <a class="el" href="_m_l_e_8c_source.html">MLE.c</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a62f73ea01c816f1996aed4c66f57c4fb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* argp_program_version = &quot;Version 0.1.0&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<hr/>
-<p> Current software version. </p>
-
-<p>Definition at line <a class="el" href="_m_l_e_8c_source.html#l00025">25</a> of file <a class="el" href="_m_l_e_8c_source.html">MLE.c</a>.</p>
 
 </div>
 </div>
