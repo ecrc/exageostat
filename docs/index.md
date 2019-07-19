@@ -52,4 +52,3 @@ Operations:
 2.  Evaluating Maximum Likelihood function for both real and synthetic datasets using exact, Diagonal Super Tile (DST), and
  Tile Low-Rank (TLR) computation, and,
 3.  Predicting unknown observations using the estimated theta parameters of the Maximum likelihood function (i.e., variance, smoothness, range).
-
