@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dependencies',['Dependencies',['../md_docs__dependencies.html',1,'']]]
+  ['what_20is_20exageostat_3f',['What is ExaGeoStat?',['../index.html',1,'']]]
 ];

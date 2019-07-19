@@ -12,6 +12,8 @@ var searchData=
   ['desczmiss',['descZmiss',['../struct_m_l_e__data.html#a287d9f68cdc4fb690e2f1b2d8992fdfc',1,'MLE_data']]],
   ['desczobs',['descZobs',['../struct_m_l_e__data.html#ad05cc7304b1a987f6c9bf9b0f5f6b2a5',1,'MLE_data']]],
   ['det',['det',['../struct_m_l_e__data.html#a9342d28f7f1faab7c73c4d7eb95354a3',1,'MLE_data']]],
+  ['diag_5fthick',['diag_thick',['../structarguments.html#a3bd56c8e2dd6c4b4fd0c63cee6324d1b',1,'arguments::diag_thick()'],['../struct_m_l_e__data.html#a665e9070c6081274077b08670cfff0e1',1,'MLE_data::diag_thick()']]],
   ['dm',['dm',['../structarguments.html#a7d89b71749252fb890ea9645b114b6d9',1,'arguments::dm()'],['../struct_m_l_e__data.html#a35fb99ebd19b0267363ddd398c36133c',1,'MLE_data::dm()']]],
-  ['dotp',['dotp',['../struct_m_l_e__data.html#afd02bf2b6dda6809e2659f1225e90ed7',1,'MLE_data']]]
+  ['dotp',['dotp',['../struct_m_l_e__data.html#afd02bf2b6dda6809e2659f1225e90ed7',1,'MLE_data']]],
+  ['dts',['dts',['../structarguments.html#a1c41d02a785d002b53abbf22eb151b10',1,'arguments']]]
 ];

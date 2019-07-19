@@ -1,6 +1,8 @@
 var searchData=
 [
   ['hicma_5facc',['hicma_acc',['../struct_m_l_e__data.html#ac78420216bb6d27b0db4a21c4fa0b1d1',1,'MLE_data']]],
+  ['hicma_5fdata_5ftype',['hicma_data_type',['../struct_m_l_e__data.html#ad8ac5060598e613b9b54693250441758',1,'MLE_data']]],
+  ['hicma_5fdescc',['hicma_descC',['../struct_m_l_e__data.html#adc03c9e75eb435327cf1b14d0d0ccf49',1,'MLE_data']]],
   ['hicma_5fdescc12d',['hicma_descC12D',['../struct_m_l_e__data.html#a3091f2b56ac3f338801a7c8b254842e2',1,'MLE_data']]],
   ['hicma_5fdescc12rk',['hicma_descC12rk',['../struct_m_l_e__data.html#abf7e8a8530eac7a6d839e604864cd39c',1,'MLE_data']]],
   ['hicma_5fdescc12uv',['hicma_descC12UV',['../struct_m_l_e__data.html#adc857436ed9163de94bbb8925beab619',1,'MLE_data']]],
@@ -10,5 +12,11 @@ var searchData=
   ['hicma_5fdesccd',['hicma_descCD',['../struct_m_l_e__data.html#ab593a38bc6e63375cfe83ef91747cbb2',1,'MLE_data']]],
   ['hicma_5fdesccrk',['hicma_descCrk',['../struct_m_l_e__data.html#a67556d84ebaeda7dc410a752ad8346db',1,'MLE_data']]],
   ['hicma_5fdesccuv',['hicma_descCUV',['../struct_m_l_e__data.html#ab77094eeb95e8788ccf50c571aabacfd',1,'MLE_data']]],
-  ['hicma_5fmaxrank',['hicma_maxrank',['../struct_m_l_e__data.html#ad936d7c197907f95cdcbafd4a91d1faf',1,'MLE_data']]]
+  ['hicma_5fdescdet',['hicma_descdet',['../struct_m_l_e__data.html#a7b1764f8b07e1528c8670121ccc8bd9a',1,'MLE_data']]],
+  ['hicma_5fdescproduct',['hicma_descproduct',['../struct_m_l_e__data.html#ac5bd88d6bfe432a4e60e5e84ef460b1a',1,'MLE_data']]],
+  ['hicma_5fdescz',['hicma_descZ',['../struct_m_l_e__data.html#a3d5d33c46095054c06465fb3f8657dca',1,'MLE_data']]],
+  ['hicma_5fdesczcpy',['hicma_descZcpy',['../struct_m_l_e__data.html#a00e4b4ff7a5db2f04f562da014380fc7',1,'MLE_data']]],
+  ['hicma_5fmaxrank',['hicma_maxrank',['../struct_m_l_e__data.html#ad936d7c197907f95cdcbafd4a91d1faf',1,'MLE_data']]],
+  ['hrequest',['hrequest',['../struct_m_l_e__data.html#a67b10856a815aa4f669887ca581fa5c0',1,'MLE_data']]],
+  ['hsequence',['hsequence',['../struct_m_l_e__data.html#a89f05a8df81874d6730a7cca425c1ef5',1,'MLE_data']]]
 ];

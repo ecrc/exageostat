@@ -1,7 +1,6 @@
 var searchData=
 [
   ['acc',['acc',['../structarguments.html#a695c24c49047e68fe111f99cd8d5858f',1,'arguments']]],
-  ['accuracydenseappdiff',['accuracyDenseAppDiff',['../structacc__struct.html#ab710ceb7de73a35772baa91d7930f92b',1,'acc_struct']]],
   ['actualz_5ffile',['actualZ_file',['../structarguments.html#a43b5de0d06e28b8c8d0e767f8d0c76a2',1,'arguments']]],
   ['actualzfpath',['actualZFPath',['../struct_m_l_e__data.html#a27abe9849451171bf9efd080b963867a',1,'MLE_data']]],
   ['actualzloc_5ffile',['actualZloc_file',['../structarguments.html#ac89f58ac374bb09dc3f6a79ee84a0bb5',1,'arguments']]],

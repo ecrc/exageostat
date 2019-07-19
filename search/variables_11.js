@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['verbose',['verbose',['../structarguments.html#af26be46c71f5dceb1a990d05b926c7ec',1,'arguments::verbose()'],['../struct_m_l_e__data.html#a675e258165d033dc1da2ffec7c73e3ce',1,'MLE_data::verbose()']]]
+  ['use_5fscratch',['use_scratch',['../_m_l_e__lr_8c.html#a43a9b9179b6dbe0abf84e1a4545f9ff0',1,'MLE_lr.c']]]
 ];

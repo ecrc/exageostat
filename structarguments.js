@@ -9,7 +9,8 @@ var structarguments =
     [ "N", "structarguments.html#a11aa144166dd2e593d4ca4d3eee62a32", null ],
     [ "p", "structarguments.html#a5378e7892115a582005d8bde6ef281fb", null ],
     [ "q", "structarguments.html#afffc2faa43b8ad3231377821a1f6fe41", null ],
-    [ "ts", "structarguments.html#a775491df64c8addb40874e82385d8a14", null ],
+    [ "lts", "structarguments.html#a45933ca76c88261a9a1492fb71afdb8d", null ],
+    [ "dts", "structarguments.html#a1c41d02a785d002b53abbf22eb151b10", null ],
     [ "kernel", "structarguments.html#a9018e72ab8a89aa9a0a2c59f6f97ce75", null ],
     [ "ikernel", "structarguments.html#aa1f0061f26e460273ad38a41895bd10c", null ],
     [ "olb", "structarguments.html#ac65cba9e34b6e3edfc6bfd81c3d92b72", null ],
@@ -22,8 +23,12 @@ var structarguments =
     [ "actualZloc_file", "structarguments.html#ac89f58ac374bb09dc3f6a79ee84a0bb5", null ],
     [ "predict", "structarguments.html#a19972314e0ada405b09c058e1ae5edea", null ],
     [ "dm", "structarguments.html#a7d89b71749252fb890ea9645b114b6d9", null ],
+    [ "diag_thick", "structarguments.html#a3bd56c8e2dd6c4b4fd0c63cee6324d1b", null ],
     [ "log", "structarguments.html#a23e06e6a9a3de6a0a72917f9b5ceadd3", null ],
     [ "maxrank", "structarguments.html#a2d30c5619df3d11e8ef9873dc0c9ff1d", null ],
     [ "acc", "structarguments.html#a695c24c49047e68fe111f99cd8d5858f", null ],
-    [ "profile", "structarguments.html#a3848b6198527fc4aab2dee74a37b9b09", null ]
+    [ "profile", "structarguments.html#a3848b6198527fc4aab2dee74a37b9b09", null ],
+    [ "opt_tol", "structarguments.html#a66aaaf767fe35dd1b274a1c9a58ab37d", null ],
+    [ "opt_max_iters", "structarguments.html#a81bb2ad390e095ff4f8627b5a7e4d711", null ],
+    [ "ooc", "structarguments.html#a8c3becaf6e89b59a89abef77d8747278", null ]
 ];
