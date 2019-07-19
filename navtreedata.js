@@ -2,11 +2,12 @@ var NAVTREE =
 [
   [ "ExaGeoStat", "index.html", [
     [ "What is ExaGeoStat?", "index.html", null ],
-    [ "Dependencies", "md_docs_Dependencies.html", null ],
-    [ "Install", "md_docs_Install.html", null ],
-    [ "Examples", "md_docs_Examples.html", null ],
-    [ "Workflow of ExaGeoStat", "md_docs_Workflow.html", null ],
-    [ "R-Package", "md_docs_R-Package.html", null ],
+    [ "dependencies", "md_docs_dependencies.html", null ],
+    [ "install", "md_docs_install.html", null ],
+    [ "examples", "md_docs_examples.html", null ],
+    [ "Workflow of ExaGeoStat", "md_docs_workflow.html", null ],
+    [ "rpackage", "md_docs_rpackage.html", null ],
+    [ "Frequently Asked Questions", "md_docs_faq.html", null ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],

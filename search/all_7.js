@@ -6,7 +6,7 @@ var searchData=
   ['init_5fdata_5fvalues',['init_data_values',['../_m_l_e__misc_8c.html#ab8fd3e830245aad8763ffcd944d587a8',1,'init_data_values(MLE_data *data):&#160;MLE_misc.c'],['../_m_l_e__misc_8h.html#ab8fd3e830245aad8763ffcd944d587a8',1,'init_data_values(MLE_data *data):&#160;MLE_misc.c']]],
   ['init_5flog',['init_log',['../_m_l_e__misc_8c.html#a36ee7b088283f4b74363b6dfb388bbc7',1,'init_log(MLE_data *data):&#160;MLE_misc.c'],['../_m_l_e__misc_8h.html#a36ee7b088283f4b74363b6dfb388bbc7',1,'init_log(MLE_data *data):&#160;MLE_misc.c']]],
   ['init_5foptimizer',['init_optimizer',['../_m_l_e__misc_8c.html#aa7b6efc8d079e3b06d2efb655e66dbc1',1,'init_optimizer(nlopt_opt *opt, double *lb, double *up, double tol):&#160;MLE_misc.c'],['../_m_l_e__misc_8h.html#aa7b6efc8d079e3b06d2efb655e66dbc1',1,'init_optimizer(nlopt_opt *opt, double *lb, double *up, double tol):&#160;MLE_misc.c']]],
-  ['install_2emd',['Install.md',['../_install_8md.html',1,'']]],
+  ['install_2emd',['install.md',['../install_8md.html',1,'']]],
   ['iter_5fcount',['iter_count',['../struct_m_l_e__data.html#a0088639bb33dd759e6c8b22b3b38b0e6',1,'MLE_data']]],
-  ['install',['Install',['../md_docs_Install.html',1,'']]]
+  ['install',['install',['../md_docs_install.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['r_2dpackage_2emd',['R-Package.md',['../_r-_package_8md.html',1,'']]]
+  ['rpackage_2emd',['rpackage.md',['../rpackage_8md.html',1,'']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['dependencies_2emd',['Dependencies.md',['../_dependencies_8md.html',1,'']]],
+  ['dependencies_2emd',['dependencies.md',['../dependencies_8md.html',1,'']]],
   ['descc',['descC',['../struct_m_l_e__data.html#a0dfb6ea6e76f00b288e8c97d20cc8616',1,'MLE_data']]],
   ['descc12',['descC12',['../struct_m_l_e__data.html#a4c9f72ee16de5aa7ff43999867edd491',1,'MLE_data']]],
   ['descc22',['descC22',['../struct_m_l_e__data.html#ad7f9b5b28b643d611a4cc6bdcbf6f876',1,'MLE_data']]],
@@ -20,5 +20,5 @@ var searchData=
   ['dotp',['dotp',['../struct_m_l_e__data.html#afd02bf2b6dda6809e2659f1225e90ed7',1,'MLE_data']]],
   ['dpotrf_5fdiag_2ec',['dpotrf_diag.c',['../dpotrf__diag_8c.html',1,'']]],
   ['dts',['dts',['../structarguments.html#a1c41d02a785d002b53abbf22eb151b10',1,'arguments']]],
-  ['dependencies',['Dependencies',['../md_docs_Dependencies.html',1,'']]]
+  ['dependencies',['dependencies',['../md_docs_dependencies.html',1,'']]]
 ];
