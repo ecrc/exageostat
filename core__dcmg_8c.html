@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>ExaGeoStat: /home/abdullsm/trash/exageostat/exageostat_exact/core/compute/core_dcmg.c File Reference</title>
+<title>ExaGeoStat: exageostat_exact/core/compute/core_dcmg.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -110,21 +110,17 @@ $(document).ready(function(){initNavTree('core__dcmg_8c.html','');});
 <div class="title">core_dcmg.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved.  
-<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="exageostatcore_8h_source.html">../include/exageostatcore.h</a>&quot;</code><br />
 </div>
 <p><a href="core__dcmg_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a39ce5915035b6ae4897b397c543fac42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__dcmg_8c.html#a39ce5915035b6ae4897b397c543fac42">core_dcmg</a> (double *A, int m, int n, int m0, int n0, <a class="el" href="structlocation.html">location</a> *l1, <a class="el" href="structlocation.html">location</a> *l2, double *localtheta, int distance_metric)</td></tr>
-<tr class="memdesc:a39ce5915035b6ae4897b397c543fac42"><td class="mdescLeft">&#160;</td><td class="mdescRight">core_dcmg - Generate covariance matrix A in dense format between two sets of locations (l1, l2) (Matern Kernel).  <a href="#a39ce5915035b6ae4897b397c543fac42">More...</a><br /></td></tr>
+<tr class="memitem:a39ce5915035b6ae4897b397c543fac42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__dcmg_8c.html#a39ce5915035b6ae4897b397c543fac42">core_dcmg</a> (double *<a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>, int m, int n, int m0, int n0, <a class="el" href="structlocation.html">location</a> *l1, <a class="el" href="structlocation.html">location</a> *l2, double *localtheta, int distance_metric)</td></tr>
 <tr class="separator:a39ce5915035b6ae4897b397c543fac42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved. </p>
+<div class="textblock"><p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved.</p>
 <p>ExaGeoStat is a software package provided by KAUST</p>
 <p>Generate covariance matrix of a set of locations in 2D using Matern kernel.</p>
 <dl class="section version"><dt>Version</dt><dd>1.0.0</dd></dl>
@@ -198,9 +194,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>core_dcmg - Generate covariance matrix A in dense format between two sets of locations (l1, l2) (Matern Kernel). </p>
-<p>The routine makes only one pass through the tile A. One tile operation.</p>
+<p>core_dcmg - Generate covariance matrix A in dense format between two sets of locations (l1, l2) (Matern Kernel). The routine makes only one pass through the tile A. One tile operation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">A</td><td>The m-by-n matrix on which to compute the covariance matrix.</td></tr>

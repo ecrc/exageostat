@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>ExaGeoStat: /home/abdullsm/trash/exageostat/misc/compute/nc_file.c File Reference</title>
+<title>ExaGeoStat: misc/compute/nc_file.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -110,9 +110,6 @@ $(document).ready(function(){initNavTree('nc__file_8c.html','');});
 <div class="title">nc_file.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved.  
-<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="nc__file_8h_source.html">../include/nc_file.h</a>&quot;</code><br />
 </div>
 <p><a href="nc__file_8c_source.html">Go to the source code of this file.</a></p>
@@ -139,7 +136,7 @@ Functions</h2></td></tr>
 <tr class="separator:a1018ab977646b5e1f45348db1020a1a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved. </p>
+<div class="textblock"><p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved.</p>
 <p>ExaGeoStat is a software package provided by KAUST</p>
 <p>Auxiliary functions that are used to read and process netCDF files.</p>
 <dl class="section version"><dt>Version</dt><dd>1.0.0</dd></dl>
@@ -175,7 +172,7 @@ Functions</h2></td></tr>
 <p>Open the NetCDF file. </p>
 <p>returns ncid: netCDF file identifier. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">filename</td><td>netCDF location file. </td></tr>
   </table>
   </dd>
@@ -256,7 +253,7 @@ Functions</h2></td></tr>
 <p>Read 1D locations from a given. </p>
 <p>netCDF file Returns location struct inside the data struct. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ncid</td><td>netCDF file identifier. </td></tr>
   </table>
   </dd>
@@ -293,7 +290,7 @@ Functions</h2></td></tr>
 <p>Read 2D locations from a given. </p>
 <p>netCDF file Returns location struct. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ncid</td><td>netCDF file identifier. </td></tr>
   </table>
   </dd>
@@ -354,7 +351,7 @@ Functions</h2></td></tr>
 <p>Read Read observations from. </p>
 <p>a given NetCDF variable. Returns location struct. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ncid</td><td>netCDF file identifier. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">varname</td><td>NetCDF variable name. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">data_in</td><td>data vector. </td></tr>
@@ -396,7 +393,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">ncid</td><td>netCDF file identifier. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
   </table>
   </dd>
 </dl>

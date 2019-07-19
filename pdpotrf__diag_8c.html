@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>ExaGeoStat: /home/abdullsm/trash/exageostat/exageostat_approx/src/compute/pdpotrf_diag.c File Reference</title>
+<title>ExaGeoStat: exageostat_approx/src/compute/pdpotrf_diag.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -111,33 +111,27 @@ $(document).ready(function(){initNavTree('pdpotrf__diag_8c.html','');});
 <div class="title">pdpotrf_diag.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>MORSE auxiliary routines MORSE is a software package provided by Univ.  
-<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="diag_8h_source.html">../include/diag.h</a>&quot;</code><br />
 </div>
 <p><a href="pdpotrf__diag_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a1665590e7823a9dc7f261345f55030d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1665590e7823a9dc7f261345f55030d3"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>A</b>(m,  n)&#160;&#160;&#160;A,  m,  n</td></tr>
+<tr class="memitem:a1665590e7823a9dc7f261345f55030d3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>(m,  n)&#160;&#160;&#160;A,  m,  n</td></tr>
 <tr class="separator:a1665590e7823a9dc7f261345f55030d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9b3e8e2c89964fd2467a34f2f3d3c41e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b3e8e2c89964fd2467a34f2f3d3c41e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pdpotrf__diag_8c.html#a9b3e8e2c89964fd2467a34f2f3d3c41e">morse_pdpotrf_diag</a> (MORSE_enum uplo, MORSE_desc_t *A, int diag_thick, MORSE_sequence_t *sequence, MORSE_request_t *request)</td></tr>
-<tr class="memdesc:a9b3e8e2c89964fd2467a34f2f3d3c41e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parallel tile Cholesky factorization - dynamic scheduling. <br /></td></tr>
+<tr class="memitem:a9b3e8e2c89964fd2467a34f2f3d3c41e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pdpotrf__diag_8c.html#a9b3e8e2c89964fd2467a34f2f3d3c41e">morse_pdpotrf_diag</a> (MORSE_enum uplo, MORSE_desc_t *<a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>, int diag_thick, MORSE_sequence_t *sequence, MORSE_request_t *request)</td></tr>
 <tr class="separator:a9b3e8e2c89964fd2467a34f2f3d3c41e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>MORSE auxiliary routines MORSE is a software package provided by Univ. </p>
-<dl class="section copyright"><dt>Copyright</dt><dd>(c) 2009-2014 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved. </dd>
+<div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(c) 2009-2014 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved. </dd>
 <dd>
 (c) 2012-2016 Inria. All rights reserved. </dd>
 <dd>
-(c) 2012-2014 Bordeaux INP, CNRS (LaBRI UMR 5800), Inria, Univ. Bordeaux. All rights reserved. of Tennessee, Univ. of California Berkeley and Univ. of Colorado Denver</dd></dl>
+(c) 2012-2014 Bordeaux INP, CNRS (LaBRI UMR 5800), Inria, Univ. Bordeaux. All rights reserved.</dd></dl>
+<p>MORSE auxiliary routines MORSE is a software package provided by Univ. of Tennessee, Univ. of California Berkeley and Univ. of Colorado Denver</p>
 <dl class="section version"><dt>Version</dt><dd>1.0.0  This file has been automatically generated from Plasma 2.5.0 for MORSE 1.0.0 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Jakub Kurzak </dd>
 <dd>
@@ -153,7 +147,84 @@ Florent Pruvost </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2018-11-11  d Fri Dec 1 14:38:19 2017 </dd></dl>
 
 <p>Definition in file <a class="el" href="pdpotrf__diag_8c_source.html">pdpotrf_diag.c</a>.</p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a1665590e7823a9dc7f261345f55030d3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define A</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">m, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">n&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;A,  m,  n</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="pdpotrf__diag_8c_source.html#l00034">34</a> of file <a class="el" href="pdpotrf__diag_8c_source.html">pdpotrf_diag.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a9b3e8e2c89964fd2467a34f2f3d3c41e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void morse_pdpotrf_diag </td>
+          <td>(</td>
+          <td class="paramtype">MORSE_enum&#160;</td>
+          <td class="paramname"><em>uplo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MORSE_desc_t *&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>diag_thick</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MORSE_sequence_t *&#160;</td>
+          <td class="paramname"><em>sequence</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MORSE_request_t *&#160;</td>
+          <td class="paramname"><em>request</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Parallel tile Cholesky factorization - dynamic scheduling </p>
+
+<p>Definition at line <a class="el" href="pdpotrf__diag_8c_source.html#l00038">38</a> of file <a class="el" href="pdpotrf__diag_8c_source.html">pdpotrf_diag.c</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

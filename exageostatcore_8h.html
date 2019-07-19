@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>ExaGeoStat: /home/abdullsm/trash/exageostat/exageostat_exact/core/include/exageostatcore.h File Reference</title>
+<title>ExaGeoStat: exageostat_exact/core/include/exageostatcore.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -110,9 +110,6 @@ $(document).ready(function(){initNavTree('exageostatcore_8h.html','');});
 <div class="title">exageostatcore.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved.  
-<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_m_l_e__misc_8h_source.html">../../../misc/include/MLE_misc.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="flat__file_8h_source.html">../../../misc/include/flat_file.h</a>&quot;</code><br />
 </div>
@@ -120,21 +117,17 @@ $(document).ready(function(){initNavTree('exageostatcore_8h.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a39ce5915035b6ae4897b397c543fac42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exageostatcore_8h.html#a39ce5915035b6ae4897b397c543fac42">core_dcmg</a> (double *A, int m, int n, int m0, int n0, <a class="el" href="structlocation.html">location</a> *l1, <a class="el" href="structlocation.html">location</a> *l2, double *localtheta, int distance_metric)</td></tr>
-<tr class="memdesc:a39ce5915035b6ae4897b397c543fac42"><td class="mdescLeft">&#160;</td><td class="mdescRight">core_dcmg - Generate covariance matrix A in dense format between two sets of locations (l1, l2) (Matern Kernel).  <a href="#a39ce5915035b6ae4897b397c543fac42">More...</a><br /></td></tr>
+<tr class="memitem:a39ce5915035b6ae4897b397c543fac42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exageostatcore_8h.html#a39ce5915035b6ae4897b397c543fac42">core_dcmg</a> (double *<a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>, int m, int n, int m0, int n0, <a class="el" href="structlocation.html">location</a> *l1, <a class="el" href="structlocation.html">location</a> *l2, double *localtheta, int distance_metric)</td></tr>
 <tr class="separator:a39ce5915035b6ae4897b397c543fac42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5eadbe92cb5452d262e88af0adbd7026"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exageostatcore_8h.html#a5eadbe92cb5452d262e88af0adbd7026">core_dmdet</a> (double *A, int m, int n, int m0, int n0)</td></tr>
-<tr class="memdesc:a5eadbe92cb5452d262e88af0adbd7026"><td class="mdescLeft">&#160;</td><td class="mdescRight">core_dmdet - Calculate the determinant of the matrix A.  <a href="#a5eadbe92cb5452d262e88af0adbd7026">More...</a><br /></td></tr>
+<tr class="memitem:a5eadbe92cb5452d262e88af0adbd7026"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exageostatcore_8h.html#a5eadbe92cb5452d262e88af0adbd7026">core_dmdet</a> (double *<a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>, int m, int n, int m0, int n0)</td></tr>
 <tr class="separator:a5eadbe92cb5452d262e88af0adbd7026"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a821583f85359c3a6e35df6b1791aeeaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exageostatcore_8h.html#a821583f85359c3a6e35df6b1791aeeaa">core_dzcpy</a> (double *Z, int m, int m0, double *r)</td></tr>
-<tr class="memdesc:a821583f85359c3a6e35df6b1791aeeaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">core_dzcpy - Copy vector r to vector Z (one tile).  <a href="#a821583f85359c3a6e35df6b1791aeeaa">More...</a><br /></td></tr>
 <tr class="separator:a821583f85359c3a6e35df6b1791aeeaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2398f9a4d35d6b403137285994e928ae"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="exageostatcore_8h.html#a2398f9a4d35d6b403137285994e928ae">core_ddotp</a> (double *Z, double *dotproduct, int n)</td></tr>
-<tr class="memdesc:a2398f9a4d35d6b403137285994e928ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">core_ddopt - Calculate the dot product of the Z vector.  <a href="#a2398f9a4d35d6b403137285994e928ae">More...</a><br /></td></tr>
 <tr class="separator:a2398f9a4d35d6b403137285994e928ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved. </p>
+<div class="textblock"><p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved.</p>
 <p>ExaGeoStat is a software package provided by KAUST</p>
 <p>Core functions header file.</p>
 <dl class="section version"><dt>Version</dt><dd>1.0.0</dd></dl>
@@ -208,9 +201,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>core_dcmg - Generate covariance matrix A in dense format between two sets of locations (l1, l2) (Matern Kernel). </p>
-<p>The routine makes only one pass through the tile A. One tile operation.</p>
+<p>core_dcmg - Generate covariance matrix A in dense format between two sets of locations (l1, l2) (Matern Kernel). The routine makes only one pass through the tile A. One tile operation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">A</td><td>The m-by-n matrix on which to compute the covariance matrix.</td></tr>
@@ -271,9 +262,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>core_dmdet - Calculate the determinant of the matrix A. </p>
-<p>The routine makes only one pass through the tile A. One tile operation.</p>
+<p>core_dmdet - Calculate the determinant of the matrix A. The routine makes only one pass through the tile A. One tile operation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">A</td><td>The m-by-n matrix on which to calculate the determinant.</td></tr>
@@ -324,9 +313,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>core_dzcpy - Copy vector r to vector Z (one tile). </p>
-<p>The routine makes only one pass through the tile Z. One tile operation. One vector tile.</p>
+<p>core_dzcpy - Copy vector r to vector Z (one tile). The routine makes only one pass through the tile Z. One tile operation. One vector tile.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">Z</td><td>The m-by-1 matrix on which to store r.</td></tr>
@@ -370,9 +357,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>core_ddopt - Calculate the dot product of the Z vector. </p>
-<p>The routine makes only one pass through the tile A. One tile operation.</p>
+<p>core_ddopt - Calculate the dot product of the Z vector. The routine makes only one pass through the tile A. One tile operation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">Z</td><td>The n-by-1 vector.</td></tr>

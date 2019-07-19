@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['dependencies_2emd',['Dependencies.md',['../_dependencies_8md.html',1,'']]],
   ['descc',['descC',['../struct_m_l_e__data.html#a0dfb6ea6e76f00b288e8c97d20cc8616',1,'MLE_data']]],
   ['descc12',['descC12',['../struct_m_l_e__data.html#a4c9f72ee16de5aa7ff43999867edd491',1,'MLE_data']]],
   ['descc22',['descC22',['../struct_m_l_e__data.html#ad7f9b5b28b643d611a4cc6bdcbf6f876',1,'MLE_data']]],
@@ -17,6 +18,7 @@ var searchData=
   ['dm',['dm',['../structarguments.html#a7d89b71749252fb890ea9645b114b6d9',1,'arguments::dm()'],['../struct_m_l_e__data.html#a35fb99ebd19b0267363ddd398c36133c',1,'MLE_data::dm()']]],
   ['doesfileexist',['doesFileExist',['../_m_l_e__misc_8c.html#a2d297d9a90b71a1ce1a4728247301450',1,'doesFileExist(const char *filename):&#160;MLE_misc.c'],['../_m_l_e__misc_8h.html#a2d297d9a90b71a1ce1a4728247301450',1,'doesFileExist(const char *filename):&#160;MLE_misc.c']]],
   ['dotp',['dotp',['../struct_m_l_e__data.html#afd02bf2b6dda6809e2659f1225e90ed7',1,'MLE_data']]],
+  ['dpotrf_5fdiag_2ec',['dpotrf_diag.c',['../dpotrf__diag_8c.html',1,'']]],
   ['dts',['dts',['../structarguments.html#a1c41d02a785d002b53abbf22eb151b10',1,'arguments']]],
-  ['dependencies',['Dependencies',['../md__home_abdullsm_trash_exageostat_docs_Dependencies.html',1,'']]]
+  ['dependencies',['Dependencies',['../md_docs_Dependencies.html',1,'']]]
 ];

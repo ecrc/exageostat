@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>ExaGeoStat: /home/abdullsm/trash/exageostat/exageostat_exact/src/compute/MLE_exact.c File Reference</title>
+<title>ExaGeoStat: exageostat_exact/src/compute/MLE_exact.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -110,9 +110,6 @@ $(document).ready(function(){initNavTree('_m_l_e__exact_8c.html','');});
 <div class="title">MLE_exact.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved.  
-<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_m_l_e__exact_8h_source.html">../include/MLE_exact.h</a>&quot;</code><br />
 </div>
 <p><a href="_m_l_e__exact_8c_source.html">Go to the source code of this file.</a></p>
@@ -146,7 +143,7 @@ Functions</h2></td></tr>
 <tr class="separator:ad94265453624474e8ad8561428ffdfa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved. </p>
+<div class="textblock"><p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved.</p>
 <p>ExaGeoStat is a software package provided by KAUST</p>
 <p>ExaGeoStat exact computation main functions (i.e., generate synthetic dataset, evaluate ML function, and predication).</p>
 <dl class="section version"><dt>Version</dt><dd>1.0.0</dd></dl>
@@ -206,7 +203,7 @@ Functions</h2></td></tr>
 <p>Generate Observations Vector (Z) for testing Maximum. </p>
 <p>Likelihood function &ndash; MORSE-sync Returns Z observation vector </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">Nrand</td><td>A uniform random vector with size n that is used to generate Z . </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">initial_theta</td><td>Theta vector with three parameter (Variance, Range, Smoothness) that is used to to generate the Covariance Matrix. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Problem size (number spatial locations). </td></tr>
@@ -247,7 +244,7 @@ Functions</h2></td></tr>
 <p>Copy measurements vector from Lapack. </p>
 <p>format to Chameleon format. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">streamdata</td><td>measurments vector in lapack format. </td></tr>
   </table>
   </dd>
@@ -308,7 +305,7 @@ Functions</h2></td></tr>
 <p>Generate Observations Vector (Z) for testing Maximum. </p>
 <p>Likelihood function &ndash; MORSE-Async Returns Z observation vector </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">Nrand</td><td>A uniform random vector with size n that is used to generate Z . </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">initial_theta</td><td>Theta vector with three parameter (Variance, Range, Smoothness) that is used to to generate the Covariance Matrix. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Problem size (number spatial locations). </td></tr>
@@ -363,7 +360,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>unsigned variable used by NLOPT library. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">theta</td><td>theta Vector with three parameter (Variance, Range, Smoothness) that is used to to generate the Covariance Matrix. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">grad</td><td>double variable used by NLOPT library. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">MORSE_data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">MORSE_data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs.</td></tr>
   </table>
   </dd>
 </dl>
@@ -413,7 +410,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>unsigned variable used by NLOPT library. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">theta</td><td>theta Vector with three parameter (Variance, Range, Smoothness) that is used to to generate the Covariance Matrix. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">grad</td><td>double variable used by NLOPT library. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">MORSE_data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">MORSE_data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs.</td></tr>
   </table>
   </dd>
 </dl>
@@ -477,9 +474,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Allocate prediction operation descriptors. </p>
-<p>Returns <a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> data with initial values and new descriptors locations. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Returns <a class="el" href="struct_m_l_e__data.html">MLE_data</a> data with initial values and new descriptors locations. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">MORSE_data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">MORSE_data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nZmiss</td><td>number of missing values (unknown observations). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nZobs</td><td>number of observed values (known observations). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dts</td><td>tile size (MB). </td></tr>
@@ -557,7 +554,7 @@ Functions</h2></td></tr>
 <p>//Predict missing values base on a set of given values and covariance matrix </p>
 <p>&ndash; MORSE-sync Returns the prediction Mean Square Error (MSE) as double </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">MORSE_data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">MORSE_data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">theta</td><td>theta Vector with three parameter (Variance, Range, Smoothness) that is used to to generate the Covariance Matrix. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nZmiss</td><td>number of missing values (unknown observations). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nZobs</td><td>number of observed values (known observations). </td></tr>
@@ -618,7 +615,7 @@ Functions</h2></td></tr>
 <p>//Predict missing values base on a set of given values and covariance matrix </p>
 <p>&ndash; MORSE-Async Returns the prediction Mean Square Error (MSE) as double </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">MORSE_data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">MORSE_data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">theta</td><td>theta Vector with three parameter (Variance, Range, Smoothness) that is used to to generate the Covariance Matrix. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nZmiss</td><td>number of missing values (unknown observations). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nZobs</td><td>number of observed values (known observations). </td></tr>
@@ -698,9 +695,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>//Initiate MORSE and allocate different descriptors for </p>
-<p>CHAMELEON Returns <a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> data with initial values and new descriptors locations. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>CHAMELEON Returns <a class="el" href="struct_m_l_e__data.html">MLE_data</a> data with initial values and new descriptors locations. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html" title=" Structure for uniquely identifies three different parameters for accuracy measurments accuracyDenseA...">MLE_data</a> struct with different MLE inputs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td><a class="el" href="struct_m_l_e__data.html">MLE_data</a> struct with different MLE inputs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ncores</td><td>number of CPU workers. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">gpus</td><td>number of GPU workers. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dts</td><td>tile size (MB). </td></tr>

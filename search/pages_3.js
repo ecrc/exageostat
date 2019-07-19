@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['install',['Install',['../md__home_abdullsm_trash_exageostat_docs_Install.html',1,'']]]
+  ['r_2dpackage',['R-Package',['../md_docs_R-Package.html',1,'']]]
 ];

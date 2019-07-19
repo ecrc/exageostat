@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>ExaGeoStat: /home/abdullsm/trash/exageostat/exageostat_approx/src/include/diag.h File Reference</title>
+<title>ExaGeoStat: exageostat_approx/src/include/diag.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -110,31 +110,23 @@ $(document).ready(function(){initNavTree('diag_8h.html','');});
 <div class="title">diag.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved.  
-<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;common.h&quot;</code><br />
 </div>
 <p><a href="diag_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9b3e8e2c89964fd2467a34f2f3d3c41e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b3e8e2c89964fd2467a34f2f3d3c41e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diag_8h.html#a9b3e8e2c89964fd2467a34f2f3d3c41e">morse_pdpotrf_diag</a> (MORSE_enum uplo, MORSE_desc_t *A, int diag_thick, MORSE_sequence_t *sequence, MORSE_request_t *request)</td></tr>
-<tr class="memdesc:a9b3e8e2c89964fd2467a34f2f3d3c41e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parallel tile Cholesky factorization - dynamic scheduling. <br /></td></tr>
+<tr class="memitem:a9b3e8e2c89964fd2467a34f2f3d3c41e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diag_8h.html#a9b3e8e2c89964fd2467a34f2f3d3c41e">morse_pdpotrf_diag</a> (MORSE_enum uplo, MORSE_desc_t *<a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>, int diag_thick, MORSE_sequence_t *sequence, MORSE_request_t *request)</td></tr>
 <tr class="separator:a9b3e8e2c89964fd2467a34f2f3d3c41e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedb59057a347d4a4fc2f06f02467d65d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diag_8h.html#aedb59057a347d4a4fc2f06f02467d65d">MORSE_dpotrf_diag</a> (MORSE_enum uplo, int N, double *A, int LDA, int diag_thick)</td></tr>
-<tr class="memdesc:aedb59057a347d4a4fc2f06f02467d65d"><td class="mdescLeft">&#160;</td><td class="mdescRight">MORSE_dpotrf - Computes the Cholesky factorization of a symmetric positive definite (or Symmetric positive definite in the real case) matrix A.  <a href="#aedb59057a347d4a4fc2f06f02467d65d">More...</a><br /></td></tr>
+<tr class="memitem:aedb59057a347d4a4fc2f06f02467d65d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diag_8h.html#aedb59057a347d4a4fc2f06f02467d65d">MORSE_dpotrf_diag</a> (MORSE_enum uplo, int N, double *<a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>, int LDA, int diag_thick)</td></tr>
 <tr class="separator:aedb59057a347d4a4fc2f06f02467d65d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09e6b747a301d774889246fa184fbd63"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diag_8h.html#a09e6b747a301d774889246fa184fbd63">MORSE_dpotrf_diag_Tile</a> (MORSE_enum uplo, MORSE_desc_t *A, int diag_thick)</td></tr>
-<tr class="memdesc:a09e6b747a301d774889246fa184fbd63"><td class="mdescLeft">&#160;</td><td class="mdescRight">MORSE_dpotrf_Tile - Computes the Cholesky factorization of a symmetric positive definite or Symmetric positive definite matrix.  <a href="#a09e6b747a301d774889246fa184fbd63">More...</a><br /></td></tr>
+<tr class="memitem:a09e6b747a301d774889246fa184fbd63"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diag_8h.html#a09e6b747a301d774889246fa184fbd63">MORSE_dpotrf_diag_Tile</a> (MORSE_enum uplo, MORSE_desc_t *<a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>, int diag_thick)</td></tr>
 <tr class="separator:a09e6b747a301d774889246fa184fbd63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad10fae85af48c64a9ad983507c1a0151"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diag_8h.html#ad10fae85af48c64a9ad983507c1a0151">MORSE_dpotrf_diag_Tile_Async</a> (MORSE_enum uplo, MORSE_desc_t *A, int diag_thick, MORSE_sequence_t *sequence, MORSE_request_t *request)</td></tr>
-<tr class="memdesc:ad10fae85af48c64a9ad983507c1a0151"><td class="mdescLeft">&#160;</td><td class="mdescRight">MORSE_dpotrf_Tile_Async - Computes the Cholesky factorization of a symmetric positive definite or Symmetric positive definite matrix.  <a href="#ad10fae85af48c64a9ad983507c1a0151">More...</a><br /></td></tr>
+<tr class="memitem:ad10fae85af48c64a9ad983507c1a0151"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diag_8h.html#ad10fae85af48c64a9ad983507c1a0151">MORSE_dpotrf_diag_Tile_Async</a> (MORSE_enum uplo, MORSE_desc_t *<a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>, int diag_thick, MORSE_sequence_t *sequence, MORSE_request_t *request)</td></tr>
 <tr class="separator:ad10fae85af48c64a9ad983507c1a0151"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved. </p>
+<div class="textblock"><p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved.</p>
 <p>ExaGeoStat is a software package provided by KAUST</p>
 <p>ExaGeoStat approx computation main functions header file.</p>
 <dl class="section version"><dt>Version</dt><dd>1.0.0</dd></dl>
@@ -143,6 +135,53 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diag
 
 <p>Definition in file <a class="el" href="diag_8h_source.html">diag.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a9b3e8e2c89964fd2467a34f2f3d3c41e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void morse_pdpotrf_diag </td>
+          <td>(</td>
+          <td class="paramtype">MORSE_enum&#160;</td>
+          <td class="paramname"><em>uplo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MORSE_desc_t *&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>diag_thick</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MORSE_sequence_t *&#160;</td>
+          <td class="paramname"><em>sequence</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MORSE_request_t *&#160;</td>
+          <td class="paramname"><em>request</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Parallel tile Cholesky factorization - dynamic scheduling </p>
+
+<p>Definition at line <a class="el" href="pdpotrf__diag_8c_source.html#l00038">38</a> of file <a class="el" href="pdpotrf__diag_8c_source.html">pdpotrf_diag.c</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aedb59057a347d4a4fc2f06f02467d65d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -184,9 +223,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diag
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>MORSE_dpotrf - Computes the Cholesky factorization of a symmetric positive definite (or Symmetric positive definite in the real case) matrix A. </p>
-<p>The factorization has the form</p>
+<p>MORSE_dpotrf - Computes the Cholesky factorization of a symmetric positive definite (or Symmetric positive definite in the real case) matrix A. The factorization has the form</p>
 <p class="formulaDsp">
 <img class="formulaDsp" alt="\[ A = \{_{L\times L^H, if uplo = MorseLower}^{U^H\times U, if uplo = MorseUpper} \]" src="form_0.png"/>
 </p>
@@ -254,9 +291,7 @@ MORSE_dpotrs </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>MORSE_dpotrf_Tile - Computes the Cholesky factorization of a symmetric positive definite or Symmetric positive definite matrix. </p>
-<p>Tile equivalent of MORSE_dpotrf(). Operates on matrices stored by tiles. All matrices are passed through descriptors. All dimensions are taken from the descriptors.</p>
+<p>MORSE_dpotrf_Tile - Computes the Cholesky factorization of a symmetric positive definite or Symmetric positive definite matrix. Tile equivalent of MORSE_dpotrf(). Operates on matrices stored by tiles. All matrices are passed through descriptors. All dimensions are taken from the descriptors.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">uplo</td><td>= MorseUpper: Upper triangle of A is stored; = MorseLower: Lower triangle of A is stored.</td></tr>
@@ -329,9 +364,7 @@ MORSE_dpotrs_Tile </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>MORSE_dpotrf_Tile_Async - Computes the Cholesky factorization of a symmetric positive definite or Symmetric positive definite matrix. </p>
-<p>Non-blocking equivalent of MORSE_dpotrf_Tile(). May return before the computation is finished. Allows for pipelining of operations at runtime.</p>
+<p>MORSE_dpotrf_Tile_Async - Computes the Cholesky factorization of a symmetric positive definite or Symmetric positive definite matrix. Non-blocking equivalent of MORSE_dpotrf_Tile(). May return before the computation is finished. Allows for pipelining of operations at runtime.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">sequence</td><td>Identifies the sequence of function calls that this call belongs to (for completion checks and exception handling purposes).</td></tr>

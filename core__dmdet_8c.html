@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>ExaGeoStat: /home/abdullsm/trash/exageostat/exageostat_exact/core/compute/core_dmdet.c File Reference</title>
+<title>ExaGeoStat: exageostat_exact/core/compute/core_dmdet.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -110,21 +110,17 @@ $(document).ready(function(){initNavTree('core__dmdet_8c.html','');});
 <div class="title">core_dmdet.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved.  
-<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="exageostatcore_8h_source.html">../include/exageostatcore.h</a>&quot;</code><br />
 </div>
 <p><a href="core__dmdet_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5eadbe92cb5452d262e88af0adbd7026"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__dmdet_8c.html#a5eadbe92cb5452d262e88af0adbd7026">core_dmdet</a> (double *A, int m, int n, int m0, int n0)</td></tr>
-<tr class="memdesc:a5eadbe92cb5452d262e88af0adbd7026"><td class="mdescLeft">&#160;</td><td class="mdescRight">core_dmdet - Calculate the determinant of the matrix A.  <a href="#a5eadbe92cb5452d262e88af0adbd7026">More...</a><br /></td></tr>
+<tr class="memitem:a5eadbe92cb5452d262e88af0adbd7026"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__dmdet_8c.html#a5eadbe92cb5452d262e88af0adbd7026">core_dmdet</a> (double *<a class="el" href="pdpotrf__diag_8c.html#a1665590e7823a9dc7f261345f55030d3">A</a>, int m, int n, int m0, int n0)</td></tr>
 <tr class="separator:a5eadbe92cb5452d262e88af0adbd7026"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved. </p>
+<div class="textblock"><p>Copyright (c) 2017-2018 King Abdullah University of Science and Technology All rights reserved.</p>
 <p>ExaGeoStat is a software package provided by KAUST</p>
 <p>Calculate determinant of a given triangular matrix (A).</p>
 <dl class="section version"><dt>Version</dt><dd>1.0.0</dd></dl>
@@ -174,9 +170,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>core_dmdet - Calculate the determinant of the matrix A. </p>
-<p>The routine makes only one pass through the tile A. One tile operation.</p>
+<p>core_dmdet - Calculate the determinant of the matrix A. The routine makes only one pass through the tile A. One tile operation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">A</td><td>The m-by-n matrix on which to calculate the determinant.</td></tr>
