@@ -162,7 +162,7 @@ FULL_PATH_NAMES        = YES
 # will be relative from the directory where doxygen is started.
 # This tag requires that the tag FULL_PATH_NAMES is set to YES.
 
-STRIP_FROM_PATH        =
+STRIP_FROM_PATH        = "@CMAKE_SOURCE_DIR@"
 
 # The STRIP_FROM_INC_PATH tag can be used to strip a user-defined part of the
 # path mentioned in the documentation of a class, which tells the reader which
@@ -187,7 +187,7 @@ SHORT_NAMES            = NO
 # description.)
 # The default value is: NO.
 
-JAVADOC_AUTOBRIEF      = YES
+JAVADOC_AUTOBRIEF      = NO
 
 # If the QT_AUTOBRIEF tag is set to YES then doxygen will interpret the first
 # line (until the first dot) of a Qt-style comment as the brief description. If
@@ -435,7 +435,7 @@ LOOKUP_CACHE_SIZE      = 0
 # normally produced when WARNINGS is set to YES.
 # The default value is: NO.
 
-EXTRACT_ALL            = NO
+EXTRACT_ALL            = YES
 
 # If the EXTRACT_PRIVATE tag is set to YES, all private members of a class will
 # be included in the documentation.
@@ -791,12 +791,6 @@ WARN_LOGFILE           =
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = "@CMAKE_CURRENT_SOURCE_DIR@/index.md" \
-                         "@CMAKE_CURRENT_SOURCE_DIR@/Dependencies.md"\ 
-                	"@CMAKE_CURRENT_SOURCE_DIR@/Install.md" \
-                         "@CMAKE_CURRENT_SOURCE_DIR@/Examples.md" \
-                         "@CMAKE_CURRENT_SOURCE_DIR@/Workflow.md" \
-                         "@CMAKE_CURRENT_SOURCE_DIR@/R-Package.md" \	
-			 "@CMAKE_CURRENT_SOURCE_DIR@/FrequentlyAskedQuestions.md" \
 			 "@CMAKE_CURRENT_SOURCE_DIR@/../src/compute" \
                          "@CMAKE_CURRENT_SOURCE_DIR@/../src/include" \
                          "@CMAKE_CURRENT_SOURCE_DIR@/../exageostat_exact/runtime/starpu/codelets"\
