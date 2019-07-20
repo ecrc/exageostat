@@ -14,9 +14,10 @@
  * @version 1.0.0
  *
  * @author Sameh Abdulah
- * @date 2018-11-11
+ * @date 2019-07-20
  *
  **/
+#include "examples.h"
 #include "../src/include/MLE.h"
 #include "../r-wrappers/include/rwrappers.h"
 
@@ -81,7 +82,7 @@ int main(int argc, char **argv) {
 	globalveclen	=  n;
 
 	//Memory allocation
-	theta_out	= (double *) malloc(thetalen * sizeof(double));
+	theta_out	= (double *) malloc(6 * sizeof(double));
 	vecs_out        = (double *) malloc(globalveclen * sizeof(double));
 	initial_theta   = (double *) malloc (thetalen * sizeof(double)); 
 	lb           	= (double *) malloc(thetalen * sizeof(double));
@@ -97,22 +98,21 @@ int main(int argc, char **argv) {
 	rexageostat_init(&ncores,&gpus, &dts);
         //gen_z_exact(&n,   &ncores,   &gpus,  &dts,   &p_grid,  &q_grid,  &initial_theta[0],  &initial_theta[1],  &initial_theta[2], &dm_int, &globalveclen, vecs_out);
 
-	gen_z_givenlocs_exact(&n, &ncores,  &gpus,  &dts,  &p_grid, &q_grid, locations->x, NULL,  locations->y, NULL,  &initial_theta[0],  &initial_theta[1],  &initial_theta[2], &dm_int, &globalveclen, vecs_out);
+	gen_z_givenlocs_exact(locations->x, NULL,  locations->y, NULL, &initial_theta[0],  &initial_theta[1],  &initial_theta[2], &dm_int, &n, &ncores,  &gpus,  &dts,  &p_grid, &q_grid, &globalveclen, vecs_out);
 
 
-	
 	if(strcmp (computation, "exact") == 0)
-		mle_exact(&n, &ncores, &gpus, &dts, &p_grid, &q_grid, locations->x, NULL,  locations->y, NULL,  vecs_out, NULL,   lb, &thetalen, ub, &thetalen,  &dm_int, &opt_tol, &opt_max_iters, theta_out);
+		mle_exact(locations->x, NULL,  locations->y, NULL,  vecs_out, NULL, lb, &thetalen, ub, &thetalen, &dm_int, &n, &opt_tol, &opt_max_iters, &ncores, &gpus, &dts, &p_grid, &q_grid,theta_out);
 
-        else if(strcmp (computation, "lr_approx") == 0)
-                mle_tlr(&n, &ncores, &gpus, &lts, &p_grid, &q_grid,  locations->x, NULL,  locations->y, NULL,  vecs_out, NULL,   lb, &thetalen, ub, &thetalen, &hicma_acc, &hicma_maxrank,  &dm_int,&opt_tol, &opt_max_iters, theta_out);	
+	else if(strcmp (computation, "lr_approx") == 0)
+		mle_tlr(locations->x, NULL,  locations->y, NULL,  vecs_out, NULL, lb, &thetalen, ub, &thetalen, &hicma_acc, &hicma_maxrank, &dm_int, &n, &opt_tol, &opt_max_iters, &ncores, &gpus, &lts, &p_grid, &q_grid,theta_out);
 
-        else if(strcmp (computation, "diag_approx") == 0)
-                mle_dst(&n, &ncores, &gpus, &dts, &p_grid, &q_grid,  locations->x, NULL,  locations->y, NULL,  vecs_out, NULL,   lb, &thetalen, ub, &thetalen, &diag_thick,  &dm_int, &opt_tol, &opt_max_iters, theta_out);
 
+	else if(strcmp (computation, "diag_approx") == 0)
+		mle_dst(locations->x, NULL,  locations->y, NULL,  vecs_out, NULL, lb, &thetalen, ub, &thetalen, &diag_thick, &dm_int, &n, &opt_tol, &opt_max_iters, &ncores, &gpus, &lts, &p_grid, &q_grid,theta_out);
 	// Old interfaces.
 	//rexageostat_gen_z(&n,   &ncores,   &gpus,  &dts,   &p_grid,  &q_grid,  &initial_theta[0],  &initial_theta[1],  &initial_theta[2],  &computation_int,  &dm_int, &globalveclen, vecs_out);
- 	//rexageostat_likelihood(&n, &ncores, &gpus, &dts, &p_grid, &q_grid,  vecs_out, NULL,  &vecs_out[n], NULL,  &vecs_out[2*n], NULL,   lb, &thetalen, ub, &thetalen, &computation_int, &dm_int,  theta_out);
+	//rexageostat_likelihood(&n, &ncores, &gpus, &dts, &p_grid, &q_grid,  vecs_out, NULL,  &vecs_out[n], NULL,  &vecs_out[2*n], NULL,   lb, &thetalen, ub, &thetalen, &computation_int, &dm_int,  theta_out);
 
 	rexageostat_finalize();
 	printf("%f - %f - %f\n", theta_out[0], theta_out[1], theta_out[2]);

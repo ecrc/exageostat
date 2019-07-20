@@ -8,7 +8,7 @@ endif()
 
 foreach(test_src ${tests_files})
     get_filename_component(test_exe ${test_src} NAME_WE)
-    add_executable(${test_exe} ${test_src})
+    add_executable(${test_exe} ${test_src} examples.c)
     target_link_libraries(${test_exe} exageostat)
     #set_target_properties(test_${test_exe} PROPERTIES OUTPUT_NAME ${test_exe})
     list(APPEND exe_names ${test_exe})

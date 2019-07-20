@@ -14,9 +14,10 @@
  * @version 1.0.0
  *
  * @author Sameh Abdulah
- * @date 2018-11-11
+ * @date 2019-07-20
  *
  **/
+#include "examples.h"
 #include "../src/include/MLE.h"
 
 int main(int argc, char **argv) {

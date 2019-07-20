@@ -8,7 +8,7 @@
 # @version 1.0.0
 # @author Eduardo Gonzalez Fisher
 # @author Sameh Abdulah
-# @date 2018-11-11
+# @date 2019-07-20
 
 
 ###############################################################################
@@ -107,6 +107,7 @@ list(APPEND CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 # Misc options
 # ------------
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
+option(EXAGEOSTAT_EXAMPLES "Build ExaGeoStat Examples" ON)
 
 # Define precision supported by EXAGEOSTAT
 # -----------------------------------------
@@ -778,9 +779,11 @@ install( TARGETS exageostat
          DESTINATION lib/
          PUBLIC_HEADER DESTINATION include/ )
 
-enable_testing()
-include(CTest)
-add_subdirectory(examples)
+if( EXAGEOSTAT_EXAMPLES )
+    enable_testing()
+    include(CTest)
+    add_subdirectory(examples)
+endif()
 
 
 ###############################################################################

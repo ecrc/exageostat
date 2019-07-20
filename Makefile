@@ -16,8 +16,14 @@ flagsl += $(shell pkg-config libstarpu --libs)
 flagsl += $(shell pkg-config starsh --libs)
 flagsl += $(shell pkg-config nlopt --libs)
 flagsl += $(shell pkg-config gsl --libs)
-
-LDFLAGS += "-Wl,-rpath,$(R_PACKAGE_DIR)/lib -L$(R_PACKAGE_DIR)/lib "
+#user flags
+CCFLAGS   := -O3  -w -Ofast -Wall $(flagsc) -DVERSION=\"$(GIT_VERSION)\"
+LDFLAGS   := -O3  -w -Ofast -lstarpu-1.2   -lchameleon  -lchameleon_starpu -lhicma -lcoreblas -lstdc++ -L${MKLROOT}/lib -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl $(flagsl)
+# Extra user flags
+EXTRA_CCFLAGS = -I./include/ -I./src/include/ -I./exageostat_exact/core/include/ -I./exageostat_exact/runtime/starpu/include/ -I./misc/include/ -I ./exageostat_exact/src/include/ -I ./r-wrappers/include  -I./exageostat_approx/runtime/starpu/include/ -I./exageostat_approx/src/include/ -I./hicma/chameleon/coreblas/include/coreblas
+EXTRA_LDFLAGS := '-Wl,--enable-new-dtags,-rpath,$$ORIGIN/../lib'
+# Optimisation flags
+#CXXFLAGS := $(CCFLAGS)
 
 ifdef MKLROOT
 flagsl += -L${MKLROOT}/lib/intel64/ -Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl
@@ -36,7 +42,7 @@ SOURCE_FILES = $(filter-out $(MAIN), $(wildcard ./src/compute/*.c ./exageostat_e
 OBJ_FILES = $(patsubst %.c,%.o,$(SOURCE_FILES))
 
 exageostat.so:    $(OBJ_FILES)
-	R CMD SHLIB -o exageostat.so $(OBJ_FILES) $(LDFLAGS) $(EXTRA_LDFLAGS) 
+	$(SHLIB_LD) $(SHLIB_LDFLAGS) $(LDFLAGS) -o exageostat.so $(OBJ_FILES) $(LDFLAGS) $(EXTRA_LDFLAGS)
 
 #####################
 # default make rule #

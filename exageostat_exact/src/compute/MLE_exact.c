@@ -14,7 +14,7 @@
  * @version 1.0.0
  *
  * @author Sameh Abdulah
- * @date 2018-11-11
+ * @date 2019-07-20
  *
  **/
 #include "../include/MLE_exact.h"
@@ -295,6 +295,7 @@ double MORSE_MLE_Tile(unsigned n, const double * theta, double * grad, void * MO
         	//fprintf(stderr," ---- Theta1: %2.6f ----  Theta2: %2.6f ---- Theta3: %2.6f ----LogLi: %2.6f\n", theta[0], theta[1], theta[2],loglik);
 		//reformat
 		printf(" %3d- Model Parameters (variance, range, smoothness): (%2.6f, %2.6f, %2.6f) ----> LogLi: %2.6f\n", data->iter_count+1,  theta[0], theta[1], theta[2],loglik);
+	fflush(NULL);	
 
 		if(data->log == 1)
 			fprintf(data->pFileLog, " %3d- Model Parameters (variance, range, smoothness): (%2.6f, %2.6f, %2.6f) ----> LogLi: %2.6f\n", data->iter_count+1,  theta[0], theta[1], theta[2],loglik);
