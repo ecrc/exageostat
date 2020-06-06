@@ -121,6 +121,7 @@ extern "C" {
 
 #include "compute_s.h"
 #include "compute_d.h"
+//#include "compute_ds.h"
 #define COMPLEX
 #include "compute_c.h"
 #include "compute_z.h"

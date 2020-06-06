@@ -16,7 +16,7 @@
  *  MORSE is a software package provided by Univ. of Tennessee,
  *  Univ. of California Berkeley and Univ. of Colorado Denver
  *
- * @version 1.0.0
+ * @version 1.1.0
  * @comment This file has been automatically generated
  *          from Plasma 2.5.0 for MORSE 1.0.0
  * @author Jakub Kurzak
@@ -83,7 +83,7 @@
  *
  ******************************************************************************/
 int MORSE_dpotrf_diag(MORSE_enum uplo, int N,
-                  double *A, int LDA, int diag_thick)
+        double *A, int LDA, int diag_thick)
 {
     int NB;
     int status;
@@ -110,7 +110,7 @@ int MORSE_dpotrf_diag(MORSE_enum uplo, int N,
         morse_error("MORSE_diag_dpotrf", "illegal value of LDA");
         return -4;
     }
-/* Quick return */
+    /* Quick return */
     if (chameleon_max(N, 0) == 0)
         return MORSE_SUCCESS;
 
@@ -128,14 +128,14 @@ int MORSE_dpotrf_diag(MORSE_enum uplo, int N,
 
     /* Submit the matrix conversion */
     morse_dlap2tile( morse, &descAl, &descAt, MorseDescInout, uplo,
-                     A, NB, NB, LDA, N, N, N, sequence, &request );
+            A, NB, NB, LDA, N, N, N, sequence, &request );
 
     /* Call the tile interface */
     MORSE_dpotrf_diag_Tile_Async(uplo, &descAt, diag_thick, sequence, &request);
 
     /* Submit the matrix conversion back */
     morse_dtile2lap( morse, &descAl, &descAt,
-                     MorseDescInout, uplo, sequence, &request );
+            MorseDescInout, uplo, sequence, &request );
 
     morse_sequence_wait( morse, sequence );
 
@@ -211,7 +211,7 @@ int MORSE_dpotrf_diag_Tile(MORSE_enum uplo, MORSE_desc_t *A, int diag_thick)
     MORSE_dpotrf_diag_Tile_Async(uplo, A, diag_thick, sequence, &request);
     MORSE_Desc_Flush( A, sequence );
     morse_sequence_wait(morse, sequence);
-   // RUNTIME_desc_getoncpu(A);
+    // RUNTIME_desc_getoncpu(A);
 
     status = sequence->status;
     morse_sequence_destroy(morse, sequence);
@@ -248,7 +248,7 @@ int MORSE_dpotrf_diag_Tile(MORSE_enum uplo, MORSE_desc_t *A, int diag_thick)
  *
  ******************************************************************************/
 int MORSE_dpotrf_diag_Tile_Async(MORSE_enum uplo, MORSE_desc_t *A, int diag_thick,
-                             MORSE_sequence_t *sequence, MORSE_request_t *request)
+        MORSE_sequence_t *sequence, MORSE_request_t *request)
 {
     MORSE_context_t *morse;
 
@@ -286,10 +286,10 @@ int MORSE_dpotrf_diag_Tile_Async(MORSE_enum uplo, MORSE_desc_t *A, int diag_thic
         return morse_request_fail(sequence, request, -1);
     }
     /* Quick return */
-/*
-    if (chameleon_max(N, 0) == 0)
-        return MORSE_SUCCESS;
-*/
+    /*
+       if (chameleon_max(N, 0) == 0)
+       return MORSE_SUCCESS;
+       */
     morse_pdpotrf_diag(uplo, A, diag_thick, sequence, request);
 
     return MORSE_SUCCESS;

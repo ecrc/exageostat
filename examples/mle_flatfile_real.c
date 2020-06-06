@@ -1,6 +1,6 @@
 /**
  *
- * Copyright (c) 2017-2018  King Abdullah University of Science and Technology
+ * Copyright (c) 2017-2019  King Abdullah University of Science and Technology
  * All rights reserved.
  *
  * ExaGeoStat is a software package provided by KAUST
@@ -14,7 +14,7 @@
  * @version 1.0.0
  *
  * @author Sameh Abdulah
- * @date 2019-07-20
+ * @date 2019-08-06
  *
  **/
 #include "examples.h"
@@ -57,6 +57,7 @@ int main(int argc, char **argv) {
 	exageostat_init(&ncores, &gpus, &dts, &lts); 
 	
 	//kernel parsing
+        opt=nlopt_create( NLOPT_LN_BOBYQA, 3);  //NLOPT_LN_BOBYQA  - NLOPT_GN_ORIG_DIRECT
         init_optimizer(&opt, lb, up, pow(10, -1.0 * data.opt_tol));
         nlopt_set_maxeval(opt, data.opt_max_iters);
 
@@ -72,108 +73,108 @@ int main(int argc, char **argv) {
 	int nZobs = strcmp(data.actualZFPath,"") == 0? (N-nZmiss) : N;
 
 	if(strcmp (data.computation, "exact") == 0)
-		MORSE_Call(&data, ncores, gpus, dts, p_grid, q_grid, N,  nZobs, nZmiss);
+		MORSE_dmle_Call(&data, ncores, gpus, dts, p_grid, q_grid, N,  nZobs, nZmiss);
 	else if (strcmp (data.computation, "diag_approx") == 0)
-                MORSE_diag_Call(&data, ncores, gpus, dts, p_grid, q_grid, N,  nZobs, nZmiss);		
+                MORSE_dmle_diag_Call(&data, ncores, gpus, dts, p_grid, q_grid, N,  nZobs, nZmiss);		
         #if defined(EXAGEOSTAT_USE_HICMA)
 	else if (strcmp (data.computation, "lr_approx") == 0)
                 {
-                        HICMA_Call(&data, ncores, gpus, lts, p_grid, q_grid, N,  nZobs, nZmiss);
-			//if (test == 1)
-			//data.hicma_data_type = HICMA_STARSH_PROB_GEOSTAT;
-			//else
-                        data.hicma_data_type = HICMA_STARSH_PROB_GEOSTAT_POINT;
+                        HICMA_dmle_Call(&data, ncores, gpus, lts, p_grid, q_grid, N,  nZobs, nZmiss);
+                        if (test == 1)
+                                data.hicma_data_type = HICMA_STARSH_PROB_GEOSTAT;
+                        else
+                                data.hicma_data_type = HICMA_STARSH_PROB_GEOSTAT_POINT;
                 }
 	#endif
 
-                print_summary(test, N, ncores, gpus, dts, data.computation, zvecs, p_grid, q_grid);
+	print_summary(test, N, ncores, gpus, dts, lts,  data.computation, zvecs, p_grid, q_grid, data.precision);
 
-		if(arguments.profile == 1)
+	if(arguments.profile == 1)
+	{
+		starpu_fxt_autostart_profiling(0);
+		starpu_fxt_start_profiling();
+	}
+	//read observation file	
+	streamdata = readObsFile(data.obsFPath, N);
+	locations_obs_zsort_inplace(N, locations, streamdata);
+	if(strcmp (data.computation, "exact") == 0 || strcmp (data.computation, "diag_approx") == 0)
+		MORSE_MLE_dzcpy(&data, streamdata);
+#if defined(EXAGEOSTAT_USE_HICMA)
+	else if (strcmp (data.computation, "lr_approx") == 0)	
+		HICMA_MLE_zcpy(&data, streamdata);				
+#endif
+	if(log == 1 && test == 1)
+		init_log(&data);                 
+
+	START_TIMING(data.total_exec_time);
+	nlopt_set_max_objective(opt, MLE_alg, (void *)&data);
+	nlopt_optimize(opt, starting_theta, &opt_f);
+	STOP_TIMING(data.total_exec_time);
+
+
+	print_result(&data, starting_theta, N, zvecs, ncores, dts, test, arguments.ikernel, data.computation, p_grid, q_grid, data.final_loglik);
+
+	if (strcmp(data.actualZLocFPath,"") != 0)
+	{
+		printf( "%s ========\n", data.actualZLocFPath);
+		nZmiss = countlines(data.actualZLocFPath);
+		missing_locations = readLocsFile(data.actualZLocFPath, N);
+	}	
+
+	if(nZmiss != 0){
+
+		//initialization
+		double *Zobs;
+		double *Zactual;
+		double *Zmiss;
+
+		//memory allocation
+		Zobs    = (double *) malloc(nZobs * sizeof(double));
+		Zactual = (double *) malloc(nZmiss * sizeof(double));
+		Zmiss   = (double *) malloc(nZmiss * sizeof(double));
+
+		if(strcmp (data.computation, "exact") == 0 || strcmp (data.computation, "diag_approx") == 0)
+			prediction_init(&data, nZmiss, nZobs, dts, p_grid, q_grid, 1);
+#if defined(EXAGEOSTAT_USE_HICMA)
+		else if (strcmp (data.computation, "lr_approx") == 0)
+			prediction_init(&data, nZmiss, nZobs, lts, p_grid, q_grid, 1);
+#endif
+
+		int j = 0;
+		for (j = 0; j < 1; j++)
 		{
-			starpu_fxt_autostart_profiling(0);
-			starpu_fxt_start_profiling();
-		}
-		//read observation file	
-                streamdata = readObsFile(data.obsFPath, N);
-		locations_obs_zsort_inplace(N, locations, streamdata);
-               if(strcmp (data.computation, "exact") == 0 || strcmp (data.computation, "diag_approx") == 0)
-			MORSE_MLE_zcpy(&data, streamdata);
-		#if defined(EXAGEOSTAT_USE_HICMA)
-		else if (strcmp (data.computation, "lr_approx") == 0)	
-                        HICMA_MLE_zcpy(&data, streamdata);				
-		#endif
-		if(log == 1 && test == 1)
-			init_log(&data);                 
-
-                START_TIMING(data.total_exec_time);
-                nlopt_set_max_objective(opt, MLE_alg, (void *)&data);
-                nlopt_optimize(opt, starting_theta, &opt_f);
-                STOP_TIMING(data.total_exec_time);
-              
-
-		print_result(&data, starting_theta, N, zvecs, ncores, dts, test, arguments.ikernel, data.computation, p_grid, q_grid, data.final_loglik);
-		
-		if (strcmp(data.actualZLocFPath,"") != 0)
-		{
-			printf( "%s ========\n", data.actualZLocFPath);
-		       	nZmiss = countlines(data.actualZLocFPath);
-			missing_locations = readLocsFile(data.actualZLocFPath, N);
-		}	
-
-	        if(nZmiss != 0){
-	
-                        //initialization
-                        double *Zobs;
-                        double *Zactual;
-                        double *Zmiss;
-
-                        //memory allocation
-                        Zobs    = (double *) malloc(nZobs * sizeof(double));
-                        Zactual = (double *) malloc(nZmiss * sizeof(double));
-                        Zmiss   = (double *) malloc(nZmiss * sizeof(double));
-
-                        if(strcmp (data.computation, "exact") == 0 || strcmp (data.computation, "diag_approx") == 0)
-                                prediction_init(&data, nZmiss, nZobs, dts, p_grid, q_grid, 1);
-		        #if defined(EXAGEOSTAT_USE_HICMA)
-                        else if (strcmp (data.computation, "lr_approx") == 0)
-                        	prediction_init(&data, nZmiss, nZobs, lts, p_grid, q_grid, 1);
-			#endif
-
-                     int j = 0;
-		     for (j = 0; j < 1; j++)
-		     {
-			     if (strcmp(data.actualZLocFPath,"") == 0)
-				     pick_random_points(&data, Zobs, Zactual, nZmiss, nZobs, N);
-			     else
-			     {
-			  	     Zactual = readObsFile(data.actualZFPath, nZmiss);
-				     MLE_get_zobs(&data, Zobs, N);
-				     data.lmiss = *missing_locations;
-				     data.lobs  = *locations;
-			     }
-			     // generate_interior_points(&data, Zobs, NULL, nZmiss, nZobs, N);
-    				 double prediction_error = 0.0;
-                                 if (strcmp (data.computation, "exact") == 0)
-                                        prediction_error = MORSE_MLE_Predict_Tile(&data, starting_theta, nZmiss, nZobs, Zobs, Zactual, Zmiss, N);
-                                else if (strcmp (data.computation, "diag_approx") == 0)
-                                        prediction_error = MORSE_MLE_diag_Predict_Tile(&data, starting_theta, nZmiss, nZobs, Zobs, Zactual, Zmiss, N);
-			        #if defined(EXAGEOSTAT_USE_HICMA)
-                                else if (strcmp (data.computation, "lr_approx") == 0)
-                                        prediction_error = HICMA_MLE_Predict_Tile(&data, starting_theta, nZmiss, nZobs, Zobs, Zactual, Zmiss, N, lts);
-				#endif
-                        fprintf(stderr,"Prediction Error: %f \n", prediction_error);
+			if (strcmp(data.actualZLocFPath,"") == 0)
+				pick_random_points(&data, Zobs, Zactual, nZmiss, nZobs, N);
+			else
+			{
+				Zactual = readObsFile(data.actualZFPath, nZmiss);
+				MLE_get_zobs(&data, Zobs, N);
+				data.lmiss = *missing_locations;
+				data.lobs  = *locations;
 			}
+			// generate_interior_points(&data, Zobs, NULL, nZmiss, nZobs, N);
+			double prediction_error = 0.0;
+			if (strcmp (data.computation, "exact") == 0)
+				prediction_error = MORSE_dmle_Predict_Tile(&data, starting_theta, nZmiss, nZobs, Zobs, Zactual, Zmiss, N);
+			else if (strcmp (data.computation, "diag_approx") == 0)
+				prediction_error = MORSE_dmle_diag_Predict_Tile(&data, starting_theta, nZmiss, nZobs, Zobs, Zactual, Zmiss, N);
+#if defined(EXAGEOSTAT_USE_HICMA)
+			else if (strcmp (data.computation, "lr_approx") == 0)
+				prediction_error = HICMA_dmle_Predict_Tile(&data, starting_theta, nZmiss, nZobs, Zobs, Zactual, Zmiss, N, lts);
+#endif
+			fprintf(stderr,"Prediction Error: %f \n", prediction_error);
+		}
 
-                        int index=0;
-                        for (index=0; index< nZmiss; index++)
-	                        printf ("(%f, %f)\n ", Zactual[index], Zmiss[index]);
+		int index=0;
+		for (index=0; index< nZmiss; index++)
+			printf ("(%f, %f)\n ", Zactual[index], Zmiss[index]);
 
-			prediction_finalize(&data);
-                        //free memory
-                        free(Zactual);
-                        free(Zobs);
-			free(Zmiss);
-        	}
+		prediction_finalize(&data);
+		//free memory
+		free(Zactual);
+		free(Zobs);
+		free(Zmiss);
+	}
 
 	if(log == 1 && test == 1)
 		finalize_log(&data);
@@ -182,16 +183,16 @@ int main(int argc, char **argv) {
 
 
 
-        nlopt_destroy(opt);
+	nlopt_destroy(opt);
 	MLE_Finalize(&data);
-	
-        if(arguments.profile == 1)
+
+	if(arguments.profile == 1)
 	{
 		starpu_fxt_stop_profiling();
 		RUNTIME_profiling_display_efficiency();
 	}
 
 	return 0;
-   }
+}
 
 
