@@ -1,0 +1,24 @@
+#!/bin/bash
+#SBATCH --job-name=parsimonious_%j
+#SBATCH --output=./output/parsimonious_%A.out
+#SBATCH -A k1339
+#SBATCH --nodes=81
+#SBATCH --ntasks=81
+#SBATCH --partition=workq
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=32
+#SBATCH --time=23:30:00
+
+export STARPU_SCHED=eager
+
+export STARPU_WATCHDOG_TIMEOUT=1000000000
+export STARPU_WATCHDOG_CRASH=1
+
+
+#x=20000
+#y=9000
+
+#export STARPU_LIMIT_MAX_SUBMITTED_TASKS=$x
+#export STARPU_LIMIT_MIN_SUBMITTED_TASKS=$y
+
+srun  --hint=nomultithread numactl  --interleave=all ./build/examples/real_csv_dmle_test   --ncores=30   --computation=exact    --kernel=?:?:? --olb=0.01:0.01:0.01  --oub=5:5:5  --dts=560  --p=8 --q=8 --verbose  --kernel_fun="univariate_matern_stationary" --obs_dir=./W_ocean_residuals --locs_file=./application_XY_ocean_residuals  --checkpoint_file=script-real-uni-UV.log

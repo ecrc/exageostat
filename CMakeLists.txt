@@ -8,7 +8,7 @@
 # @version 1.0.0
 # @author Eduardo Gonzalez Fisher
 # @author Sameh Abdulah
-# @date 2019-07-20
+# @date 2019-04-30
 
 
 ###############################################################################
@@ -25,6 +25,8 @@
 
 #Minimum CMAKE version.
 cmake_minimum_required(VERSION 3.2.3)
+
+
 
 # directly make an error if in-source build
 if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
@@ -347,6 +349,16 @@ else()
     endif()
     message(FATAL_ERROR "A LAPACKE library is required but has not been found")
 endif()
+
+
+
+# EXAGEOSTAT depends on GPU
+#-------------------------
+if(EXAGEOSTAT_USE_CUDA)
+	find_package(CUDA REQUIRED)
+        add_definitions(-DEXAGEOSTAT_USE_CUDA)
+endif()
+
 
 
 # EXAGEOSTAT depends on MPI
@@ -699,30 +711,57 @@ set( EXAGEOSTAT_SRC "" )
 
 
 set( EXAGEOSTAT_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/compute/MLE.c
-                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_dmdet.c
-                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_dzcpy.c
-                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_dcmg.c
-                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_ddotp.c
-                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_ddotp.c
-                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_dmdet.c
-                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_dmse.c
-                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_dcmg.c
-                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_dzcpy.c
-                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_dgemv.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_zmdet.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_zzcpy.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_zcmg.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_zcmg_non_stat.c
+		    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_zcmg_nuggets.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_zprint.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_zdotp.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_sdconv.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_dsconv.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_slag2d.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/core/compute/core_dlag2s.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_zdotp.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_zmdet.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_zmse.c
+		    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_zmse_bivariate.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_zcmg.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_zzcpy.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_zgemv.c
 	            ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/runtime/starpu/codelets/codelet_dcmg_diag.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/runtime/starpu/codelets/codelet_dpotrf_diag.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/runtime/starpu/codelets/codelet_hicma_dmdet.c
+		    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_sdconv.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_exageostat_sgemm.c
+		    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_exageostat_strsm.c
+		    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_dsconv.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_sdmat_reg.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_stride_vec.c
+                    #${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/codelets/codelet_print.c
+                    #${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/runtime/starpu/control/approx_runtime_descriptor.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/runtime/starpu/control/exact_runtime_descriptor.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/src/compute/pdpotrf_diag.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/src/compute/dpotrf_diag.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/src/compute/MLE_approx.c 
 		    ${CMAKE_CURRENT_SOURCE_DIR}/misc/compute/MLE_misc.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/misc/compute/flat_file.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/src/compute/MLE_exact.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/src/compute/MLE_exact_s.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/src/compute/psdportf.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/src/compute/sdpotrf.c
+                    ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/src/compute/MLE_sdexact.c
                     ${CMAKE_CURRENT_SOURCE_DIR}/r-wrappers/compute/rwrappers.c
   )
 
 if(EXAGEOSTAT_USE_HICMA)
 	list(APPEND EXAGEOSTAT_SRC ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/src/compute/MLE_lr.c)
+endif()
+
+if(EXAGEOSTAT_USE_CUDA)
+message(WARNING "USING CUDA")
+        list(APPEND EXAGEOSTAT_SRC ${CMAKE_CURRENT_SOURCE_DIR}/cudacore/compute/cuda_conv.cu)
+        list(APPEND EXAGEOSTAT_SRC ${CMAKE_CURRENT_SOURCE_DIR}/cudacore/compute/cuda_zcmg.cu)
 
 endif()
 
@@ -738,15 +777,20 @@ set( INSTALL_HEADERS ${CMAKE_SOURCE_DIR}/src/include/MLE.h
                      ${CMAKE_SOURCE_DIR}/include/auxiliary.h
                      ${CMAKE_SOURCE_DIR}/include/chameleon_starpu.h 
                      ${CMAKE_SOURCE_DIR}/include/runtime_codelet_d.h
+		     ${CMAKE_SOURCE_DIR}/include/exageostat-constants.h
+		     #${CMAKE_SOURCE_DIR}/include/runtime_codelet_s.h
 		     ${CMAKE_SOURCE_DIR}/include/common.h 
                      ${CMAKE_SOURCE_DIR}/include/global.h
                      ${CMAKE_SOURCE_DIR}/include/compute_z.h
-                     ${CMAKE_SOURCE_DIR}/include/compute_s.h 
+        	     ${CMAKE_SOURCE_DIR}/include/morse_tasks_ds.h            
+	             ${CMAKE_SOURCE_DIR}/include/compute_s.h 
                      ${CMAKE_SOURCE_DIR}/include/compute_d.h
                      ${CMAKE_SOURCE_DIR}/include/compute_c.h 
 		     ${CMAKE_SOURCE_DIR}/include/tile.h
                      ${CMAKE_SOURCE_DIR}/include/async.h                   
 		     ${CMAKE_SOURCE_DIR}/exageostat_exact/src/include/MLE_exact.h
+                     ${CMAKE_SOURCE_DIR}/exageostat_exact/src/include/MLE_exact_s.h
+                     ${CMAKE_SOURCE_DIR}/exageostat_exact/src/include/MLE_sdexact.h
                      ${CMAKE_SOURCE_DIR}/exageostat_exact/runtime/starpu/include/starpu_exageostat.h
                      ${CMAKE_SOURCE_DIR}/exageostat_exact/core/include/exageostatcore.h
                      ${CMAKE_SOURCE_DIR}/exageostat_approx/src/include/MLE_approx.h
@@ -756,10 +800,15 @@ set( INSTALL_HEADERS ${CMAKE_SOURCE_DIR}/src/include/MLE.h
                      ${CMAKE_CURRENT_SOURCE_DIR}/r-wrappers/include/rwrappers.h		     			
                      ${CMAKE_SOURCE_DIR}/include/flops.h
                      ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_approx/src/include/diag.h
+                     ${CMAKE_CURRENT_SOURCE_DIR}/exageostat_exact/src/include/mixed_prec.h
                      )
 
 if(EXAGEOSTAT_USE_HICMA)
 	list(APPEND INSTALL_HEADERS ${CMAKE_SOURCE_DIR}/exageostat_approx/src/include/MLE_lr.h)
+#        list(APPEND INSTALL_HEADERS ${CMAKE_SOURCE_DIR}/exageostat_approx/src/include/MLE_lr_s.h)
+endif()
+if(EXAGEOSTAT_USE_CUDA)
+        list(APPEND INSTALL_HEADERS ${CMAKE_SOURCE_DIR}/cudacore/include/exageostatcudacore.h)
 endif()
 if(EXAGEOSTAT_USE_NETCDF)
 	list(APPEND INSTALL_HEADERS ${CMAKE_SOURCE_DIR}/misc/include/nc_file.h)
@@ -770,7 +819,16 @@ link_directories(${STARPU_LIBRARY_DIRS})
 link_directories(${CHAMELEON_LIBRARY_DIRS})
 link_directories(${HICMA_LIBRARY_DIRS})
 
-add_library( exageostat ${EXAGEOSTAT_SRC} ${EXAGEOSTAT_CHAMELEON_SRC} )
+if(EXAGEOSTAT_USE_CUDA)
+#set(CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS} -gencode arch=compute_37,code=sm_37")
+
+	CUDA_add_library( exageostat ${EXAGEOSTAT_SRC} ${EXAGEOSTAT_CHAMELEON_SRC} )
+        set_target_properties(exageostat PROPERTIES LINKER_LANGUAGE C )
+else()
+	add_library( exageostat ${EXAGEOSTAT_SRC} ${EXAGEOSTAT_CHAMELEON_SRC} )
+endif()
+
+
 set_target_properties( exageostat PROPERTIES PUBLIC_HEADER "${INSTALL_HEADERS}")
 target_link_libraries( exageostat
     ${EXAGEOSTAT_DEP}
@@ -779,11 +837,12 @@ install( TARGETS exageostat
          DESTINATION lib/
          PUBLIC_HEADER DESTINATION include/ )
 
-if( EXAGEOSTAT_EXAMPLES )
-    enable_testing()
-    include(CTest)
-    add_subdirectory(examples)
-endif()
+
+if( EXAGEOSTAT_EXAMPLES )    
+    enable_testing()    
+    include(CTest)    
+    add_subdirectory(examples)    
+endif()    
 
 
 ###############################################################################

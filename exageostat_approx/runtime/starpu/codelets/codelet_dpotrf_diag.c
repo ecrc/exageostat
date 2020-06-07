@@ -16,7 +16,7 @@
  *  MORSE is a software package provided by Univ. of Tennessee,
  *  Univ. of California Berkeley and Univ. of Colorado Denver
  *
- * @version 1.0.0
+ * @version 1.1.0
  * @comment This file has been automatically generated
  *          from Plasma 2.5.0 for MORSE 1.0.0
  * @author Hatem Ltaief
@@ -54,7 +54,7 @@ void MORSE_TASK_dpotrf_diag(const MORSE_option_t *options,
         starpu_mpi_codelet(codelet),
         STARPU_VALUE,    &uplo,                      sizeof(MORSE_enum),
         STARPU_VALUE,    &n,                         sizeof(int),
-        STARPU_RW,        RTBLKADDR(A, double, Am, An),
+        STARPU_RW,       EXAGEOSTAT_RTBLKADDR(A, MorseRealDouble, Am, An),
         STARPU_VALUE,    &lda,                       sizeof(int),
         STARPU_VALUE,    &iinfo,                     sizeof(int),
         /* STARPU_SCRATCH,   options->ws_worker, */

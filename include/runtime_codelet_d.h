@@ -33,6 +33,7 @@
 #include "runtime/starpu/runtime_codelets.h"
 
 #include "chameleon/morse_tasks_d.h"
+#include "chameleon/morse_tasks_ds.h"
 #if !defined(CHAMELEON_SIMULATION)
 #include "coreblas/coreblas_d.h"
 #if defined(CHAMELEON_USE_CUDA)
@@ -119,7 +120,8 @@ DCODELETS_HEADER(plssq2)
  * MIXED PRECISION functions
  */
 DCODELETS_HEADER(lag2s)
-
+DCODELETS_HEADER(dsconv)
+DCODELETS_HEADER(sdconv)
 /*
  * DZ functions
  */

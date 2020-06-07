@@ -23,7 +23,7 @@
 #  @author Emmanuel Agullo
 #  @author Mathieu Faverge
 #  @author Florent Pruvost
-#  @date 10-11-2014
+#  @date 2020-01-06
 #
 ###
 
@@ -40,10 +40,10 @@ MACRO(CONVERT_LIBSTYLE_TO_PKGCONFIG _liblist)
         if (${_dep} MATCHES "^/")
             get_filename_component(dep_libname ${_dep} NAME)
             get_filename_component(dep_libdir  ${_dep} DIRECTORY)
+            STRING(REPLACE ".dylib" "" dep_libname "${dep_libname}")
             STRING(REPLACE "lib"    "" dep_libname "${dep_libname}")
             STRING(REPLACE ".so"    "" dep_libname "${dep_libname}")
             STRING(REPLACE ".a"     "" dep_libname "${dep_libname}")
-            STRING(REPLACE ".dylib" "" dep_libname "${dep_libname}")
             STRING(REPLACE ".dll"   "" dep_libname "${dep_libname}")
             list(APPEND ${_liblist} -L${dep_libdir} -l${dep_libname})
         elseif(NOT ${_dep} MATCHES "^-")

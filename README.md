@@ -43,15 +43,17 @@ with a user-controlled numerical accuracy. This further expands practical proble
 statisticians with modest computational resources.
 
 
-Current Version: 1.0.0
+Current Version: 1.1.0
 ======================
 
 Current Features of ExaGeoStat
 ======================
 Operations:
 1.  Large-scale synthetic matrix generation.
-2.  Maximum likelihood estimation from dense and Tile Low-Rank (TLR) covariance matrices.
-3.  Predicting large-scale unknown measures in predefined geo-spatial locations.
+2.  Univariate and bivariate modeling using dense, Tile Low-Rank (TLR), Diagonal Super-Tile (DST), and mixed-precision computation.
+3.  Univariate and bivariate Predicting large-scale unknown measures in predefined geospatial locations.
+4.  Univariate and bivariate parameter estimation assessment using MLOE/MMOM criteria.
+
 
 Programming models:
 1.  MPI
@@ -60,7 +62,8 @@ Programming models:
 External libraries:
 1.  StarPU dynamic runtime system 
 2.  HiCMA
-3.  Chameleon
+3.  Stars-H
+4.  Chameleon
 
 Installation
 ============
@@ -121,9 +124,11 @@ References
 
 2. Sameh Abdulah, Hatem Ltaief, Ying Sun, Marc G. Genton, and David Keyes. "Parallel Approximation of the Maximum Likelihood Estimation for the Prediction of Large-Scale Geostatistics Simulations," IEEE Cluster Conference, Belfast, UK, Septemeber, 2018.
 
+3. Sameh Abdulah, Hatem Ltaief, Ying Sun, Marc G. Genton, and David Keyes. "Geostatistical Modeling and Prediction Using Mixed Precision Tile Cholesky Factorization." 2019 IEEE 26th International Conference on High Performance Computing, Data, and Analytics (HiPC). IEEE, 2019.
 
 Handout
 =======
 
 More information can be found in this handout:
 ![Handout](docs/handout.jpg)
+# multivariate-modeling

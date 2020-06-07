@@ -1,6 +1,6 @@
 /**
  *
- * Copyright (c) 2017-2018  King Abdullah University of Science and Technology
+ * Copyright (c) 2017-2020  King Abdullah University of Science and Technology
  * All rights reserved.
  *
  * ExaGeoStat is a software package provided by KAUST
@@ -11,7 +11,7 @@
  *
  * Heade file of auxiliary functions that are used to read and process flat files.
  *
- * @version 1.0.0
+ * @version 1.1.0
  *
  * @author Sameh Abdulah
  * @date 2018-11-11
@@ -23,10 +23,16 @@
 #include "MLE_misc.h"
 
 int openFileNC(MLE_data* data, char *filename);
+
 int countlinesNC(int ncid, char *dim1, char *dim2);
+
 void readLocsNC_1d(MLE_data *data, int ncid);
+
 void readLocsNC_2d(MLE_data *data, int ncid);
-void readVarNCs(MLE_data *data, int ncid, char *varname, double *data_in, char *dim1, char *dim2);
+
+void readVarNCs(MLE_data *data, int ncid, char *varname,
+        double *data_in, char *dim1, char *dim2);
+
 void closeFileNC(MLE_data* data, int ncid);
 
 #endif
