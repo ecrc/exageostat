@@ -61,6 +61,7 @@ static void cl_dcmg_cpu_func(void *buffers[],void *cl_arg){
 #if defined(EXAGEOSTAT_USE_CUDA)
 static void cl_dcmg_cuda_func(void *buffers[], void *cl_arg)
 {
+/*   
     int m, n, m0, n0;
     location *l1;
     location *l2;
@@ -73,13 +74,14 @@ static void cl_dcmg_cuda_func(void *buffers[], void *cl_arg)
     cudaStream_t stream = starpu_cuda_get_local_stream();
     cuda_dcmg(A, m, n, m0, n0, l1, l2, theta, distance_metric);
     cudaStreamSynchronize( stream );
+*/
 }
 #endif
 
 
 static struct starpu_codelet cl_dcmg =
 {
-    .where        = STARPU_CPU | STARPU_CUDA,
+    .where        = STARPU_CPU /*| STARPU_CUDA*/,
     .cpu_func     = cl_dcmg_cpu_func,
 #if defined(EXAGEOSTAT_USE_CUDA)
     //    .cuda_func      = {cl_dcmg_cuda_func},
