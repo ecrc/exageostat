@@ -35,7 +35,7 @@ endforeach()
 #    list(APPEND exe_names ${test_exe})
 #endforeach()
 
-file(DOWNLOAD "https://docs.google.com/uc?export=download&id=0B6mGsgjYG40kOGdNc2cyZzBjelk" "${CMAKE_CURRENT_BINARY_DIR}/marc-sample.tar.gz" EXPECTED_HASH MD5=2978769f72250eeff401f725158587a3)
+file(DOWNLOAD "https://docs.google.com/uc?export=download&id=13B0kNFGdTNV3LQOsutHCxtQTSoxTiz1S" "${CMAKE_CURRENT_BINARY_DIR}/marc-sample.tar.gz" EXPECTED_HASH MD5=2978769f72250eeff401f725158587a3)
 file(DOWNLOAD "https://docs.google.com/uc?export=download&id=1Ib7W9Y5z7nqL2t9C8bbXFxL3J0E9f34U" "${CMAKE_CURRENT_BINARY_DIR}/wind-sample.tar.gz" EXPECTED_HASH MD5=2103ba786a3b07987ef70b4a37a94e9b)
 
 add_custom_target( extract_tests_data ALL
