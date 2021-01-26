@@ -357,7 +357,7 @@ typedef struct
         exit(EXIT_FAILURE);\
     }
 
-output results;
+extern output results;
 
 void pick_random_points(MLE_data *data, double *Zobs, double *Zactual,
         int nZmiss, int nZobs, int N);

@@ -19,7 +19,7 @@
  **/    
 #include "examples.h"
 
-
+output results;
 void set_args_default(arguments *arg_values)
         //! set default values for input
         /*!  arguments
