@@ -27,25 +27,22 @@ pipeline {
                 sh '''#!/bin/bash -le
 module purge
 module load ecrc-extras
-module load mkl/2018-update-1
-module load gcc/5.5.0
-module load cmake/3.11.1
-module load gsl/2.4-gcc-5.5.0
-module load nlopt/2.4.2-gcc-5.5.0
-module load hwloc/1.11.8-gcc-5.5.0
-module load starpu/1.2.3-gcc-5.5.0-mkl-openmpi-3.0.0
-module load hdf5/1.10.1-gcc-5.5.0
-module load netcdf/4.5.0-gcc-5.5.0
-
-
+module load mkl/2020.0.166
+module load gcc/10.2.0
+module load cmake/3.19.2
+module load hwloc/2.4.0-gcc-10.2.0
+module load openmpi/4.1.0-gcc-10.2.0
+module load starpu/1.3.7-gcc-10.2.0-mkl-openmpi-4.1.0
+module load gsl/2.6-gcc-10.2.0
+module load nlopt/2.7.0-gcc-10.2.0
+module load hdf5/1.12.0-gcc-10.2.0
+module load netcdf/4.7.4-gcc-10.2.0
 module list
 set -x
-
 export EXAGEOSTATDEVDIR=$PWD
 export HICMADIR=$EXAGEOSTATDEVDIR/hicma
 export CHAMELEONDIR=$HICMADIR/chameleon
 export STARSHDIR=$EXAGEOSTATDEVDIR/stars-h
-
 ## STARS-H
 cd $STARSHDIR
 rm -rf build
@@ -56,7 +53,6 @@ make clean
 make -j
 make install
 export PKG_CONFIG_PATH=$PWD/installdir/lib/pkgconfig:$PKG_CONFIG_PATH
-
 ## CHAMELEON
 cd $CHAMELEONDIR
 # Update submodules
@@ -70,9 +66,9 @@ cmake .. -DCMAKE_BUILD_TYPE=Debug -DCHAMELEON_USE_MPI=OFF  -DCMAKE_INSTALL_PREFI
 make -j # CHAMELEON parallel build seems to be fixed
 make install
 export PKG_CONFIG_PATH=$PWD/installdir/lib/pkgconfig:$PKG_CONFIG_PATH
-
 ## HICMA
 cd $HICMADIR
+git apply ../patches/hicma.patch
 rm -rf build
 mkdir -p build/installdir
 cd build
@@ -81,7 +77,6 @@ make clean
 make -j
 make install
 export PKG_CONFIG_PATH=$PWD/installdir/lib/pkgconfig:$PKG_CONFIG_PATH
-
 # EXAGEOSTAT
 cd $EXAGEOSTATDEVDIR
 rm -rf build
@@ -96,7 +91,6 @@ cmake .. \
     -DEXAGEOSTAT_USE_STARSH=ON \
     -DEXAGEOSTAT_USE_HICMA=ON \
     -DEXAGEOSTAT_USE_NETCDF=ON
-
 make clean
 make -j || make VERBOSE=1
 make install
@@ -108,24 +102,21 @@ make install
                 sh '''#!/bin/bash -le
 module purge
 module load ecrc-extras
-module load mkl/2018-update-1
-module load gcc/5.5.0
-module load cmake/3.11.1
-module load gsl/2.4-gcc-5.5.0
-module load nlopt/2.4.2-gcc-5.5.0
-module load hwloc/1.11.8-gcc-5.5.0
-module load starpu/1.2.3-gcc-5.5.0-mkl-openmpi-3.0.0
-module load hdf5/1.10.1-gcc-5.5.0
-module load netcdf/4.5.0-gcc-5.5.0
-
-
+module load mkl/2020.0.166
+module load gcc/10.2.0
+module load cmake/3.19.2
+module load hwloc/2.4.0-gcc-10.2.0
+module load openmpi/4.1.0-gcc-10.2.0
+module load starpu/1.3.7-gcc-10.2.0-mkl-openmpi-4.1.0
+module load gsl/2.6-gcc-10.2.0
+module load nlopt/2.7.0-gcc-10.2.0
+module load hdf5/1.12.0-gcc-10.2.0
+module load netcdf/4.7.4-gcc-10.2.0
 module list
 set -x
-
 cd build
 rm -rf Testing
 ctest --no-compress-output -T Test
-
 '''
                 step([$class: 'XUnitBuilder',
                      thresholds: [[$class: 'FailedThreshold', unstableThreshold: '0']],
@@ -174,5 +165,3 @@ ctest --no-compress-output -T Test
         }
     }
 }
-
-

@@ -152,17 +152,11 @@ void MORSE_MLE_dzvg_Tile (MLE_data *data,  double * Nrand, double * initial_thet
         double *z;
         MORSE_desc_t *MORSE_descZ = (MORSE_desc_t *)(data->descZ);
         VERBOSE("Writing generated data to the disk (Synthetic Dataset Generation Phase) .....");
-#if defined(CHAMELEON_USE_MPI)
         z = (double *) malloc(n * sizeof(double));
         MORSE_Tile_to_Lapack( MORSE_descZ, z, n);
         if ( MORSE_My_Mpi_Rank() == 0 )
             write_vectors(z, data, n);
         free(z);
-#else
-        z = MORSE_descZ->mat;
-        write_vectors(z, data, n);
-        free(z);
-#endif
         VERBOSE(" Done.\n");
     }
 

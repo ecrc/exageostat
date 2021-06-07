@@ -1,0 +1,32 @@
+diff --git a/chameleon b/chameleon
+--- a/chameleon
++++ b/chameleon
+@@ -1 +1 @@
+-Subproject commit 8595b23c25575f489296aded8850da3b495a5632
++Subproject commit 8595b23c25575f489296aded8850da3b495a5632-dirty
+diff --git a/include/hicma_constants.h b/include/hicma_constants.h
+index 904b412..ee836f7 100644
+--- a/include/hicma_constants.h
++++ b/include/hicma_constants.h
+@@ -56,7 +56,6 @@ enum STARSH_BACKEND
+ 
+ #define LEN_STR_MAT_FILE       512
+ 
+-
+-char strmatfile[LEN_STR_MAT_FILE];
++extern  char strmatfile[LEN_STR_MAT_FILE];
+ 
+ #endif
+diff --git a/timing/timing.c b/timing/timing.c
+index cbe094f..1cc51b9 100644
+--- a/timing/timing.c
++++ b/timing/timing.c
+@@ -75,6 +75,8 @@
+ #include <starpu.h>
+ #endif
+ 
++char strmatfile[LEN_STR_MAT_FILE];
++
+ //static int RunTest(int *iparam, _PREC *dparam, double *t_);
+ void* morse_getaddr_null(const MORSE_desc_t *A, int m, int n)
+ {
