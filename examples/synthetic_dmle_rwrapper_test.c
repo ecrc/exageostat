@@ -153,7 +153,7 @@ int main(int argc, char **argv) {
     //   rexageostat_likelihood(&n, &ncores, &gpus, &dts, &p_grid, &q_grid,  vecs_out, NULL,  &vecs_out[n], NULL,  &vecs_out[2*n], NULL,   lb, &num_params, ub, &num_params, &computation_int, &dm_int,  theta_out);
 
     rexageostat_finalize();
-    for(int i=0; i<num_params; i++)
+    for(i=0; i<num_params; i++)
         printf("%f -", theta_out[i]);
     printf("\n");
 

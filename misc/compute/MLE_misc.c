@@ -983,6 +983,7 @@ void write_to_thetafile(char * path, double *theta, int num_params,
     //! write results (only for testing accuracy should be removed in release)
 {
     FILE *pFile;
+    int i = 0;
 
     pFile = fopen(path,"a");
 
@@ -990,7 +991,7 @@ void write_to_thetafile(char * path, double *theta, int num_params,
         printf("Cannot access the results path(3)\n");
         exit(0);
     }
-    for(int i=0; i<num_params; i++)
+    for(i=0; i<num_params; i++)
     {
         fprintf(pFile, "%f,", theta[i]);
     }
@@ -1020,6 +1021,7 @@ void write_to_estimatedtheta(char * path, double *theta, int num_params,
     //! write results (only for testing accuracy should be removed in release)
 {
     FILE *pFile;
+    int i;
 #if defined(CHAMELEON_USE_MPI)
     if ( MORSE_My_Mpi_Rank() == 0 )
     {
@@ -1032,7 +1034,7 @@ void write_to_estimatedtheta(char * path, double *theta, int num_params,
         }
 
         fprintf(pFile, "%d, ", n);
-        for(int i=0; i<num_params; i++)
+        for(i=0; i<num_params; i++)
         {
             fprintf(pFile, "%f ", theta[i]);
         }
@@ -1337,11 +1339,11 @@ int print_result(MLE_data *data, double *starting_theta, int N, int zvecs, int n
         fprintf(pFile, "%d ", results.p);
         fprintf(pFile, "%d ", results.q);
 
-        for(int i=0; i<results.num_params; i++)
+        for(i=0; i<results.num_params; i++)
             fprintf(pFile, "%6.6f ", results.initial_theta[i]);
-        for(int i=0; i<results.num_params; i++)
+        for(i=0; i<results.num_params; i++)
             fprintf(pFile, "%6.6f ", results.starting_theta[i]);
-        for(int i=0; i<results.num_params; i++)
+        for(i=0; i<results.num_params; i++)
             fprintf(pFile, "%6.6f ", results.estimated_theta[i]);
 
         fprintf(pFile, "%6.6f ", results.final_loglik);
@@ -2097,6 +2099,7 @@ void checkpointing(char *path, int iter_count, double* theta, double loglik, int
     //! write prediction results (only for testing accuracy should be removed in release).
 {
     FILE *pFile;
+    int i;
 
     pFile = fopen(path,"a");
 
@@ -2107,7 +2110,7 @@ void checkpointing(char *path, int iter_count, double* theta, double loglik, int
     }
 
     fprintf(pFile, "%d ", iter_count);
-    for(int i=0; i<num_params; i++)
+    for(i=0; i<num_params; i++)
     {
         fprintf(pFile, "%.17g ", theta[i]);
     }

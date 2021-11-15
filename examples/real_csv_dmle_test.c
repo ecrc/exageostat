@@ -515,7 +515,7 @@ int main(int argc, char **argv) {
     char buf[30];
     char str[80];
     strcpy(str, arguments.kernel_fun);
-    for(int i=0; i<num_params; i++)
+    for(i=0; i<num_params; i++)
     {
 
         sprintf(buf, "%0.3f-", initial_theta[i]);
