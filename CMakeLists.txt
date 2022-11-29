@@ -354,6 +354,7 @@ endif()
 if(EXAGEOSTAT_USE_CUDA)
 	find_package(CUDA REQUIRED)
         add_definitions(-DEXAGEOSTAT_USE_CUDA)
+	list(APPEND CMAKE_EXE_LINKER_FLAGS "-lcublas")
 endif()
 
 
