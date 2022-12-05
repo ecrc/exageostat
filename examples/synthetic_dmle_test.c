@@ -414,8 +414,8 @@ int main(int argc, char **argv) {
                 {
 #endif				
                     int index=0;
-                    for (index=0; index< nZmiss; index++)
-                        printf ("(%3.6f, %3.6f)\n ", Zactual[index], Zmiss[index]);
+                  //  for (index=0; index< nZmiss; index++)
+                    //    printf ("(%3.6f, %3.6f)\n ", Zactual[index], Zmiss[index]);
 
                     fprintf(stderr,"Prediction Error: %3.9f \n", prediction_error);
 #if defined(CHAMELEON_USE_MPI)
