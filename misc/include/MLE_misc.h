@@ -261,6 +261,8 @@ typedef struct
     double avg_exec_time_per_iter;	///< Avergae execution time per iteration (only used in verbose mode).
     double total_exec_time;		///< Total execution time (only used in verbose mode).
     double avg_flops_per_iter;	///< Avergae flops per iteration (only used in verbose mode).
+    double avg_exec_time_gen_stage;
+    double avg_flops_gen_stage;
     double final_loglik;		///< Final log likelihood value.
     char *locsFPath;		    ///< Locations file path -- in the case of real dataset (real mode). 
     char *obsFPath;			    ///< Observations file path --  in the case of real dataset (real mode).

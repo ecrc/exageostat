@@ -1327,45 +1327,47 @@ int print_result(MLE_data *data, double *starting_theta, int N, int zvecs, int n
         fprintf(pFile, "%d ", results.problem_size);
         fprintf(pFile, "%s ", results.computation);
         fprintf(pFile, "%s ", results.kernel);
-        fprintf(pFile, "%s ", results.ds_type);	
-        fprintf(pFile, "%s ", results.precision);
-        fprintf(pFile, "%d ", results.z_sample);
+        //fprintf(pFile, "%s ", results.ds_type);	
+        //fprintf(pFile, "%s ", results.precision);
+        //fprintf(pFile, "%d ", results.z_sample);
         fprintf(pFile, "%d ", results.dense_ts);
         fprintf(pFile, "%d ", results.lr_ts);
         fprintf(pFile, "%d ", results.lr_acc);
         fprintf(pFile, "%d ", results.lr_maxrank);
         fprintf(pFile, "%d ", results.ncores);
         fprintf(pFile, "%d ", results.ngpus);
-        fprintf(pFile, "%d ", results.p);
-        fprintf(pFile, "%d ", results.q);
+        //fprintf(pFile, "%d ", results.p);
+        //fprintf(pFile, "%d ", results.q);
 
-        for(i=0; i<results.num_params; i++)
-            fprintf(pFile, "%6.6f ", results.initial_theta[i]);
-        for(i=0; i<results.num_params; i++)
-            fprintf(pFile, "%6.6f ", results.starting_theta[i]);
-        for(i=0; i<results.num_params; i++)
-            fprintf(pFile, "%6.6f ", results.estimated_theta[i]);
-
+        //for(i=0; i<results.num_params; i++)
+            //fprintf(pFile, "%6.6f ", results.initial_theta[i]);
+        //for(i=0; i<results.num_params; i++)
+            //fprintf(pFile, "%6.6f ", results.starting_theta[i]);
+        //for(i=0; i<results.num_params; i++)
+            //fprintf(pFile, "%6.6f ", results.estimated_theta[i]);
         fprintf(pFile, "%6.6f ", results.final_loglik);
-        fprintf(pFile, "%6.6f ", results.time_per_iteration);
-        fprintf(pFile, "%6.6f ", results.flops_per_iteration);
-        fprintf(pFile, "%6.6f ", results.total_mle_time);
-
-        fprintf(pFile, "%6.6f ", results.mse_pred1);
-        fprintf(pFile, "%6.6f ", results.mse_pred2);
+        //fprintf(pFile, "%6.6f ", results.mse_pred1);
+        //fprintf(pFile, "%6.6f ", results.mse_pred2);
         fprintf(pFile, "%6.6f ", results.mse_pred);
+
+        fprintf(pFile, "%6.6f ", data->avg_exec_time_gen_stage);
+	fprintf(pFile, "%6.6f ", results.time_per_iteration);
+	//fprintf(pFile, "%6.6f ", results.total_mle_time);
         fprintf(pFile, "%6.6f ", results.total_pred_time);
+	
+	fprintf(pFile, "%6.6f ", data->avg_flops_gen_stage);
+	fprintf(pFile, "%6.6f ", results.flops_per_iteration);
         fprintf(pFile, "%6.6f ", results.total_pred_flops);
 
-        fprintf(pFile, "%6.6f ", results.mloe);
-        fprintf(pFile, "%6.2f ", results.mmom);
-        fprintf(pFile, "%s ", results.mloe_exec);
-        fprintf(pFile, "%6.2f ", results.total_mloe_mmom_time);
-        fprintf(pFile, "%6.2f ", results.matrix_gen_mloe_mmom_time);
-        fprintf(pFile, "%6.2f ", results.cho_fact_mloe_mmom_time);
-        fprintf(pFile, "%6.2f ", results.loop_mloe_mmom_time);
-        fprintf(pFile, "%6.2f\n\n", results.total_mloe_mmom_flops);
-
+        //fprintf(pFile, "%6.6f ", results.mloe);
+        //fprintf(pFile, "%6.2f ", results.mmom);
+        //fprintf(pFile, "%s ", results.mloe_exec);
+        //fprintf(pFile, "%6.2f ", results.total_mloe_mmom_time);
+        //fprintf(pFile, "%6.2f ", results.matrix_gen_mloe_mmom_time);
+        //fprintf(pFile, "%6.2f ", results.cho_fact_mloe_mmom_time);
+        //fprintf(pFile, "%6.2f ", results.loop_mloe_mmom_time);
+        //fprintf(pFile, "%6.2f", results.total_mloe_mmom_flops);
+	fprintf(pFile, "\n");
 
 
 
