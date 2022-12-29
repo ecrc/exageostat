@@ -190,7 +190,7 @@ void MORSE_MLE_dzvg_Tile (MLE_data *data,  double * Nrand, double * initial_thet
     printf(" ---- Facto Time: %6.2f\n", time_facto);
     printf(" ---- dtrmm Time: %6.2f\n", time_trmm);
     printf(" ---- Matrix Generation Time: %6.2f\n", matrix_gen_time);
-    printf(" ---- Total Time: %6.2f\n", matrix_gen_time + time_facto + time_trmm);
+    printf(" ---- Total Time: %6.2f\n", /*matrix_gen_time +*/ time_facto + time_trmm);
     printf(" ---- Gflop/s: %6.2f\n", flops / 1e9 / (time_facto + time_trmm));
     data->avg_exec_time_gen_stage = matrix_gen_time + time_facto + time_trmm;
     data->avg_flops_gen_stage = flops / 1e9 / (time_facto +time_trmm);
@@ -719,7 +719,7 @@ double MORSE_dmle_Tile(unsigned n, const double * theta, double * grad, void * M
         printf(" ---- dtrsm Time: %6.2f\n", time_solve);
         printf(" ---- Matrix Generation Time: %6.2f\n", matrix_gen_time);
         //fprintf(stderr," ---- re-store Z Vector Time: %6.2f\n", zcpy_time);
-        printf(" ---- Total Time: %6.2f\n", matrix_gen_time+ time_facto + logdet_calculate + time_solve);
+        printf(" ---- Total Time: %6.2f\n", /*matrix_gen_time+*/ time_facto + logdet_calculate + time_solve);
         //fprintf(stderr," ---- Gflop (ignore): %6.2f\n", flops / 1e9 );
         printf(" ---- Gflop/s: %6.2f\n", flops / 1e9 / (time_facto  + time_solve));
         //fprintf(stderr," ---- Peak Performance: %6.2f Gflops/s\n",  (ncores*p_grid*q_grid*16*2.3) );
@@ -731,7 +731,7 @@ double MORSE_dmle_Tile(unsigned n, const double * theta, double * grad, void * M
 
     data->iter_count++;
     // for experiments
-    data->avg_exec_time_per_iter += matrix_gen_time + time_facto + logdet_calculate + time_solve;
+    data->avg_exec_time_per_iter += /*matrix_gen_time +*/ time_facto + logdet_calculate + time_solve;
     data->avg_flops_per_iter += flops / 1e9 / (time_facto + time_solve);
     data->final_loglik = loglik;
 
@@ -1188,7 +1188,7 @@ double MORSE_dmle_Predict_Tile(MLE_data *MORSE_data, double * theta, int nZmiss,
 	    results.mse_pred1 = data->mserror1;
 	    results.mse_pred2 = data->mserror2;
 	    results.mse_pred  = data->mserror;
-	    results.total_pred_time= mat_gen_time+time_solve+ time_gemm;
+	    results.total_pred_time= /*mat_gen_time+*/time_solve+ time_gemm;
 	    results.total_pred_flops= flops / 1e9 / (time_solve + time_gemm);
 
 #if defined(CHAMELEON_USE_MPI)
