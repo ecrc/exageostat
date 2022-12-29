@@ -192,7 +192,7 @@ void MORSE_MLE_dzvg_Tile (MLE_data *data,  double * Nrand, double * initial_thet
     printf(" ---- Matrix Generation Time: %6.2f\n", matrix_gen_time);
     printf(" ---- Total Time: %6.2f\n", /*matrix_gen_time +*/ time_facto + time_trmm);
     printf(" ---- Gflop/s: %6.2f\n", flops / 1e9 / (time_facto + time_trmm));
-    data->avg_exec_time_gen_stage = matrix_gen_time + time_facto + time_trmm;
+    data->avg_exec_time_gen_stage = /*matrix_gen_time +*/ time_facto + time_trmm;
     data->avg_flops_gen_stage = flops / 1e9 / (time_facto +time_trmm);
 }
 
