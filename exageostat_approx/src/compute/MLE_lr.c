@@ -757,7 +757,7 @@ double HICMA_dmle_Tile(unsigned n, const double * theta, double * grad, void * a
             fprintf(((MLE_data*)data)->pFileLog, ")----> LogLi: %.18f\n", loglik);
         fprintf(stderr," ---- Facto Time: %.8f\n", time_facto);
         //fprintf(stderr," ---- logdet Time: %.8f\n", logdet_calculate);
-        //fprintf(stderr," ---- dtrsm Time: %.8f\n", time_solve);
+        fprintf(stderr," ---- dtrsm Time: %.8f\n", time_solve);
         fprintf(stderr," ---- Matrix Generation Time: %.8f\n", matrix_gen_time);
         //fprintf(stderr," ---- re-store Z Vector Time: %.8f\n", test_time);
         fprintf(stderr," ---- Total Time: %.8f\n", matrix_gen_time+time_facto + logdet_calculate + time_solve);
