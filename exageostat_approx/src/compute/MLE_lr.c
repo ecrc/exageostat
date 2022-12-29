@@ -771,7 +771,7 @@ double HICMA_dmle_Tile(unsigned n, const double * theta, double * grad, void * a
 
     ((MLE_data*)data)->iter_count++;
     // for experiments
-    ((MLE_data*)data)->avg_exec_time_per_iter+=matrix_gen_time+time_facto + logdet_calculate + time_solve;
+    ((MLE_data*)data)->avg_exec_time_per_iter+=/*matrix_gen_time+*/time_facto + logdet_calculate + time_solve;
     ((MLE_data*)data)->avg_flops_per_iter+=flops / 1e9 / (time_facto +time_solve);
     ((MLE_data*)data)->final_loglik=loglik;
 
