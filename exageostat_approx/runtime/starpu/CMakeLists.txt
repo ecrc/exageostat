@@ -18,16 +18,16 @@
 #     Univ. of California Berkeley,
 #     Univ. of Colorado Denver.
 #
-#  @version 0.9.0
+#  @version 1.2.0
 #  @author Cedric Castagnede
 #  @author Emmanuel Agullo
 #  @author Mathieu Faverge
 #  @author Florent Pruvost
-#  @date 2018-11-11
+#  @date 2022-11-09
 #
 ###
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.12)
 
 # check if magma_dgetrf_incpiv_gpu is accessible in libmagma and activate it in chameleon
 if ( CBLAS_FOUND AND LAPACKE_FOUND AND LAPACK_FOUND AND CUDA_FOUND AND CUDA_CUBLAS_LIBRARIES AND MAGMA_FOUND )
@@ -47,11 +47,10 @@ set(ZHDR
   include/runtime_codelet_z.h
 )
 
-
 # Define the list of headers
 # --------------------------
 set(RUNTIME_HDRS
-    include/morse_starpu.h
+    include/chameleon_starpu.h
     include/runtime_codelet_profile.h
     include/runtime_codelets.h
     include/runtime_profiling.h
@@ -68,7 +67,7 @@ add_custom_target(runtime_starpu_include ALL SOURCES ${RUNTIME_HDRS})
 #install(FILES ${RUNTIME_HDRS}
 #        DESTINATION include)
 
-# Generate the morse common for all possible precisions
+# Generate the chameleon common for all possible precisions
 # -----------------------------------------------------
 set(RUNTIME_COMMON_GENERATED "")
 set(ZSRC
@@ -98,7 +97,7 @@ foreach(_prec ${CHAMELEON_PRECISION})
 endforeach()
 set_source_files_properties(control/runtime_profiling.c PROPERTIES COMPILE_FLAGS "${flags_to_add}")
 
-# Generate the morse sources for all possible precisions
+# Generate the chameleon sources for all possible precisions
 # ------------------------------------------------------
 set(RUNTIME_SRCS_GENERATED "")
 set(ZSRC

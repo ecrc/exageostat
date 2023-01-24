@@ -23,7 +23,7 @@ follow these instructions:
 
 5.  Use CMake to get all the dependencies
 
-        cmake .. -DCMAKE_INSTALL_PREFIX=/path/to/install/  -DEXAGEOSTAT_SCHED_STARPU=ON   -DEXAGEOSTAT_USE_NETCDF=ON -DEXAGEOSTAT_USE_HICMA=ON
+        cmake .. -DCMAKE_INSTALL_PREFIX=/path/to/install/  -DEXAGEOSTAT_SCHED_STARPU=ON   -DEXAGEOSTAT_USE_NETCDF=ON -DEXAGEOSTAT_USE_HICMA=ON --DCMAKE_C_FLAGS=-fcommon
 
 
 6.  Build EXAGEOSTAT

@@ -10,15 +10,15 @@
 #
 #  @file CMakeLists.txt
 #
-#  @project MORSE
-#  MORSE is a software package provided by:
+#  @project CHAMELEON
+#  CHAMELEON is a software package provided by:
 #     Inria Bordemisc - Sud-Ouest,
 #     Univ. of Tennessee,
 #     King Abdullah Univesity of Science and Technology
 #     Univ. of California Berkeley,
 #     Univ. of Colorado Denver.
 #
-#  @version 0.9.0
+#  @version 1.2.0
 #  @author Cedric Castagnede
 #  @author Emmanuel Agullo
 #  @author Mathieu Faverge
@@ -28,44 +28,40 @@
 ###
 
 
-# Generate the morse headers for all possible precisions
+# Generate the chameleon headers for all possible precisions
 # ------------------------------------------------------
 set(EXAGEOSTAT_HDRS_GENERATED "")
-set(ZHDR
-#    morse_z.h
-#    morse_zc.h
-#    runtime_z.h
-#    runtime_zc.h
-)
+set(ZHDR)
 
 precisions_rules_py(EXAGEOSTAT_HDRS_GENERATED "${ZHDR}"
-                    PRECISIONS "z;c;d;s;zc;ds")
+        PRECISIONS "z;c;d;s;zc;ds")
 
 configure_file("exageostat_config.h.in"
-               "exageostat_config.h"
-               @ONLY)
-configure_file("morse.h.in"
-               "morse.h"
-               @ONLY)
+        "exageostat_config.h"
+        @ONLY)
+configure_file("chameleon/chameleon_config.h.in"
+        "chameleon/chameleon_config.h"
+        @ONLY)
+
 
 # Define the list of headers
 # --------------------------
 set(EXAGEOSTAT_HDRS
-    exageostat_config.h
-    morse_constants.h
-    morse_kernels.h
-    morse_simulate.h
-    morse_struct.h
-    morse_types.h
-    morse.h
-    runtime.h
-    ${EXAGEOSTAT_HDRS_GENERATED}
-    )
+        exageostat_config.h
+        constants.h
+        simulate.h
+        struct.h
+        tasks.h
+        types.h
+        chameleon.h
+        runtime.h
+        ${EXAGEOSTAT_HDRS_GENERATED}
+        )
 
 set(flags_to_add "")
-foreach(_prec ${EXAGEOSTAT_PRECISION})
+foreach (_prec ${EXAGEOSTAT_PRECISION})
     set(flags_to_add "${flags_to_add} -DPRECISION_${_prec}")
-endforeach()
+endforeach ()
 set_source_files_properties(runtime.h PROPERTIES COMPILE_FLAGS "${flags_to_add}")
 
 # Force generation of headers
@@ -73,18 +69,16 @@ set_source_files_properties(runtime.h PROPERTIES COMPILE_FLAGS "${flags_to_add}"
 add_custom_target(exageostat_include ALL SOURCES ${EXAGEOSTAT_HDRS})
 
 set(HDR_INSTALL
-    morse_constants.h
-    morse_fortran.h
-    morse_kernels.h
-    morse_simulate.h
-    morse_struct.h
-    morse_types.h
-    runtime.h
-    )
-foreach( hdr_file ${EXAGEOSTAT_HDRS_GENERATED} )
+        constants.h
+        fortran.h
+        struct.h
+        types.h
+        runtime.h
+        )
+foreach (hdr_file ${EXAGEOSTAT_HDRS_GENERATED})
     list(APPEND HDR_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/${hdr_file})
-endforeach()
-list(APPEND HDR_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/morse.h ${CMAKE_CURRENT_BINARY_DIR}/exageostat_config.h)
+endforeach ()
+list(APPEND HDR_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/chameleon.h ${CMAKE_CURRENT_BINARY_DIR}/exageostat_config.h)
 
 # installation
 # ------------

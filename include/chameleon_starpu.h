@@ -9,24 +9,24 @@
  **/
 /**
  *
- * @file morse_starpu.h
+ * @file chameleon_starpu.h
  *
- *  MORSE codelets kernel
- *  MORSE is a software package provided by Univ. of Tennessee,
+ *  CHAMELEON codelets kernel
+ *  CHAMELEON is a software package provided by Univ. of Tennessee,
  *  Univ. of California Berkeley and Univ. of Colorado Denver,
  *  and INRIA Bordeaux Sud-Ouest
  *
- * @version 1.0.0
+ * @version 1.2.0
  * @author Mathieu Faverge
  * @author Cedric Castagnede
  * @author Florent Pruvost
- * @date 2018-11-11
+ * @date 2022-11-09
  *
  **/
-#ifndef _MORSE_STARPU_H_
-#define _MORSE_STARPU_H_
+#ifndef _CHAMELEON_STARPU_H_
+#define _CHAMELEON_STARPU_H_
 
-#include "chameleon/chameleon_config.h"
+#include <chameleon/config.h>
 
 /* StarPU options */
 /* #undef HAVE_STARPU_FXT_PROFILING */
@@ -42,7 +42,9 @@
 #if defined(CHAMELEON_USE_MPI)
 #include <starpu_mpi.h>
 #else
+
 #include <starpu.h>
+
 #endif
 
 #include <starpu_profiling.h>
@@ -107,18 +109,19 @@ typedef struct starpu_conf starpu_conf_t;
 /**
  * Access to block pointer and leading dimension
  */
-#define RTBLKADDR( desc, type, m, n ) ( (starpu_data_handle_t)RUNTIME_data_getaddr( desc, m, n ) )
+#define RTBLKADDR(desc, type, m, n) ( (starpu_data_handle_t)RUNTIME_data_getaddr( desc, m, n ) )
 
-void RUNTIME_set_reduction_methods(starpu_data_handle_t handle, MORSE_enum dtyp);
+void RUNTIME_set_reduction_methods(starpu_data_handle_t handle, CHAM_enum dtyp);
+
 #ifdef CHAMELEON_USE_MPI
 #ifdef HAVE_STARPU_MPI_CACHED_RECEIVE
-int RUNTIME_desc_iscached(const MORSE_desc_t *A, int Am, int An);
+int RUNTIME_desc_iscached(const CHAM_desc_t *A, int Am, int An);
 #endif
 #endif
 
 #if defined(CHAMELEON_USE_MPI)
 #  if defined(HAVE_STARPU_MPI_CACHED_RECEIVE)
-#    define RUNTIME_ACCESS_WRITE_CACHED(A, Am, An) do { if (RUNTIME_desc_iscached(A, Am, An)) __morse_need_submit = 1; } while(0)
+#    define RUNTIME_ACCESS_WRITE_CACHED(A, Am, An) do { if (RUNTIME_desc_iscached(A, Am, An)) __cham_need_submit = 1; } while(0)
 #  else
 #    warning "WAR dependencies need starpu_mpi_cached_receive support from StarPU 1.2.1 or greater"
 #    define RUNTIME_ACCESS_WRITE_CACHED(A, Am, An)
@@ -130,27 +133,27 @@ int RUNTIME_desc_iscached(const MORSE_desc_t *A, int Am, int An);
 #ifdef CHAMELEON_ENABLE_PRUNING_STATS
 
 #define RUNTIME_PRUNING_STATS_BEGIN_ACCESS_DECLARATION \
-    int __morse_exec = 0; \
-    int __morse_changed = 0;
+    int __cham_exec = 0; \
+    int __cham_changed = 0;
 
 #define RUNTIME_PRUNING_STATS_ACCESS_W(A, Am, An) \
-    if (morse_desc_islocal(A, Am, An)) \
-        __morse_exec = 1;
+    if (cham_desc_islocal(A, Am, An)) \
+        __cham_exec = 1;
 
 #define RUNTIME_PRUNING_STATS_END_ACCESS_DECLARATION \
     RUNTIME_total_tasks++; \
-    if (__morse_exec) \
+    if (__cham_exec) \
         RUNTIME_exec_tasks++; \
-    else if (__morse_need_submit) \
+    else if (__cham_need_submit) \
         RUNTIME_comm_tasks++; \
-    else if (__morse_changed) \
+    else if (__cham_changed) \
         RUNTIME_changed_tasks++;
 
 #define RUNTIME_PRUNING_STATS_RANK_CHANGED(rank) \
-    int __morse_myrank; \
-    RUNTIME_comm_rank(&__morse_myrank); \
-    __morse_exec = (rank) == __morse_myrank; \
-    __morse_changed = 1; \
+    int __cham_myrank; \
+    RUNTIME_comm_rank(&__cham_myrank); \
+    __cham_exec = (rank) == __cham_myrank; \
+    __cham_changed = 1; \
 
 #else
 #define RUNTIME_PRUNING_STATS_BEGIN_ACCESS_DECLARATION
@@ -178,4 +181,4 @@ int RUNTIME_desc_iscached(const MORSE_desc_t *A, int Am, int An);
 #define RUNTIME_END_ACCESS_DECLARATION          \
     RUNTIME_PRUNING_STATS_END_ACCESS_DECLARATION;
 
-#endif /* _MORSE_STARPU_H_ */
+#endif /* _CHAMELEON_STARPU_H_ */

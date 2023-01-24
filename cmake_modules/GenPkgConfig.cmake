@@ -10,8 +10,8 @@
 #
 #  @file GenPkgConfig.cmake
 #
-#  @project MORSE
-#  MORSE is a software package provided by:
+#  @project CHAMELEON
+#  CHAMELEON is a software package provided by:
 #     Inria Bordeaux - Sud-Ouest,
 #     Univ. of Tennessee,
 #     King Abdullah Univesity of Science and Technology
@@ -132,7 +132,7 @@ MACRO(GENERATE_PKGCONFIG_FILE)
     # ---------------
     SET(_output_exageostat_file "${CMAKE_BINARY_DIR}/exageostat.pc")
 
-    # TODO: add url of MORSE releases in .pc file
+    # TODO: add url of CHAMELEON releases in .pc file
     CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/exageostat.pc.in" "${_output_exageostat_file}" @ONLY)
 
     # installation

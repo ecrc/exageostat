@@ -1,0 +1,17 @@
+message("")
+message("---------------------------------------- HWLOC")
+message(STATUS "Checking for HWLOC")
+if(NOT TARGET HWLOC)
+    find_package(HWLOC 1.11.5 QUIET)
+    if(HWLOC_FOUND)
+        message("Found HWLOC")
+    elseif(${BUILD_DEPENDENCIES})
+        execute_process(COMMAND ./InstallHWLOC.sh --prefix ${CMAKE_INSTALL_PREFIX} --setup ${TMP_DIR}
+                        WORKING_DIRECTORY ${ECRC_INSTALLATION_SCRIPTS_PATH}
+                        RESULT_VARIABLE res)
+        if(${res} EQUAL 0)
+            set(HWLOC_FOUND TRUE)
+        endif()
+    endif()
+endif()
+message(STATUS "HWLOC Done")
