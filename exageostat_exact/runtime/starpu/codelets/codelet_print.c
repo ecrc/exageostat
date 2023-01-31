@@ -1,6 +1,6 @@
 /**
  *
- * Copyright (c) 2017-2020  King Abdullah University of Science and Technology
+ * Copyright (c) 2017-2023  King Abdullah University of Science and Technology
  * All rights reserved.
  *
  * ExaGeoStat is a software package provided by KAUST
@@ -11,24 +11,20 @@
  *
  * StarPU codelet to Generate covariance matrix of a set of locations in 2D using Matern kernel.
  *
- * @version 1.1.0
+ * @version 1.2.0
  *
  * @author Sameh Abdulah
- * @date 2018-11-11
+ * @date 2022-11-09
  *
  **/
 #include "../include/starpu_exageostat.h"
 
 static void CORE_dprint_starpu(void *buffers[],void *cl_arg){
     int m, n, m0, n0;
-    double *A;
-    A	= (double *)STARPU_MATRIX_GET_PTR(buffers[0]);
-
+    double* A;
+    A	= (double* )STARPU_MATRIX_GET_PTR(buffers[0]);
     starpu_codelet_unpack_args(cl_arg, &m, &n, &m0, &n0);
-
-
     core_dprint(A, m, n, m0, n0);
-
 }
 
 static struct starpu_codelet cl_dprint =
@@ -46,11 +42,8 @@ static void CORE_sprint_starpu(void *buffers[],void *cl_arg){
     int m, n, m0, n0;
     float *A;
     A       = (float *) STARPU_MATRIX_GET_PTR(buffers[0]);
-
     starpu_codelet_unpack_args(cl_arg, &m, &n, &m0, &n0);
-
     core_sprint(A, m, n, m0, n0);
-
 }
 
 static struct starpu_codelet cl_sprint =
@@ -62,13 +55,11 @@ static struct starpu_codelet cl_sprint =
     .name           = "sprint"
 };
 
-
-
 /*******************************************************************************
  *
- * @ingroup MORSE_Complex64_t_Tile
+ * @ingroup CHAMELEON_Complex64_t_Tile
  *
- *  MORSE_MLE_dprint_Tile_Async - Codelet to generate covariance matrix in descriptor descA in  dense format between two sets of locations (l1, l2) (Matern Kernel).
+ *  CHAMELEON_MLE_dprint_Tile_Async - Codelet to generate covariance matrix in descriptor descA in  dense format between two sets of locations (l1, l2) (Matern Kernel).
  *  Operates on matrices stored by tiles.
  *  All matrices are passed through descriptors.
  *  All dimensions are taken from the descriptors.
@@ -103,33 +94,30 @@ static struct starpu_codelet cl_sprint =
  *******************************************************************************
  *
  * @return
- *          \retval MORSE_SUCCESS successful exit
+ *          \retval CHAMELEON_SUCCESS successful exit
  *
  *******************************************************************************
  *
  *
  ******************************************************************************/
-int MORSE_MLE_dprint_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence, MORSE_request_t  *request) {
+int CHAMELEON_MLE_dprint_Tile_Async(CHAM_desc_t *descA, RUNTIME_sequence_t *sequence, RUNTIME_request_t  *request) {
 
-    MORSE_context_t *morse;
-    MORSE_option_t options;
-    morse = morse_context_self();
+    CHAM_context_t *chamctxt;
+    RUNTIME_option_t options;
+    chamctxt = chameleon_context_self();
 
-
-    if (sequence->status != MORSE_SUCCESS)
+    if (sequence->status != CHAMELEON_SUCCESS)
         return -2;
-    RUNTIME_options_init(&options, morse, sequence, request);
-
+    RUNTIME_options_init(&options, chamctxt, sequence, request);
 
     int m, n, m0, n0;
     int tempmm, tempnn;
-    MORSE_desc_t A = *descA;
+    CHAM_desc_t A = *descA;
     struct starpu_codelet *cl=&cl_dprint;
 
     for(m = 0; m < A.mt; m++)
     {
         tempmm = m == A.mt -1 ? A.m- m* A.mb : A.mb;
-
         for (n = 0; n < A.nt; n++) {
             tempnn = n == A.nt -1 ? A.n - n * A.nb : A.nb;
 
@@ -140,24 +128,20 @@ int MORSE_MLE_dprint_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence,
                     STARPU_VALUE, &tempnn, sizeof(int),
                     STARPU_VALUE, &m0, sizeof(int),
                     STARPU_VALUE, &n0, sizeof(int),
-                    STARPU_RW, RTBLKADDR(descA, sizeof(double)*ldam*tempnn, m, n),
-                    0);
-
+                    STARPU_RW, RTBLKADDR(descA, sizeof(double)*ldam*tempnn, m, n), 0);
         }
-
     }
 
     RUNTIME_options_ws_free(&options);
-    RUNTIME_options_finalize(&options, morse);
-    return MORSE_SUCCESS;
+    RUNTIME_options_finalize(&options, chamctxt);
+    return CHAMELEON_SUCCESS;
 }
-
 
 /*******************************************************************************
  *
- * @ingroup MORSE_Complex32_t_Tile
+ * @ingroup CHAMELEON_Complex32_t_Tile
  *
- *  MORSE_MLE_sprint_Tile_Async - Calculate covariance matrix descA.
+ *  CHAMELEON_MLE_sprint_Tile_Async - Calculate covariance matrix descA.
  *  Operates on matrices stored by tiles.
  *  All matrices are passed through descriptors.
  *  All dimensions are taken from the descriptors.
@@ -189,31 +173,27 @@ int MORSE_MLE_dprint_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence,
  *******************************************************************************
  *
  * @return
- *          \retval MORSE_SUCCESS successful exit
+ *          \retval CHAMELEON_SUCCESS successful exit
  *
  *******************************************************************************
  *
  *
  ******************************************************************************/
 
+int CHAMELEON_MLE_sprint_Tile_Async(CHAM_desc_t *descA, RUNTIME_sequence_t *sequence, RUNTIME_request_t  *request) {
 
-int MORSE_MLE_sprint_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence, MORSE_request_t  *request) {
+    CHAM_context_t *chamctxt;
+    RUNTIME_option_t options;
+    chamctxt = chameleon_context_self();
 
-    MORSE_context_t *morse;
-    MORSE_option_t options;
-    morse = morse_context_self();
-
-
-    if (sequence->status != MORSE_SUCCESS)
+    if (sequence->status != CHAMELEON_SUCCESS)
         return -2;
-    RUNTIME_options_init(&options, morse, sequence, request);
-
+    RUNTIME_options_init(&options, chamctxt, sequence, request);
 
     int m, n, m0, n0;
     int tempmm, tempnn;
-    MORSE_desc_t A = *descA;
+    CHAM_desc_t A = *descA;
     struct starpu_codelet *cl=&cl_sprint;
-
 
     for(m = 0; m < A.mt; m++)
     {
@@ -229,38 +209,31 @@ int MORSE_MLE_sprint_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence,
                     STARPU_VALUE, &tempnn, sizeof(int),
                     STARPU_VALUE, &m0, sizeof(int),
                     STARPU_VALUE, &n0, sizeof(int),
-                    STARPU_RW, RTBLKADDR(descA, sizeof(float)*ldam*tempnn, m, n),
-                    0);
-
+                    STARPU_RW, RTBLKADDR(descA, sizeof(float)*ldam*tempnn, m, n), 0);
         }
-
     }
 
     RUNTIME_options_ws_free(&options);
-    RUNTIME_options_finalize(&options, morse);
-    return MORSE_SUCCESS;
+    RUNTIME_options_finalize(&options, chamctxt);
+    return CHAMELEON_SUCCESS;
 }
 
-
 /*******************************************************************************/
-int MORSE_MLE_sdprint_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence, MORSE_request_t *request, int diag_thick) {
+int CHAMELEON_MLE_sdprint_Tile_Async(CHAM_desc_t *descA, RUNTIME_sequence_t *sequence, RUNTIME_request_t *request, int diag_thick) {
 
-    MORSE_context_t *morse;
-    MORSE_option_t options;
-    morse = morse_context_self();
+    CHAM_context_t *chamctxt;
+    RUNTIME_option_t options;
+    chamctxt = chameleon_context_self();
 
-
-    if (sequence->status != MORSE_SUCCESS)
+    if (sequence->status != CHAMELEON_SUCCESS)
         return -2;
-    RUNTIME_options_init(&options, morse, sequence, request);
-
+    RUNTIME_options_init(&options, chamctxt, sequence, request);
 
     int m, n, m0, n0;
     int tempmm, tempnn;
-    MORSE_desc_t A = *descA;
+    CHAM_desc_t A = *descA;
     struct starpu_codelet *dcl = &cl_dprint;
     struct starpu_codelet *scl = &cl_sprint;
-
 
     for(m = 0; m < A.mt; m++)
     {
@@ -279,8 +252,7 @@ int MORSE_MLE_sdprint_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence
                         STARPU_VALUE, &tempnn, sizeof(int),
                         STARPU_VALUE, &m0, sizeof(int),
                         STARPU_VALUE, &n0, sizeof(int),
-                        STARPU_RW, RTBLKADDR(descA, sizeof(double)*ldam*tempnn, m, n),
-                        0);
+                        STARPU_RW, RTBLKADDR(descA, sizeof(double)*ldam*tempnn, m, n), 0);
             }
             else  //for now is the same because the descriptor should be with one type.
             {
@@ -290,16 +262,12 @@ int MORSE_MLE_sdprint_Tile_Async(MORSE_desc_t *descA, MORSE_sequence_t *sequence
                         STARPU_VALUE, &tempnn, sizeof(int),
                         STARPU_VALUE, &m0, sizeof(int),
                         STARPU_VALUE, &n0, sizeof(int),
-                        STARPU_RW, RTBLKADDR(descA, sizeof(float)*ldam*tempnn, m, n),
-                        0);
+                        STARPU_RW, RTBLKADDR(descA, sizeof(float)*ldam*tempnn, m, n), 0);
             }
         }
-
     }
 
-
     RUNTIME_options_ws_free(&options);
-    RUNTIME_options_finalize(&options, morse);
-    return MORSE_SUCCESS;
+    RUNTIME_options_finalize(&options, chamctxt);
+    return CHAMELEON_SUCCESS;
 }
-

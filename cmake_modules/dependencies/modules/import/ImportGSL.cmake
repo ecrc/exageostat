@@ -1,0 +1,17 @@
+message("")
+message("---------------------------------------- GSL")
+message(STATUS "Checking for GSL")
+if(NOT TARGET GSL)
+    find_package(GSL 2.4 QUIET)
+    if(GSL_FOUND)
+        message(" Found GSL")
+    elseif(${BUILD_DEPENDENCIES})
+        execute_process(COMMAND ./InstallGSL.sh --prefix ${CMAKE_INSTALL_PREFIX} --setup ${TMP_DIR}
+                        WORKING_DIRECTORY ${ECRC_INSTALLATION_SCRIPTS_PATH}
+                        RESULT_VARIABLE res)
+        if(${res} EQUAL 0)
+            set(GSL_FOUND TRUE)
+        endif()
+    endif()
+endif()
+message(STATUS "GSL Done")

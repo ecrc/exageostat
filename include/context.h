@@ -1,47 +1,45 @@
 /**
  *
- * @copyright (c) 2009-2014 The University of Tennessee and The University
- *                          of Tennessee Research Foundation.
- *                          All rights reserved.
- * @copyright (c) 2012-2014 Inria. All rights reserved.
- * @copyright (c) 2012-2014 Bordeaux INP, CNRS (LaBRI UMR 5800), Inria, Univ. Bordeaux. All rights reserved.
+ * @file context.h
  *
- **/
-
-/**
+ * @copyright 2009-2014 The University of Tennessee and The University of
+ *                      Tennessee Research Foundation. All rights reserved.
+ * @copyright 2012-2022 Bordeaux INP, CNRS (LaBRI UMR 5800), Inria,
+ *                      Univ. Bordeaux. All rights reserved.
  *
- * @file control/context.h
+ ***
  *
- *  MORSE auxiliary routines
- *  MORSE is a software package provided by Univ. of Tennessee,
- *  Univ. of California Berkeley and Univ. of Colorado Denver
+ * @brief Chameleon context header
  *
- * @version 1.0.0
+ * @version 1.2.0
  * @author Jakub Kurzak
  * @author Cedric Augonnet
  * @author Mathieu Faverge
  * @author Cedric Castagnede
- * @date 2018-11-11
+ * @author Florent Pruvost
+ * @date 2022-11-09
  *
- **/
-#ifndef _MORSE_CONTEXT_H_
-#define _MORSE_CONTEXT_H_
+ */
+#ifndef _chameleon_context_h_
+#define _chameleon_context_h_
 
-#include "chameleon/morse_struct.h"
+#include "chameleon/struct.h"
 
-/*******************************************************************************
+/**
  *  Routines to handle threads context
- **/
+ */
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-MORSE_context_t* morse_context_create  ();
-MORSE_context_t* morse_context_self    ();
-int              morse_context_destroy ();
+CHAM_context_t *chameleon_context_create();
+
+CHAM_context_t *chameleon_context_self();
+
+int chameleon_context_destroy();
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif /* _chameleon_context_h_ */

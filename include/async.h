@@ -1,47 +1,52 @@
 /**
  *
- * @copyright (c) 2009-2014 The University of Tennessee and The University
- *                          of Tennessee Research Foundation.
- *                          All rights reserved.
- * @copyright (c) 2012-2014 Inria. All rights reserved.
- * @copyright (c) 2012-2014 Bordeaux INP, CNRS (LaBRI UMR 5800), Inria, Univ. Bordeaux. All rights reserved.
- *
- **/
-
-/***
- *
- *
  * @file async.h
  *
- *  MORSE auxiliary routines
- *  MORSE is a software package provided by Univ. of Tennessee,
- *  Univ. of California Berkeley and Univ. of Colorado Denver
+ * @copyright 2009-2014 The University of Tennessee and The University of
+ *                      Tennessee Research Foundation. All rights reserved.
+ * @copyright 2012-2022 Bordeaux INP, CNRS (LaBRI UMR 5800), Inria,
+ *                      Univ. Bordeaux. All rights reserved.
  *
- * @version 1.0.0
+ ***
+ *
+ * @brief Chameleon asynchronous management header
+ *
+ * @version 1.2.0
  * @author Jakub Kurzak
  * @author Cedric Castagnede
- * @date 2018-11-11
+ * @author Florent Pruvost
+ * @author Mathieu Faverge
+ * @date 2022-11-09
  *
- **/
-#ifndef _MORSE_ASYNC_H_
-#define _MORSE_ASYNC_H_
+ */
+#ifndef _chameleon_async_h_
+#define _chameleon_async_h_
 
-#include "chameleon/morse_struct.h"
+#include "chameleon/struct.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/*******************************************************************************
+/**
  *  Internal routines
- **/
-int morse_request_fail     (MORSE_sequence_t *sequence, MORSE_request_t *request, int error);
-int morse_sequence_create  (MORSE_context_t *MORSE, MORSE_sequence_t **sequence);
-int morse_sequence_destroy (MORSE_context_t *MORSE, MORSE_sequence_t *sequence);
-int morse_sequence_wait    (MORSE_context_t *MORSE, MORSE_sequence_t *sequence);
+ */
+int chameleon_request_fail(RUNTIME_sequence_t *sequence, RUNTIME_request_t *request, int error);
+
+int chameleon_sequence_create(CHAM_context_t *CHAMELEON, RUNTIME_sequence_t **sequence);
+
+int chameleon_sequence_destroy(CHAM_context_t *CHAMELEON, RUNTIME_sequence_t *sequence);
+
+int chameleon_sequence_wait(CHAM_context_t *CHAMELEON, RUNTIME_sequence_t *sequence);
+
+int chameleon_request_create(CHAM_context_t *CHAMELEON, RUNTIME_request_t **request);
+
+int chameleon_request_destroy(CHAM_context_t *CHAMELEON, RUNTIME_request_t *request);
+
+int chameleon_request_set(CHAM_context_t *chamctxt, RUNTIME_request_t *request, int param, int value);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif /* _chameleon_async_h_ */

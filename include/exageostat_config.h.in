@@ -12,12 +12,12 @@
  *
  *  @file chameleon_config.h
  *
- *  MORSE main header
- *  MORSE is a software package provided by Univ. of Tennessee,
+ *  CHAMELEON main header
+ *  CHAMELEON is a software package provided by Univ. of Tennessee,
  *  Univ. of California Berkeley and Univ. of Colorado Denver,
  *  and INRIA Bordemisc Sud-Ouest
  *
- *  @version 0.9.1
+ *  @version 1.2.0
  *  @author Florent Pruvost
  *  @date 2017-01-06
  *

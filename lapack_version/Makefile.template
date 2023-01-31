@@ -1,0 +1,45 @@
+# Common binaries
+CC             = icc
+LD             = icc
+
+#user flags
+CCFLAGS   := -O3 -Wall `pkg-config plasma --cflags`
+FCFLAGS   := -O3
+LDFLAGS   := -O3  `pkg-config plasma --libs` -mkl=sequential -lpthread -lm
+# With GNU compilers
+#LDFLAGS   := -O3 -L$(PLASMADIR)/lib -lplasma  -lcoreblasqw -lcoreblas -lplasma -lquark  -llapacke -L/opt/share/INTEL/v15.app/composer_xe_2015.0.090/mkl/lib/intel64 -lmkl_gf_lp64 -lmkl_gnu_thread -lmkl_core -lpthread -lm
+
+# Extra user flags
+EXTRA_CCFLAGS = -I$(PLASMADIR)/include -I.
+
+# Optimisation flags
+CXXFLAGS := $(CCFLAGS)
+
+# DEBUG flags
+#CCFLAGS   += -g
+
+# PIC flags
+#CCFLAGS   += -fPIC 
+
+MAIN = main_genton.c
+#SOURCE_FILES = $(filter-out $(MAIN), $(wildcard *.c))
+OBJ_FILES = $(patsubst %.c,%.o,$(SOURCE_FILES))
+
+#####################
+# default make rule #
+#####################
+
+TARGET = main_genton
+
+.PHONY: all
+all: $(TARGET)
+
+$(TARGET): main_genton.o
+	$(LD) $(FCFLAGS) $(EXTRA_CCFLAGS) $^ -o $@ $(LDFLAGS) $(EXTRA_LDFLAGS)
+
+%.o: %.c
+	$(CC) -c $(CCFLAGS) $(EXTRA_CCFLAGS) $^ -o $@
+
+.PHONY: clean
+clean:
+	rm -rf $(TARGET) *.o

@@ -1,9 +1,10 @@
 [submodule "cmake_modules/ecrc"]
 	path = cmake_modules/ecrc
-	url = https://github.com/ecrc/ecrc_cmake
+	url = https://github.com/ecrc/ecrc_cmake.git
+[submodule "chameleon"]
+	path = chameleon
+	url = https://gitlab.inria.fr/solverstack/chameleon.git
+	branch = release-1.1.0
 [submodule "hicma"]
 	path = hicma
-	url = https://github.com/ecrc/hicma
-[submodule "stars-h"]
-	path = stars-h
-	url = https://github.com/ecrc/stars-h
+	url = https://github.com/ecrc/hicma.git
