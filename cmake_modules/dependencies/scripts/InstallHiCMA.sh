@@ -55,9 +55,9 @@ fi
 
 echo "Installing HiCMA dependencies..."
 cd "$SETUP_DIR" || exit 1
-git clone https://github.com/ecrc/hicma-dev hicma
+git clone https://github.com/ecrc/hicma hicma
 cd hicma || exit 1;
-git checkout FT_Removing_Chameleon_Dependency_MM
+git checkout fa8596b5d3aa8e5b7d5c06cd8db3cecc32f70d17 #V1.0.0
 git submodule update --init --recursive
 
 echo "Building Stars-H"
