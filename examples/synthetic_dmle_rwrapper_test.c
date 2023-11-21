@@ -67,6 +67,8 @@ int main(int argc, char **argv) {
 
     if(strcmp(kernel_fun, "univariate_matern_stationary")   == 0)
         num_params = 3;
+    else if(strcmp(kernel_fun, "univariate_pow_exp_stationary")   == 0)
+        num_params = 2;	    
     else if(strcmp(kernel_fun, "univariate_matern_non_stationary")   == 0)
         num_params = 9;
     else if(strcmp(kernel_fun, "bivariate_matern_flexible")   == 0)

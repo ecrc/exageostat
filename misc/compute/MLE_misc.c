@@ -621,39 +621,27 @@ double uniform_distribution(double rangeLow, double rangeHigh)
 location* GenerateXYLoc(int n, int seed) 
     //! Generate XY location for exact computation (MOORSE)        
 {
-    //initalization
-    int i = 0 ,index = 0, j = 0;
-    // unsigned int *seed = &exageostat_seed;
+//initalization
+    int i = 0, index = 0, j = 0;
     srand(seed);
-    location* locations = (location *) malloc( sizeof(location*));
+    location *locations = (location *) malloc(sizeof(location *));
     //Allocate memory
-    locations->x            = (double *) malloc(n * sizeof(double));
-    locations->y            = (double *) malloc(n * sizeof(double));
-    locations->z		= NULL;
-    // if(strcmp(locs_file, "") == 0)
-    // {
+    locations->x = (double* ) malloc(n * sizeof(double));
+    locations->y = (double* ) malloc(n * sizeof(double));
+    locations->z = NULL;
 
-    int sqrtn = sqrt(n);        
+    int sqrtn = ceil(sqrt(n));
 
-    //Check if the input is square number or not
-    if(pow(sqrtn,2) != n)    
-    {
-        printf("n=%d, Please use a perfect square number to generate a valid synthetic dataset.....\n\n", n);
-        exit(0);     
+    int *grid = (int *) calloc((int) sqrtn, sizeof(int));
+
+    for (i = 0; i < sqrtn; i++) {
+        grid[i] = i + 1;
     }
 
-    int *grid = (int *) calloc((int)sqrtn, sizeof(int));
-
-    for(i = 0; i < sqrtn; i++)
-    {
-        grid[i] = i+1;
-    }
-
-    for(i = 0; i < sqrtn; i++)
-        for(j = 0; j < sqrtn; j++){
-            locations->x[index] = (grid[i]-0.5+uniform_distribution(-0.4, 0.4))/sqrtn;
-            locations->y[index] = (grid[j]-0.5+uniform_distribution(-0.4, 0.4))/sqrtn;
-            //printf("%f, %f\n", locations->x[index], locations->y[index]);
+    for (i = 0; i < sqrtn && index < n; i++)
+        for (j = 0; j < sqrtn && index < n; j++) {
+            locations->x[index] = (grid[i] - 0.5 + uniform_distribution(-0.4, 0.4)) / sqrtn;
+            locations->y[index] = (grid[j] - 0.5 + uniform_distribution(-0.4, 0.4)) / sqrtn;
             index++;
         }
     free(grid);
@@ -1235,9 +1223,10 @@ int print_result(MLE_data *data, double *starting_theta, int N, int zvecs, int n
     {
 #endif
 
-        if(strcmp(data->kernel_fun, "univariate_matern_stationary")   == 0 || 
-                strcmp(data->kernel_fun, "univariate_pow_exp_stationary")   == 0)
-            num_params = 3;
+        if(strcmp(data->kernel_fun, "univariate_matern_stationary")   == 0)
+	    num_params = 3; 	
+	else if (strcmp(data->kernel_fun, "univariate_pow_exp_stationary")   == 0)
+            num_params = 2;
         else if(strcmp(data->kernel_fun, "univariate_matern_nuggets_stationary")   == 0)
             num_params = 4;
         else if(strcmp(data->kernel_fun, "univariate_matern_non_stationary")   == 0)

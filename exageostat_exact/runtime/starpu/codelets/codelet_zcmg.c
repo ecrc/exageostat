@@ -53,6 +53,8 @@ static void cl_dcmg_cpu_func(void *buffers[],void *cl_arg){
         core_dcmg_nuggets(A, m, n, m0, n0, l1, l2, theta, distance_metric);
     else if (kernel == 5)
         core_dcmg_spacetime_matern(A, m, n, m0, n0, l1, l2, theta, distance_metric);
+    else if (kernel == 6)
+        core_dcmg_pow_exp(A, m, n, m0, n0, l1, l2, theta, distance_metric);    
     //    else if (kernel == 4) //parsimonious2
     //        core_dcmg_bivariate_parsimonious2(A, m, n, m0, n0, l1, l2, theta, distance_metric);//, size);
 }
@@ -278,6 +280,8 @@ int MORSE_MLE_dcmg_Tile_Async(MORSE_enum uplo, MORSE_desc_t *descA, location *l1
         kernel = 4;
     else if(strcmp(kernel_fun, "univariate_spacetime_matern_stationary")   == 0)
         kernel = 5;
+    else if(strcmp(kernel_fun, "univariate_pow_exp_stationary")   == 0)
+        kernel = 6;    
     else
     {
         fprintf(stderr,"Choosen kernel is not exist: %s!\n", kernel_fun);
@@ -400,6 +404,8 @@ int MORSE_MLE_scmg_Tile_Async(MORSE_enum uplo, MORSE_desc_t *descA, location *l1
         kernel = 4;
     else if(strcmp(kernel_fun, "univariate_spacetime_matern_stationary")   == 0)
         kernel = 5;
+    else if(strcmp(kernel_fun, "univariate_pow_exp_stationary")   == 0)
+        kernel = 6;
     else
     {
         fprintf(stderr,"Choosen kernel is not exist(5)!\n");
@@ -479,6 +485,8 @@ int MORSE_MLE_sdcmg_Tile_Async(MORSE_enum uplo, MORSE_desc_t *descA, location *l
         kernel = 4;
     else if(strcmp(kernel_fun, "univariate_spacetime_matern_stationary")   == 0)
         kernel = 5;
+    else if(strcmp(kernel_fun, "univariate_pow_exp_stationary")   == 0)
+        kernel = 6;
     else
     {
         fprintf(stderr,"Choosen kernel is not exist(3)!\n");

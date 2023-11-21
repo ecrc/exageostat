@@ -339,8 +339,10 @@ double MORSE_dmle_Tile(unsigned n, const double * theta, double * grad, void * M
     MORSE_sequence_t *msequence	 = (MORSE_sequence_t *) data->sequence;
     MORSE_request_t  *mrequest	 = (MORSE_request_t *) data->request;
 
-    if(strcmp(data->kernel_fun, "univariate_matern_stationary")   == 0 || strcmp(data->kernel_fun, "univariate_pow_exp_stationary")   == 0 )
+    if(strcmp(data->kernel_fun, "univariate_matern_stationary")   == 0)
         num_params = 3;
+    else if (strcmp(data->kernel_fun, "univariate_pow_exp_stationary")   == 0 )
+        num_params = 2;
     else if(strcmp(data->kernel_fun, "univariate_matern_nuggets_stationary")   == 0)
         num_params = 4;
     else if(strcmp(data->kernel_fun, "univariate_matern_non_stationary")   == 0)
@@ -1043,36 +1045,38 @@ double MORSE_dmle_Predict_Tile(MLE_data *MORSE_data, double * theta, int nZmiss,
     //	MPI_Bcast(&data->variance,1, MPI_DOUBLE, 0, MPI_COMM_WORLD );
     //#endif
     //theta[0]=data->variance;
-    if(strcmp(data->kernel_fun, "univariate_matern_stationary")   == 0 || strcmp(data->kernel_fun, "univariate_pow_exp_stationary")   == 0 )
-        num_params = 3;
+    if(strcmp(data->kernel_fun, "univariate_matern_stationary")   == 0 )
+	    num_params = 3;
+    else if(strcmp(data->kernel_fun, "univariate_pow_exp_stationary")   == 0 )
+	    num_params = 2;
     else if(strcmp(data->kernel_fun, "univariate_matern_nuggets_stationary")   == 0)
-        num_params = 4;
+	    num_params = 4;
     else if(strcmp(data->kernel_fun, "univariate_matern_non_stationary")   == 0)
-        num_params = 9;
+	    num_params = 9;
     else if(strcmp(data->kernel_fun, "bivariate_matern_flexible")   == 0)
-        num_params = 11;
+	    num_params = 11;
     else if(strcmp(data->kernel_fun, "bivariate_matern_parsimonious")   == 0)
-        num_params = 6;
+	    num_params = 6;
     else if(strcmp(data->kernel_fun, "bivariate_matern_parsimonious2")   == 0)
-        num_params = 6;
+	    num_params = 6;
     else if(strcmp(data->kernel_fun, "bivariate_matern_parsimonious_profile")   == 0)
-        num_params = 6;
+	    num_params = 6;
     else if(strcmp(data->kernel_fun, "bivariate_matern_parsimonious2_profile")   == 0)
-        num_params = 6;
+	    num_params = 6;
     else if(strcmp(data->kernel_fun, "univariate_spacetime_matern_stationary")   == 0)
-        num_params = 7;
+	    num_params = 7;
     else
     {
-        fprintf(stderr,"Choosen kernel is not exist(1)!\n");
-        fprintf(stderr, "Called function is: %s\n",__func__);
-        exit(0);
+	    fprintf(stderr,"Choosen kernel is not exist(1)!\n");
+	    fprintf(stderr, "Called function is: %s\n",__func__);
+	    exit(0);
     }
 
     printf("estimated parameters:");
     int i = 0;
     for(i=0; i<num_params; i++)
     {
-        printf("%.8f,", theta[i]);
+	    printf("%.8f,", theta[i]);
 
     }
     printf(")\n");
