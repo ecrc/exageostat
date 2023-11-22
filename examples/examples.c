@@ -212,7 +212,7 @@ void init(int *test, int *N,  int *ncores, int *gpus, int *p_grid, int *q_grid, 
 	if(strcmp(data->kernel_fun, "univariate_matern_stationary")   == 0) 
                 num_params = 3;		
 	else if(strcmp(data->kernel_fun, "univariate_pow_exp_stationary")   == 0)
-		num_params = 2;
+		num_params = 3;
 	else if(strcmp(data->kernel_fun, "univariate_matern_nuggets_stationary")   == 0)
 		num_params = 4;
 	else if(strcmp(data->kernel_fun, "univariate_matern_non_stationary")   == 0)

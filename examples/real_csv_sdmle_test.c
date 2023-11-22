@@ -57,7 +57,7 @@ int main(int argc, char **argv) {
 	}
 	else if(strcmp(arguments.kernel_fun, "univariate_pow_exp_stationary")   == 0)
         {
-                num_params    = 2;
+                num_params    = 3;
                 p             = 1;
         }	
 	else if(strcmp(arguments.kernel_fun, "univariate_matern_nuggets_stationary")   == 0)

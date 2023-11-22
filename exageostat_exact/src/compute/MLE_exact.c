@@ -342,7 +342,7 @@ double MORSE_dmle_Tile(unsigned n, const double * theta, double * grad, void * M
     if(strcmp(data->kernel_fun, "univariate_matern_stationary")   == 0)
         num_params = 3;
     else if (strcmp(data->kernel_fun, "univariate_pow_exp_stationary")   == 0 )
-        num_params = 2;
+        num_params = 3;
     else if(strcmp(data->kernel_fun, "univariate_matern_nuggets_stationary")   == 0)
         num_params = 4;
     else if(strcmp(data->kernel_fun, "univariate_matern_non_stationary")   == 0)
@@ -1048,7 +1048,7 @@ double MORSE_dmle_Predict_Tile(MLE_data *MORSE_data, double * theta, int nZmiss,
     if(strcmp(data->kernel_fun, "univariate_matern_stationary")   == 0 )
 	    num_params = 3;
     else if(strcmp(data->kernel_fun, "univariate_pow_exp_stationary")   == 0 )
-	    num_params = 2;
+	    num_params = 3;
     else if(strcmp(data->kernel_fun, "univariate_matern_nuggets_stationary")   == 0)
 	    num_params = 4;
     else if(strcmp(data->kernel_fun, "univariate_matern_non_stationary")   == 0)

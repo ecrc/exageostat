@@ -1226,7 +1226,7 @@ int print_result(MLE_data *data, double *starting_theta, int N, int zvecs, int n
         if(strcmp(data->kernel_fun, "univariate_matern_stationary")   == 0)
 	    num_params = 3; 	
 	else if (strcmp(data->kernel_fun, "univariate_pow_exp_stationary")   == 0)
-            num_params = 2;
+            num_params = 3;
         else if(strcmp(data->kernel_fun, "univariate_matern_nuggets_stationary")   == 0)
             num_params = 4;
         else if(strcmp(data->kernel_fun, "univariate_matern_non_stationary")   == 0)
