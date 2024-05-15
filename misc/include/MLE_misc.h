@@ -320,6 +320,7 @@ typedef struct {
     //for non-Gaussian prediction
     void *descr;
     void *descrcpy;
+    int seed;
 } MLE_data;
 
 

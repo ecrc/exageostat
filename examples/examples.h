@@ -69,13 +69,14 @@ typedef struct {
     char *kernel_fun;           ///< Stationary_matern, or non_stationary_matern.
     int mloe_mmom;              ///< Use MLOE and MMOM
     int mloe_mmom_async;        ///< Use MLOE and MMOM Async
-    int mspe;                   ///>compute mspe.
-    int idw;                    ///<IDW prediction.
-    char *checkpoint_file;      ///< checkpoint file path.
+    int mspe;                   ///< Compute mspe.
+    int idw;                    ///< IDW prediction.
+    char *checkpoint_file;      ///< Checkpoint file path.
     char *recovery_file;        ///< Recovery file path.
     char *dim;                  ///< 2D or 3D
-    char *time_slots;           ///< spatio-temoral time slots.
-    int fisher;                 ///< fisher matrix
+    char *time_slots;           ///< Spatio-temoral time slots.
+    int fisher;                 ///< Fisher matrix
+    char *seed;                 ///< Random seed.
 } arguments;
 
 void check_args(arguments *arg_values);
@@ -138,6 +139,7 @@ static struct argp_option options[] =
                 {"obs_dir3",        'S', "OBSERVATIONS_DIRECTORY3", 0, "Read Observations from this directory path"},
                 {"actualZ_file3",   'T', "ACTUALZ3_FILE",           0, "Read actual Z from this observation file3"},
                 {"fisher",          'U', 0,                         0, "Compute Fisher matrix"},
+                {"seed",            'V', "SEED",                    0, "Random seed"},
                 {0}
         };
 
@@ -285,6 +287,9 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             break;
         case 'U':
             arguments->fisher = 1;
+            break;
+        case 'V':
+            arguments->seed = arg;  //non-optional
             break;
         default:
             return ARGP_ERR_UNKNOWN;

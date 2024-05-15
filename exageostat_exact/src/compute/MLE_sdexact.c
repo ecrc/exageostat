@@ -82,7 +82,7 @@ void EXAGEOSTAT_MLE_sdzvg_Tile(MLE_data *data, double*Nrand, double*initial_thet
         CHAM_desc_t *CHAM_descZ = (CHAM_desc_t *) (data->descZ);
 #if defined(CHAMELEON_USE_MPI)
         z = (double*) malloc(n * sizeof(double));
-        CHAM_Tile_to_Lapack( CHAM_descZ, z, n);
+        CHAMELEON_Tile_to_Lapack( CHAM_descZ, z, n);
 #else
         z = CHAM_descZ->mat;
 #endif

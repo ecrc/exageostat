@@ -44,7 +44,7 @@ with a user-controlled numerical accuracy. This further expands practical proble
 statisticians with modest computational resources.
 
 
-Current Version: 1.2.0
+Current Version: 1.2.1
 ======================
 Current Features of ExaGeoStat
 ======================
@@ -97,7 +97,7 @@ please follow these instructions:
 
         git clone https://github.com/ecrc/exageostat
 
-2.  Go into exageostat folder
+2.  Go into ExaGeoStat folder
 
         cd exageostat
 
@@ -107,26 +107,25 @@ please follow these instructions:
 
 4.  Create build directory and go there
 
-        mkdir build && cd build
+        mkdir -p build && cd build
 
 5.  Use CMake to get all the dependencies
 
-        cmake .. -DCMAKE_INSTALL_PREFIX=/path/to/install/  -DEXAGEOSTAT_SCHED_STARPU=ON   -DEXAGEOSTAT_USE_NETCDF=ON -DEXAGEOSTAT_USE_HICMA=ON
-
+        cmake .. -DCMAKE_INSTALL_PREFIX=/path/to/install/  -DExaGeoStat_SCHED_STARPU=ON   -DEXAGEOSTAT_USE_NETCDF=ON -DEXAGEOSTAT_USE_HICMA=ON -DEXAGEOSTAT_USE_CHAMELEON=ON -DEXAGEOSTAT_INSTALL_DEPS=ON -DBUILD_SHARED_LIBS=ON
 
 6.  Build EXAGEOSTAT
 
         make -j
 
-8.  Build local documentation (optional)
+7.  Build local documentation (optional)
 
         make docs
 
-9.  Install EXAGEOSTAT
+8.  Install EXAGEOSTAT
 
         make install
 
-10. Add line
+9. Add line
 
         export PKG_CONFIG_PATH=/path/to/install/lib/pkgconfig:$PKG_CONFIG_PATH
 
@@ -135,6 +134,7 @@ please follow these instructions:
 Now you can use pkg-config executable to collect compiler and linker flags for
 EXAGEOSTAT.
 
+Check docs/install.md for more installations details.
 
 References
 ==========

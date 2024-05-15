@@ -1202,7 +1202,7 @@ void write_to_estimatedtheta(char *path, double* theta, int num_params,
 {
     FILE *pFile;
 #if defined(CHAMELEON_USE_MPI)
-    if ( MORSE_My_Mpi_Rank() == 0 )
+    if ( CHAMELEON_Comm_rank() == 0 )
     {
 #endif
     pFile = fopen(path, "a");
@@ -1368,7 +1368,7 @@ void print_summary(int test, int N, int ncores, int gpus, int ts, int lts, char 
 //! print the summary of MLE inputs.
 {
 #if defined(CHAMELEON_USE_MPI)
-    if ( MORSE_My_Mpi_Rank() == 0 )
+    if ( CHAMELEON_Comm_rank() == 0 )
     {
 #endif
     fprintf(stderr, "********************SUMMARY**********************\n");
@@ -1406,7 +1406,7 @@ int print_result(MLE_data *data, double* starting_theta, int N, int zvecs, int n
 {
     int num_params;
 #if defined(CHAMELEON_USE_MPI)
-    if ( MORSE_My_Mpi_Rank() == 0 )
+    if ( CHAMELEON_Comm_rank() == 0 )
     {
 #endif
 
@@ -1617,7 +1617,7 @@ void init_log(MLE_data *data)
  */
 {
 #if defined(CHAMELEON_USE_MPI)
-    if ( MORSE_My_Mpi_Rank() == 0 )
+    if ( CHAMELEON_Comm_rank() == 0 )
     {
 #endif
     data->pFileLog = fopen(data->nFileLog, "w+");
@@ -1636,7 +1636,7 @@ void finalize_log(MLE_data *data)
  */
 {
 #if defined(CHAMELEON_USE_MPI)
-    if ( MORSE_My_Mpi_Rank() == 0 )
+    if ( CHAMELEON_Comm_rank() == 0 )
     {
 #endif
     fclose(data->pFileLog);
@@ -2134,7 +2134,7 @@ int print_predicted_values(location *lmiss, double* Zactual, double* Zmiss, int 
     int i;
     FILE *pFile;
 #if defined(CHAMELEON_USE_MPI)
-    if ( MORSE_My_Mpi_Rank() == 0 )
+    if ( CHAMELEON_Comm_rank() == 0 )
     {
 #endif
 

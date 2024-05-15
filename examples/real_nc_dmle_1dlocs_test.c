@@ -86,7 +86,7 @@ int main(int argc, char** argv) {
         EXAGEOSTAT_dmle_diag_Call(&data, ncores, gpus, dts, p_grid, q_grid, N, nZobs, nZmiss);
 #if defined(EXAGEOSTAT_USE_HICMA)
     else if (strcmp(data.computation, "lr_approx") == 0) {
-        EXAGEOSTAT_TLR_dmle_Call(&data, ncores, gpus, lts, p_grid, q_grid, N, nZobs, nZmiss);
+        EXAGEOSTAT_TLR_dmle_Call(&data, ncores, gpus, lts, dts, p_grid, q_grid, N, nZobs, nZmiss);
         if (test == 1)
             data.hicma_data_type = HICMA_STARSH_PROB_GEOSTAT;
         else

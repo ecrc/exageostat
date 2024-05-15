@@ -5,7 +5,7 @@
 #             University of Science and Technology (KAUST)
 #
 # @file CMakeLists.txt
-# @version 1.2.0
+# @version 1.2.1
 # @author Eduardo Gonzalez Fisher
 # @author Sameh Abdulah
 # @date 2022-11-09
@@ -37,7 +37,7 @@ project(EXAGEOSTAT C)
 # set project version number
 set(EXAGEOSTAT_VERSION_MAJOR 1)
 set(EXAGEOSTAT_VERSION_MINOR 2)
-set(EXAGEOSTAT_VERSION_PATCH 0)
+set(EXAGEOSTAT_VERSION_PATCH 1)
 
 #set(CHAMELEON_CMAKE_DIR "" CACHE PATH "Directory of CHAMELEON CMake modules, can be external to the project")
 # CMAKE MODULES :: ECRC
@@ -418,10 +418,42 @@ else ()
     set(NLOPT OFF)
 endif ()
 
-
-# EXAGEOSTAT depends on STARSH
+# EXAGEOSTAT depends on GSL
 # -------------------------------
-if (EXAGEOSTAT_USE_STARSH)
+# Check if GSL is available to build wrappers
+message("")
+message("---------------------------------------- GSL")
+find_package(GSL 2.4 QUIET )
+if (NOT GSL_FOUND)
+
+    message("")
+    message(STATUS "Can't find GSL using PkgConfig, Installing it ..")
+    include(ImportGSL)
+    if(NOT GSL_INSTALLED)
+        message(FATAL_ERROR "GSL Installation failed")
+    endif()
+
+    message(STATUS "Now trying to find GSL")
+endif()
+
+find_package(GSL 2.4.2 QUIET REQUIRED)
+if (GSL_FOUND)
+    include_directories(${GSL_INCLUDE_DIRS})
+    link_directories(${GSL_LIBRARY_DIRS})
+    list(INSERT EXAGEOSTAT_DEP 0 "gsl")
+    message(STATUS "GSL ${GSL_VERSION} found")
+else ()
+    message("GSL is NOT found, skipping it")
+endif ()
+
+## ADD GSL
+#list(INSERT EXAGEOSTAT_DEP 0 "gsl")
+
+# EXAGEOSTAT depends on HICMA
+# -------------------------------
+if (EXAGEOSTAT_USE_HICMA)
+    # EXAGEOSTAT depends on STARSH
+    # -------------------------------
     message("")
     message("---------------------------------------- Stars-H")
     find_package(STARSH)
@@ -469,11 +501,7 @@ if (EXAGEOSTAT_USE_STARSH)
         endif ()
     endif()
     message(STATUS "StarsH Done")
-endif ()
 
-# EXAGEOSTAT depends on HICMA
-# -------------------------------
-if (EXAGEOSTAT_USE_HICMA)
     message("")
     message("---------------------------------------- Hicma")
     find_package(HICMA REQUIRED)
@@ -497,7 +525,6 @@ if (EXAGEOSTAT_USE_HICMA)
     message(STATUS "Hicma Done")
     endif ()
 endif()
-
 
 # EXAGEOSTAT depends on a runtime
 # -------------------------------
@@ -816,11 +843,13 @@ if (EXAGEOSTAT_USE_NETCDF)
     list(APPEND INSTALL_HEADERS ${CMAKE_SOURCE_DIR}/misc/include/nc_file.h)
 endif ()
 
-link_directories(${STARSH_LIBRARY_DIRS})
+if (EXAGEOSTAT_USE_HICMA)
+    link_directories(${STARSH_LIBRARY_DIRS})
+    link_directories(${HICMA_LIBRARY_DIRS})
+endif()
 link_directories(${STARPU_LIBRARY_DIRS})
 link_directories(${STARPU_SHM_STATIC_LIBRARY_DIRS})
 link_directories(${CHAMELEON_LIBRARY_DIRS})
-link_directories(${HICMA_LIBRARY_DIRS})
 
 if (EXAGEOSTAT_USE_CUDA)
     CUDA_add_library(exageostat ${EXAGEOSTAT_SRC} ${EXAGEOSTAT_CHAMELEON_SRC})

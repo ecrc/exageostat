@@ -97,6 +97,7 @@ void set_args_default(arguments *arg_values)
     arg_values->dim = "2d";
     arg_values->time_slots = "0";
     arg_values->idw = 0;
+    arg_values->seed = "0";
 }
 
 void check_args(arguments *arg_values) {
@@ -199,6 +200,8 @@ init(int *test, int *N, int *ncores, int *gpus, int *p_grid, int *q_grid, int *z
 
     data->time_slots = atoi(arguments->time_slots);
     data->kernel_fun = arguments->kernel_fun;
+
+    data->seed = atoi(arguments->seed);
     //should be improved
     location l;
     l.x = (double* ) malloc(sizeof(double));
