@@ -153,6 +153,8 @@ typedef struct {
     double generation_per_iter;
     double solve_per_iter;
     double total_mle_time;
+    double avg_exec_time_gen_stage;
+    double avg_flops_gen_stage;
     double mse_pred1;
     double mse_pred2;
     double mse_pred3;
@@ -234,6 +236,8 @@ typedef struct {
     double avg_generation_per_iter;
     double avg_solve_per_iter;
     double avg_cholesky_per_iter;
+    double avg_exec_time_gen_stage;
+    double avg_flops_gen_stage; 
     double final_loglik;              ///< Final log likelihood value.
     char *locsFPath;                  ///< Locations file path -- in the case of real dataset (real mode).
     char *timeFPath;                  ///< Time file path -- in the case of real dataset (real mode -- space-time kernel).
