@@ -85,7 +85,7 @@ void init_data_values(MLE_data *data)
     data->avg_solve_per_iter = 0.0;
     data->avg_cholesky_per_iter = 0.0;
     data->avg_exec_time_gen_stage = 0.0;
-    data ->avg_flops_gen_stage = 0.0;
+    data->avg_flops_gen_stage = 0.0;
     data->final_loglik = 0.0;                        ///< Final log likelihood value.
     data->locsFPath = "";                            ///< Locations file path -- in the case of real dataset (real mode).
     data->timeFPath = "";                            ///< Time file path -- in the case of real dataset (real mode -- space-time kernel).
@@ -622,7 +622,7 @@ int locations_obs_zsort_inplace_bivariate(int n, location *locations, double* z,
 }
 
 
-int locations_obs_zsort_inplace_trivariate(int n, location *locations, double* z, double* z2, double* z3)
+int locations_obs_zsort_inplace_trivariate(int n, location *locations, double *z, double *z2, double *z3)
 //! Sort particles in Z-order (Morton order).
 /*! This function must be used after initializing @ref STARSH_particles with
  * your own data by starsh_particles_init() or starsh_particles_new().
@@ -1525,12 +1525,12 @@ int print_result(MLE_data *data, double* starting_theta, int N, int zvecs, int n
     fprintf(pFile, "%6.6f ", results.final_loglik);
     fprintf(pFile, "%6.6f ", results.mse_pred);
     fprintf(pFile, "%6.6f ", data->avg_exec_time_gen_stage);
-	fprintf(pFile, "%6.6f ", results.time_per_iteration);
+    fprintf(pFile, "%6.6f ", results.time_per_iteration);
     fprintf(pFile, "%6.6f ", results.total_pred_time);
-	fprintf(pFile, "%6.6f ", data->avg_flops_gen_stage);
-	fprintf(pFile, "%6.6f ", results.flops_per_iteration);
+    fprintf(pFile, "%6.6f ", data->avg_flops_gen_stage);
+    fprintf(pFile, "%6.6f ", results.flops_per_iteration);
     fprintf(pFile, "%6.6f ", results.total_pred_flops);
-	fprintf(pFile, "\n");
+    fprintf(pFile, "\n");
 
     fclose(pFile);
 #if defined(CHAMELEON_USE_MPI)
@@ -2112,7 +2112,7 @@ double* pred_idw(MLE_data *data, double* z_miss, double* z_actual, double* z_obs
     return mspe;
 }
 
-int print_predicted_values(location *lmiss, double* Zactual, double* Zmiss, int nZmiss, int p)
+int print_predicted_values(location *lmiss, double *Zactual, double *Zmiss, int nZmiss, int p)
 //! print results (only for testing accuracy should be removed in release)
 
 {
