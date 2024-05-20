@@ -143,8 +143,8 @@ void EXAGEOSTAT_MLE_dzvg_Tile(MLE_data *data, double*Nrand, double*initial_theta
     CHAMELEON_dlaset_Tile(ChamUpperLower, 0, 0, data->descC);
     VERBOSE("Done Z Vector Generation Phase. (Chameleon Synchronous)\n");
     VERBOSE("************************************************************\n");
-//    results->avg_exec_time_gen_stage = /*matrix_gen_time +*/ time_facto + time_trmm;
-//    data->avg_flops_gen_stage = flops / 1e9 / (time_facto +time_trmm);
+    data->avg_exec_time_gen_stage = /*matrix_gen_time +*/ time_facto + time_trmm;
+    data->avg_flops_gen_stage = flops / 1e9 / (time_facto +time_trmm);
 }
 
 
