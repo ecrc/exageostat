@@ -43,9 +43,11 @@ void EXAGEOSTAT_MLE_dzvg_Tile(MLE_data *data, double*Nrand, double*initial_theta
     double nu12;
     double rho;
     double sigma_square12;
+    double time_facto = 0.0, time_trmm = 0.0, matrix_gen_time = 0.0, flops = 0;
 
     //Generate the co-variance matrix C
     VERBOSE("Initializing Covariance Matrix (Synthetic Dataset Generation Phase).....");
+    START_TIMING(matrix_gen_time);
     if (strcmp(data->kernel_fun, "bivariate_matern_parsimonious2") == 0 ||
         strcmp(data->kernel_fun, "bivariate_matern_parsimonious2_profile") == 0) {
 
@@ -92,6 +94,7 @@ void EXAGEOSTAT_MLE_dzvg_Tile(MLE_data *data, double*Nrand, double*initial_theta
     }
 
     CHAMELEON_Sequence_Wait(msequence);
+    STOP_TIMING(matrix_gen_time);
     VERBOSE(" Done.\n");
 
     //Copy Nrand to Z
@@ -101,21 +104,27 @@ void EXAGEOSTAT_MLE_dzvg_Tile(MLE_data *data, double*Nrand, double*initial_theta
 
     //Cholesky factorization for the Co-variance matrix C
     VERBOSE("Cholesky factorization of Sigma (Synthetic Dataset Generation Phase) .....");
+    START_TIMING(time_facto);  
     int success = CHAMELEON_dpotrf_Tile(ChamLower, data->descC);
+    STOP_TIMING(time_facto);  
+    flops = flops + FLOPS_DPOTRF(n);
     //printf(" success=%d \n", success);
     //exit(0);
     SUCCESS(success, "Factorization cannot be performed..\n The matrix is not positive definite\n\n");
     VERBOSE(" Done.\n");
 
+    CHAM_desc_t *CHAM_descZ = (CHAM_desc_t *) (data->descZ);
     //Triangular matrix-matrix multiplication    
     VERBOSE("Triangular matrix-matrix multiplication Z=L.e (Synthetic Dataset Generation Phase) .....");
+    START_TIMING(time_trmm);
     CHAMELEON_dtrmm_Tile(ChamLeft, ChamLower, ChamNoTrans, ChamNonUnit, 1, data->descC, data->descZ);
+    STOP_TIMING(time_trmm);
+    flops = flops + FLOPS_DTRMM(ChamLeft, n, CHAM_descZ->n);
     VERBOSE(" Done.\n");
 
     //if log==1 write vector to disk
     if (log == 1) {
         double*z;
-        CHAM_desc_t *CHAM_descZ = (CHAM_desc_t *) (data->descZ);
         VERBOSE("Writing generated data to the disk (Synthetic Dataset Generation Phase) .....");
 #if defined(CHAMELEON_USE_MPI)
         z = (double*) malloc(n * sizeof(double));
@@ -134,6 +143,8 @@ void EXAGEOSTAT_MLE_dzvg_Tile(MLE_data *data, double*Nrand, double*initial_theta
     CHAMELEON_dlaset_Tile(ChamUpperLower, 0, 0, data->descC);
     VERBOSE("Done Z Vector Generation Phase. (Chameleon Synchronous)\n");
     VERBOSE("************************************************************\n");
+    data->avg_exec_time_gen_stage = /*matrix_gen_time +*/ time_facto + time_trmm;
+    data->avg_flops_gen_stage = flops / 1e9 / (time_facto +time_trmm);
 }
 
 
@@ -438,6 +449,8 @@ double EXAGEOSTAT_dmle_Tile(unsigned n, const double*theta, double*grad, void *C
         if (data->log == 1)
             fprintf(data->pFileLog, "%.8f, %.8f,", data->variance1, data->variance2);
         i = 2;
+	results.estimated_theta[0] = data->variance1;
+        results.estimated_theta[1] = data->variance2;
     } else
         i = 0;
     for (; i < num_params; i++) {
@@ -445,6 +458,8 @@ double EXAGEOSTAT_dmle_Tile(unsigned n, const double*theta, double*grad, void *C
         if (i < num_params - 1)
             fprintf(stderr, ",");
 
+	results.estimated_theta[i] = theta[i];
+	
         if (data->log == 1)
             fprintf(data->pFileLog, "%.8f, ", theta[i]);
     }

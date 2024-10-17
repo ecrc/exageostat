@@ -906,7 +906,7 @@ double EXAGEOSTAT_TLR_dmle_Predict_Tile(MLE_data *CHAM_data, double *theta, int 
 
 //init Hicma decriptors
 void
-EXAGEOSTAT_TLR_dmle_Call(MLE_data *data, int ncores, int gpus, int lts, int p_grid, int q_grid, int N, int nZobs, int nZmiss)
+EXAGEOSTAT_TLR_dmle_Call(MLE_data *data, int ncores, int gpus, int lts, int dts, int p_grid, int q_grid, int N, int nZobs, int nZmiss)
 //! //Initiate HICMA and allocate different descriptors for
 /*!  HICMA
  * Returns MLE_data data with initial values and new descriptors locations.
@@ -1005,27 +1005,22 @@ EXAGEOSTAT_TLR_dmle_Call(MLE_data *data, int ncores, int gpus, int lts, int p_gr
                       Nrk, p_grid, q_grid);
     HICMA_Sequence_Create(&msequence);
     HICMA_Desc_Create(&hicma_descZ, NULL, HicmaRealDouble, lts, lts, lts * lts, N, 1, 0, 0, N, 1, p_grid, q_grid);
-    EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&descZ, NULL, ChamRealDouble, lts, lts, lts * lts, N, 1, 0, 0, N, 1, p_grid,
-                                    q_grid);
+    EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&descZ, NULL, ChamRealDouble, dts, dts, dts * dts, N, 1, 0, 0, N, 1, p_grid, q_grid)
     HICMA_Desc_Create(&hicma_descZcpy, Zcpy, HicmaRealDouble, lts, lts, lts * lts, N, 1, 0, 0, N, 1,
                       p_grid, q_grid);
     HICMA_Desc_Create(&hicma_descdet, &data->det, HicmaRealDouble, lts, lts, lts * lts, 1, 1, 0, 0, 1, 1,
                       p_grid, q_grid);
 
-    EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&cham_descZcpy, Zcpy, ChamRealDouble, lts, lts, lts * lts, N, 1, 0, 0, N, 1,
-                                    p_grid, q_grid);
+    EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&cham_descZcpy, Zcpy, ChamRealDouble, dts, dts, dts * dts, N, 1, 0, 0, N, 1, p_grid, q_grid)
     if (nZmiss != 0) {
         if (strcmp(data->actualZFPath, "") == 0) {
             //EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&CHAMELEON_descZobs, &CHAMELEON_descZcpy->mat[sizeof(double)*nZmiss], ChamRealDouble, ts, ts, ts * ts, nZobs, 1, 0, 0, nZobs, 1,p_grid,q_grid);
             //CHAMELEON_descZactual=chameleon_desc_submatrix(CHAMELEON_descZcpy, 0, 0, nZmiss, 1);
-            EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&CHAMELEON_descZobs, &Zcpy[nZmiss], ChamRealDouble, lts, lts, lts * lts,
-                                            nZobs, 1, 0, 0, nZobs, 1, p_grid, q_grid);
-            EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&CHAMELEON_descZactual, Zcpy, ChamRealDouble, lts, lts, lts * lts, nZmiss,
-                                            1, 0, 0, nZmiss, 1, p_grid, q_grid);
+            EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&CHAMELEON_descZobs, &Zcpy[nZmiss], ChamRealDouble, dts, dts, dts * dts, nZobs, 1, 0, 0, nZobs, 1, p_grid, q_grid)
+            EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&CHAMELEON_descZactual, Zcpy, ChamRealDouble, dts, dts, dts * dts, nZmiss, 1, 0, 0, nZmiss, 1, p_grid, q_grid)
         } else {
             CHAMELEON_descZobs = cham_descZcpy;
-            EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&CHAMELEON_descZactual, NULL, ChamRealDouble, lts, lts, lts * lts, nZmiss,
-                                            1, 0, 0, nZmiss, 1, p_grid, q_grid);
+            EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&CHAMELEON_descZactual, NULL, ChamRealDouble, dts, dts, dts * dts, nZmiss, 1, 0, 0, nZmiss, 1, p_grid, q_grid)
         }
 
 
@@ -1078,10 +1073,8 @@ EXAGEOSTAT_TLR_dmle_Call(MLE_data *data, int ncores, int gpus, int lts, int p_gr
 
 
         //Other descriptors
-        EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&CHAMELEON_descZmiss, NULL, ChamRealDouble, lts, lts, lts * lts, nZmiss, 1, 0,
-                                        0, nZmiss, 1, p_grid, q_grid);
-        EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&CHAM_descmse, &data->mserror, ChamRealDouble, lts, lts, lts * lts, 1, 1, 0, 0,
-                                        1, 1, p_grid, q_grid);
+        EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&CHAMELEON_descZmiss, NULL, ChamRealDouble, dts, dts, dts * dts, nZmiss, 1, 0, 0, nZmiss, 1, p_grid, q_grid)
+        EXAGEOSTAT_ALLOCATE_MATRIX_TILE(&CHAM_descmse, &data->mserror, ChamRealDouble, dts, dts, dts * dts, 1, 1, 0, 0, 1, 1, p_grid, q_grid);
     }
 
 

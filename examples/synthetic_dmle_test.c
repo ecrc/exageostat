@@ -93,7 +93,6 @@ int main(int argc, char** argv) {
 
     double* lb = (double* ) malloc(num_params * sizeof(double));
     double* up = (double* ) malloc(num_params * sizeof(double));
-    int iseed[4] = {seed, seed, seed, 1};
 
     //Memory allocation
     starting_theta = (double* ) malloc(num_params * sizeof(double));
@@ -108,6 +107,8 @@ int main(int argc, char** argv) {
          starting_theta, target_theta, lb,
          up, &data, &arguments);
 
+    seed = data.seed;
+    int iseed[4] = {seed, seed, seed, 1};
     if (strcmp(arguments.kernel_fun, "univariate_spacetime_matern_stationary") == 0)
         p = data.time_slots;
     if (strcmp(arguments.kernel_fun, "bivariate_spacetime_matern_stationary") == 0)
@@ -208,7 +209,7 @@ int main(int argc, char** argv) {
                 EXAGEOSTAT_TLR_dmle_ng_Call(&data, ncores, gpus, lts, p_grid, q_grid, N, nZobs, nZmiss);
             }
             else{
-                EXAGEOSTAT_TLR_dmle_Call(&data, ncores, gpus, lts, p_grid, q_grid, N, nZobs, nZmiss);
+                EXAGEOSTAT_TLR_dmle_Call(&data, ncores, gpus, lts, dts, p_grid, q_grid, N, nZobs, nZmiss);
             }
 
             if(strcmp(arguments.kernel_fun, "univariate_matern_stationary")   == 0 || strcmp(arguments.kernel_fun, "univariate_matern_nuggets_stationary")   == 0)

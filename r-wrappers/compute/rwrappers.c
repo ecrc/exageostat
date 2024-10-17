@@ -18,10 +18,11 @@
  *
  **/
 #include "../include/rwrappers.h"
+#if defined(EXAGEOSTAT_USE_HICMA)
 #include "MLE_lr.h"
 #include "hicma/include/hicma.h"
 #include "hicma/hicma_ext/control/hicma_context.h"
-
+#endif
 
 static int get_num_params(char *kernel_fun) {
     int num_params = 0;
@@ -353,12 +354,15 @@ static void mle_general_tlr(int *kernel, double* x, int *xlen, double* y,
     MLE_data data;
     double* starting_theta;
 
+
+#if defined(EXAGEOSTAT_USE_HICMA)
     HICMA_context_t *hicmatxt;
     hicmatxt = hicma_context_self();
     if(hicmatxt == NULL){
         printf("No active instance...please use exageostat_init() function to initiate a new instance!\n");
         return;
     }
+#endif
 
     CHAM_context_t *chamctxt;
     chamctxt = chameleon_context_self();
@@ -462,7 +466,7 @@ static void mle_general_tlr(int *kernel, double* x, int *xlen, double* y,
     }
 #if defined( EXAGEOSTAT_USE_HICMA )
     else if (strcmp(data.computation, "lr_approx") == 0) {
-        EXAGEOSTAT_TLR_dmle_Call(&data, *ncores, *gpus, *lts, *p_grid, *q_grid, *n, 0, 0);
+        EXAGEOSTAT_TLR_dmle_Call(&data, *ncores, *gpus, *lts, *dts, *p_grid, *q_grid, *n, 0, 0);
     }
 #endif
 
@@ -470,8 +474,9 @@ static void mle_general_tlr(int *kernel, double* x, int *xlen, double* y,
 
     double* Nrand = (double* ) malloc((*n) * 1 * sizeof(double));
     data.iter_count = 0;
+#if defined( EXAGEOSTAT_USE_HICMA )
     EXAGEOSTAT_TLR_MLE_dzvg_Tile(&data, Nrand, starting_theta, *n, *dts, log, *p_grid, *q_grid);
-
+#endif
     //main algorithm call
     START_TIMING(data.total_exec_time);
     nlopt_set_max_objective(opt, MLE_alg, (void *) &data);
@@ -486,10 +491,11 @@ static void mle_general_tlr(int *kernel, double* x, int *xlen, double* y,
     HICMA_Desc_Destroy((HICMA_desc_t **) &data.hicma_descCD);
     HICMA_Desc_Destroy((HICMA_desc_t **) &data.hicma_descCUV);
     HICMA_Desc_Destroy((HICMA_desc_t **) &data.hicma_descCrk);
-    CHAMELEON_Desc_Destroy((CHAM_desc_t **) &data.descZ);
-    CHAMELEON_Desc_Destroy((CHAM_desc_t **) &data.descproduct);
     HICMA_Desc_Destroy((HICMA_desc_t **) &data.hicma_descdet);
 #endif
+    CHAMELEON_Desc_Destroy((CHAM_desc_t **) &data.descZ);
+    CHAMELEON_Desc_Destroy((CHAM_desc_t **) &data.descproduct);
+
     //copy local vector to global vector in R memory space
     for (j = 0; j < num_params; j++)
         *(globalthetaout + j) = *(starting_theta + j);
@@ -653,7 +659,7 @@ static void mle_general(int *kernel, double* x, int *xlen, double* y,
     }
 #if defined( EXAGEOSTAT_USE_HICMA )
     else if (strcmp(data.computation, "lr_approx") == 0) {
-        EXAGEOSTAT_TLR_dmle_Call(&data, *ncores, *gpus, *ts, *p_grid, *q_grid, *n, 0, 0);
+        EXAGEOSTAT_TLR_dmle_Call(&data, *ncores, *gpus, *ts, *ts, *p_grid, *q_grid, *n, 0, 0);
         CHAM_desc_t *CHAM_descZ = NULL;
         CHAMELEON_Desc_Create(&CHAM_descZ, NULL, ChamRealDouble, *ts, *ts, *ts * *ts, *n, 1, 0, 0, *n, 1, *p_grid,
                               *q_grid);

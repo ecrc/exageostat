@@ -168,7 +168,7 @@ int main(int argc, char** argv) {
         EXAGEOSTAT_dmle_diag_Call(&data, ncores, gpus, dts, p_grid, q_grid, N, nZobs, nZmiss);
 #if defined(EXAGEOSTAT_USE_HICMA)
     else if (strcmp(data.computation, "lr_approx") == 0) {
-        EXAGEOSTAT_TLR_dmle_Call(&data, ncores, gpus, lts, p_grid, q_grid, N, nZobs, nZmiss);
+        EXAGEOSTAT_TLR_dmle_Call(&data, ncores, gpus, lts, dts, p_grid, q_grid, N, nZobs, nZmiss);
         if (test == 1) {
             if (strcmp(arguments.kernel_fun, "univariate_matern_stationary") == 0 ||
                 strcmp(arguments.kernel_fun, "univariate_matern_nuggets_stationary") == 0)

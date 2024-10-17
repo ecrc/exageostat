@@ -57,7 +57,7 @@ double EXAGEOSTAT_TLR_dmle_Predict_Tile(MLE_data *CHAM_data, double* theta, int 
                                double* Zmiss, int n, int lts);
 //init EXAGEOSTAT_TLR decriptors
 
-void EXAGEOSTAT_TLR_dmle_Call(MLE_data *data, int ncores, int gpus, int lts, int p_grid, int q_grid, int N, int nZobs, int nZmiss);
+void EXAGEOSTAT_TLR_dmle_Call(MLE_data *data, int ncores, int gpus, int lts, int dts, int p_grid, int q_grid, int N, int nZobs, int nZmiss);
 
 void EXAGEOSTAT_TLR_MLE_zcpy(MLE_data *data, double* streamdata);
 

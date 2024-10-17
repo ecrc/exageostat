@@ -210,7 +210,7 @@ int main(int argc, char** argv) {
                 strcmp(arguments.kernel_fun, "univariate_exp_non_gaussian") == 0)
                 EXAGEOSTAT_TLR_dmle_ng_Call(&data, ncores, gpus, lts, p_grid, q_grid, N, nZobs, nZmiss);
             else
-                EXAGEOSTAT_TLR_dmle_Call(&data, ncores, gpus, lts, p_grid, q_grid, N, nZobs, nZmiss);
+                EXAGEOSTAT_TLR_dmle_Call(&data, ncores, gpus, lts, dts, p_grid, q_grid, N, nZobs, nZmiss);
 
             if (strcmp(arguments.kernel_fun, "univariate_matern_stationary") == 0 ||
                 strcmp(arguments.kernel_fun, "univariate_matern_nuggets_stationary") == 0)
